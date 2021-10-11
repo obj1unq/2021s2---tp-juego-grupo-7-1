@@ -49,10 +49,32 @@ Hay diversos momentos, en tanto modos del programa:
 - Pantalla de fin del juego (Game over o Win)
 - Créditos
 
+## Formaciones enemigas
+Para programar esto, se puede implementar una forma de "dibujar" en el código la disposición inicial de las naves mediante listas anidadas. Quedando algo así:
+
+[
+  [_, _, R, R, _, K, K, _, R, R, _, _],
+  [_, R, R, R, R, R, R, R, R, R, R, _],
+  [R, R, R, R, R, R, R, R, R, R, R, R],
+  [R, K, R, K, R, R, R, R, K, R, K, R],
+  [_, R, R, K, R, R, R, R, K, R, R, _],
+  [_, R, R, R, R, _, _, R, R, R, R, _],
+  [_, R, K, R, _, _, _, _, R, K, R, _],
+  [_, _, R, R, _, _, _, _, R, R, _, _],
+]
+
+- `R`: razo
+- `K`: kamikaze
+- `_`: vacío. (hasta donde pude ver el lodash puede ser el nombre de un objeto)
+
+Esto pudiera tener un script de generzación automática, dentro del propio juego o, mejor aun, afuera, hecho en Python x ejemplo, que genere este string, siguiendo un esquema de simetría x random, parametrizando densidad, dispersión, etc.
+Generamos unos cuantos niveles y luego nos quedamos con los mejores.
+Creería que los niveles deben ser fijos, es decir que no se generen aleatoriamente, para reforzar la idea de historia.
+
 ## Otros objetos
 Puede a su vez haber otros objetos que agreguen dinamismo y jugabilidad al juego
 - Asteroides: pueden aparecer de manera fortuita y ser neutros en terminos de bando: afecatar a todos por igual. Desplazarse en determinado ángulo y arrazar con todo a su paso.
 - Power ups. Objetos que "caen" y que nuestra nave intentará atrapar para potenciarse: vidas, mejor disparpo, más velocidad, más resistencia, etc.
 - Aliados:
   - Autómatas: son objetos que o bien son kamikazes aliados o bien disparan temporalmente contra las enemigas
-  - Controlados por el usuario: una funcionalidad forzada a multiplayer en la que el teclado puede controlar más de un objeto a la vez. Ademas de la nave ppal, puede haber o bien naves secundarias, o bien cañones laterales que disparan fijos al presionar una tecla. 
+  - Controlados por el usuario: una funcionalidad forzada a multiplayer en la que el teclado puede controlar más de un objeto a la vez. Ademas de la nave ppal, puede haber o bien naves secundarias, o bien cañones laterales que disparan fijos al presionar una tecla.
