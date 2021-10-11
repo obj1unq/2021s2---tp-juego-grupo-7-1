@@ -1,8 +1,18 @@
 import wollok.game.*
-import pepita.*
+import heroina.*
+import config.*
 
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.title("Space Invaders")
+	game.cellSize(20)
+	game.width(50)
+	game.height(30)
+	heroina.composition().forEach({f=>
+	  f.forEach({c=>
+    	game.addVisual(c)	    
+	  })
+	})
+	game.addVisual(heroina.anchor())
+	config.configurarTeclas()
 	game.start()
 }
