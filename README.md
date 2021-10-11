@@ -52,6 +52,7 @@ Hay diversos momentos, en tanto modos del programa:
 ## Formaciones enemigas
 Para programar esto, se puede implementar una forma de "dibujar" en el código la disposición inicial de las naves mediante listas anidadas. Quedando algo así:
 
+```
 [
   [_, _, R, R, _, K, K, _, R, R, _, _],
   [_, R, R, R, R, R, R, R, R, R, R, _],
@@ -62,6 +63,7 @@ Para programar esto, se puede implementar una forma de "dibujar" en el código l
   [_, R, K, R, _, _, _, _, R, K, R, _],
   [_, _, R, R, _, _, _, _, R, R, _, _],
 ]
+```
 
 - `R`: razo
 - `K`: kamikaze
