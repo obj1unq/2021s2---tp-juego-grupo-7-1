@@ -3,12 +3,12 @@ import config.*
 import heroina.*
 
 program juego {
-	game.title("Space Invaders")
-	game.cellSize(20)
-	game.width(50)
-	game.height(30)
-	heroina.addVisualComposition()
-	
-	config.configurarTeclas()
-	game.start()
+  game.title("Space Invaders")
+  game.cellSize(20)
+  game.width(50)
+  game.height(30)
+  heroina.addVisualComposition()
+  
+  config.configurarTeclas()
+  game.start()
 }
