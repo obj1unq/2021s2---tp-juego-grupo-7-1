@@ -1,19 +1,7 @@
 import wollok.game.*
 import Anchor.*
+import Pixel.*
 
-class HeroinaPx{
-  var property anchor
-  var property image
-  var property xDelta
-  var property yDelta
-  
-  method position(){
-    return game.at(
-      anchor.position().x()+xDelta,
-      anchor.position().y()+yDelta
-    )
-  }
-}
 
 object heroina {
   const width = 10
@@ -28,7 +16,7 @@ object heroina {
       const filaActual = []
       (0..width-1).forEach({indexW =>
         filaActual.add(
-          new HeroinaPx(
+          new Pixel(
             image=assetPrefix+".png",
             xDelta=indexW,
             yDelta=indexH,
