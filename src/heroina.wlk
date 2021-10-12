@@ -14,23 +14,24 @@ class HeroinaPx{
     )
   }
 }
+
 object heroina {
-  const width = 5
-  const height = 5
+  const width = 10
+  const height = 3
   const assetPrefix = "px-verde"
   const property anchor = new Anchor()
   method position() = game.center()
   
   method composition(){
     const comp = []
-    (0..height-1).forEach({indexN=>
+    (0..height-1).forEach({indexH=>
       const filaActual = []
-      (0..width-1).forEach({indexM =>
+      (0..width-1).forEach({indexW =>
         filaActual.add(
           new HeroinaPx(
             image=assetPrefix+".png",
-            xDelta=indexN,
-            yDelta=indexM,
+            xDelta=indexW,
+            yDelta=indexH,
             anchor=self.anchor()
           )
         )
@@ -38,5 +39,11 @@ object heroina {
       comp.add(filaActual)
     })
     return comp
+  }
+  method addVisualComposition(){
+    self.composition().forEach({fila=>
+      fila.forEach({pixel=>game.addVisual(pixel)})
+    })
+    game.addVisual(self.anchor())
   }
 }
