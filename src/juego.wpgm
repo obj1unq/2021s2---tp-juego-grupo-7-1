@@ -9,9 +9,7 @@ program juego {
   game.cellSize(20)
   game.width(50)
   game.height(30)
-//  heroina.addVisualComposition()
-//  
-//  config.configurarTeclas()
+  //  heroina.addVisualComposition()
   game.addVisual(mensaje)
   gameManager.iniciarJuego()
   game.start()
