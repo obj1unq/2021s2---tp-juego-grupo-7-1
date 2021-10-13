@@ -1,7 +1,7 @@
 import extras.*
 
 class Momento {
-  const background = ""
+//  const background = ""
   const nombre
   // soundtrack ??
   
