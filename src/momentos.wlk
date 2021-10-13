@@ -1,4 +1,4 @@
-import mensaje.*
+import extras.*
 
 class Momento {
   const background = ""
@@ -16,4 +16,4 @@ object tituloJuego inherits Momento(nombre="[TITULO_JUEGO]\n¡¡SPACE INVADERS!!
 object presentacionNivel inherits Momento(nombre="[PRESENTACION_NIVEL]\nNivel xxx"){}
 object juego inherits Momento(nombre="[JUEGO]\nJuego..."){}
 object finalJuego inherits Momento(nombre="[FINAL_JUEGO]\nGame over"){}
-object creditos inherits Momento(nombre="[CREDITOS]\nmuy rico todo"){}
+object creditos inherits Momento(nombre="[CREDITOS]\nMuy rico todo"){}
