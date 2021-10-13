@@ -1,18 +1,23 @@
 import wollok.game.*
 import heroina.*
-import config.*
+// import config.*
+
+import personajes.*
 
 program juego {
-	game.title("Space Invaders")
+	// Visuals
+	game.title("Space Invaders") 
 	game.cellSize(20)
 	game.width(50)
 	game.height(30)
-	heroina.composition().forEach({f=>
-	  f.forEach({c=>
-    	game.addVisual(c)	    
-	  })
-	})
-	game.addVisual(heroina.anchor())
+	game.boardGround("background.jpg")
+	
+	// Characters and configurations
+	game.addVisual(brocoli)
 	config.configurarTeclas()
+	
 	game.start()
 }
+
+
+
