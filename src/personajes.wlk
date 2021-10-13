@@ -28,13 +28,12 @@ object brocoli {
 }
 
 
-
 class Bala {
 	var property position = game.at(brocoli.position().x(), brocoli.position().y() + 1)
 
 	method image() = "asparagus.png"
 
-	method height() {
+	method alto() {
 		return game.height()
 	}
 
@@ -44,12 +43,57 @@ class Bala {
 	}
 
 	method desplazar() {
-		if(self.position().y() < self.height()) {
+		if(self.position().y() < self.alto()) {
 			position = self.position().up(1)
 		} else {
 			self.removerDisparo()
 		}
 	}
+}
+
+
+object naveEnemiga {
+	var mueveIzquierda = true
+	var property position = game.center()		// lo centre para probar 
+	const property limiteIzq = 0
+	const property limiteDer = 48 
+
+	method image() = "hotdog.png"
+	
+	method ancho() {
+		return game.width()
+	}
+	
+	method alto() {
+		return game.height()
+	}
+	
+	method puedeMoverIzquierda() {
+		return self.position().x() > limiteDer or mueveIzquierda
+	}
+	
+	method puedeMoverDerecha() {
+		return self.position().x() < limiteIzq or not mueveIzquierda
+	}
+	
+	method mover() {
+		if(self.puedeMoverIzquierda()) { 
+			position = self.position().left(1)
+			mueveIzquierda = true
+		}
+		if (self.puedeMoverDerecha()){
+			position = self.position().right(1)
+			mueveIzquierda = false			
+		}
+	}
+	
+	method eliminar(bala){
+		game.removeTickEvent("MOVIMIENTO_DE_BALA")
+		game.removeVisual(bala)
+		game.removeTickEvent("MOVIMIENTO_DE_ENEMIGO")
+		game.removeVisual(self)
+	}
+
 }
 
 
@@ -68,10 +112,17 @@ object config {
 	
 	method agregarYMover(bala){
 		game.addVisual(bala)
-		game.onTick(200, "MOVIMIENTO_DE_BALA" , {bala.desplazar()})	
+		game.onTick(50, "MOVIMIENTO_DE_BALA" , {bala.desplazar()})	
 	}
 
-
+	method movimientoNaveEnemiga() {  
+	    game.onTick(50, "MOVIMIENTO_DE_ENEMIGO", { naveEnemiga.mover() })
+	}
+	
+	// Colision between enemy and bullet
+	method configurarColision(bala) {
+		game.onCollideDo(bala, { elemento => elemento.eliminar(bala) })
+	}
 }
 
 

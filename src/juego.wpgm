@@ -16,6 +16,10 @@ program juego {
 	game.addVisual(brocoli)
 	config.configurarTeclas()
 	
+	game.addVisual(naveEnemiga)			
+	config.movimientoNaveEnemiga()
+		
+	
 	game.start()
 }
 
