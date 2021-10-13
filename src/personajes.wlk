@@ -1,6 +1,10 @@
 import wollok.game.*
 
-object brocoli {
+class Visual{
+  method boot(){}
+}
+
+object brocoli inherits Visual{
 	var property position = game.at(self.mitadAncho() ,0)
 
 	method image() = "brocoli.png"
@@ -21,14 +25,15 @@ object brocoli {
 		if(nuevaPosicion.x().between(0, self.ancho() - 2)) { position = nuevaPosicion }
 	}
 	
-	method disparar(bala) {
-//		config.movimientoDe(bala)
+	method disparar() {
+	  const bala = new Bala()
+	  bala.dispararse()
 	}
 
 }
 
 
-class Bala {
+class Bala inherits Visual{
 	var property position = game.at(brocoli.position().x(), brocoli.position().y() + 1)
 
 	method image() = "asparagus.png"
@@ -43,16 +48,22 @@ class Bala {
 	}
 
 	method desplazar() {
-		if(self.position().y() < self.alto()) {
+		if(self.position().y() < self.alto()-4) {
 			position = self.position().up(1)
 		} else {
 			self.removerDisparo()
 		}
 	}
+	method dispararse(){
+	  game.addVisual(self)
+	  game.onTick(50, "MOVIMIENTO_DE_BALA" , {self.desplazar()})
+	  game.onCollideDo(self, { elemento => elemento.eliminar(self) })  
+	}
+	override method boot(){}
 }
 
 
-object naveEnemiga {
+object naveEnemiga inherits Visual{
 	var mueveIzquierda = true
 	var property position = game.center()		// lo centre para probar 
 	const property limiteIzq = 0
@@ -87,42 +98,17 @@ object naveEnemiga {
 		}
 	}
 	
-	method eliminar(bala){
+	method eliminar(_bala){
+	  console.println("colision")
 		game.removeTickEvent("MOVIMIENTO_DE_BALA")
-		game.removeVisual(bala)
+		game.removeVisual(_bala)
 		game.removeTickEvent("MOVIMIENTO_DE_ENEMIGO")
 		game.removeVisual(self)
 	}
-
+  
+  override method boot(){
+    game.onTick(50, "MOVIMIENTO_DE_ENEMIGO", { self.mover() })
+  }
 }
-
-
-
-//object config {
-//
-//	method configurarTeclas() {
-//		keyboard.left().onPressDo({ brocoli.irA(brocoli.position().left(1)) })
-//		keyboard.right().onPressDo({ brocoli.irA(brocoli.position().right(1)) })
-//		keyboard.space().onPressDo({ brocoli.disparar(new Bala()) })
-//	}
-//	
-//	method movimientoDe(bala){
-//		self.agregarYMover(bala)
-//	}
-//	
-//	method agregarYMover(bala){
-//		game.addVisual(bala)
-//		game.onTick(50, "MOVIMIENTO_DE_BALA" , {bala.desplazar()})	
-//	}
-//
-//	method movimientoNaveEnemiga() {  
-//	    game.onTick(50, "MOVIMIENTO_DE_ENEMIGO", { naveEnemiga.mover() })
-//	}
-//	
-//	// Colision between enemy and bullet
-//	method configurarColision(bala) {
-//		game.onCollideDo(bala, { elemento => elemento.eliminar(bala) })
-//	}
-//}
 
 

@@ -1,28 +1,32 @@
-//import wollok.game.*
-//import heroina.*
-//
-//object config {
-//  method configurarTeclas() {
-//    keyboard.left().onPressDo({
-//      const anchor = heroina.anchor() 
-//      anchor.irA(anchor.position().left(1))
-//    })
-//    keyboard.right().onPressDo({
-//      const anchor = heroina.anchor() 
-//      anchor.irA(anchor.position().right(1))
-//    })
-//    keyboard.up().onPressDo({
-//      const anchor = heroina.anchor() 
-//      anchor.irA(anchor.position().up(1))
-//    })
-//    keyboard.down().onPressDo({
-//      const anchor = heroina.anchor() 
-//      anchor.irA(anchor.position().down(1))
-//    })
-//  }
-//
-////  method configurarColisiones() {
-////    game.onCollideDo(pepita, { algo => algo.teEncontro(pepita)})
-////  }
-//
-//}
+import wollok.game.*
+import gameManager.gameManager
+import momentos.*
+import personajes.*
+import personajes.Bala
+
+class Config{
+  method config(){
+    self.configurarTeclas()
+  }
+  method configurarTeclas(){}
+}
+object configVoid inherits Config{}
+object configGlobal inherits Config{
+  override method configurarTeclas() {
+    keyboard.num1().onPressDo({gameManager.cambiarAMomento(tituloJuego)})
+    keyboard.num2().onPressDo({gameManager.cambiarAMomento(presentacionNivel)})
+    keyboard.num3().onPressDo({gameManager.cambiarAMomento(juego)})
+    keyboard.num4().onPressDo({gameManager.cambiarAMomento(finalJuego)})
+    keyboard.num5().onPressDo({gameManager.cambiarAMomento(creditos)})
+    keyboard.num6().onPressDo({gameManager.cambiarAMomento(pdcObjetoCompuesto)})
+    keyboard.num7().onPressDo({gameManager.cambiarAMomento(pdcJuego)})
+  }
+}
+
+object configPDCJuego inherits Config{
+  override method configurarTeclas() {
+    keyboard.left().onPressDo({ brocoli.irA(brocoli.position().left(1)) })
+    keyboard.right().onPressDo({ brocoli.irA(brocoli.position().right(1)) })
+    keyboard.space().onPressDo({ brocoli.disparar() })
+  }
+}

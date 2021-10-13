@@ -1,12 +1,5 @@
 import wollok.game.*
-//import config.*
-import heroina.*
 import gameManager.*
-import extras.*
-import heroina.*
-// import config.*
-import personajes.*
-
 
 program juego {
   // GLOBAL CONFIG
@@ -14,18 +7,8 @@ program juego {
   game.cellSize(20)
   game.width(50)
   game.height(30)
-  game.addVisual(mensaje)
-  gameManager.iniciarJuego()
   
-	// Visuals
-	game.boardGround("background.jpg")
-	game.addVisual(brocoli)
-	game.addVisual(naveEnemiga)			
-
-	// Characters and configurations
-//	config.configurarTeclas()
-//	config.movimientoNaveEnemiga()
-		
-	
+  // BOOTING TASKS
+  gameManager.boot()
 	game.start()
 }
