@@ -1,7 +1,20 @@
 import wollok.game.*
 import gameManager.*
-
+import config.*
+//import misc.objetoDePrueba.*
+object configurator{
+  const configurations = #{
+    configGlobal,
+    configPDCJuego,
+    configPDCObjetoCompuesto
+  }
+  method config(){
+    console.println("confiugrup")
+    configurations.forEach({item=>item.config()})
+  }
+}
 program juego {
+  
   // GLOBAL CONFIG
   game.title("Space Invaders")
   game.cellSize(20)
@@ -10,5 +23,8 @@ program juego {
   
   // BOOTING TASKS
   gameManager.boot()
+  configurator.config()
 	game.start()
 }
+
+

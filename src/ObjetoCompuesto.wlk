@@ -7,6 +7,7 @@ class ObjetoCompuesto{
   const assetPrefix
   const property anchor
   
+  
   method composition(){
     const comp = []
     (0..height-1).forEach({indexH=>
@@ -25,10 +26,17 @@ class ObjetoCompuesto{
     })
     return comp
   }
-  method addVisualComposition(){
+  method add(){
     self.composition().forEach({fila=>
       fila.forEach({pixel=>game.addVisual(pixel)})
     })
     game.addVisual(self.anchor())
+  }
+  
+  method irA(nuevaPosicion) {
+    anchor.irA(nuevaPosicion)
+  }
+  method position(){
+    return anchor.position()
   }
 }

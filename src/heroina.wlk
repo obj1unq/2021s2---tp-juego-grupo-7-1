@@ -4,7 +4,7 @@ import Anchor.*
 
 
 object heroina inherits ObjetoCompuesto(
-  width=10,
+  width=4,
   height=3,
   anchor=new Anchor(position=game.center()),
   assetPrefix = "px-verde"

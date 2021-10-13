@@ -1,5 +1,5 @@
 import wollok.game.*
-import config.configGlobal
+
 import momentos.tituloJuego
 import extras.*
 
@@ -12,12 +12,12 @@ object gameManager {
   var property puntaje = 0
   var property vidasRestantes = 5
   var property nivel = 1
-  const config = configGlobal
+  
 //  var momentoActual = tituloJuego
   
   method boot(){
-    config.config()
     self.cambiarAMomento(tituloJuego)
+    
   }
   
   method cambiarAMomento(momento){
@@ -29,5 +29,7 @@ object gameManager {
   }
   method clearVisuals(){
     game.allVisuals().forEach({visual=>game.removeVisual(visual)})
+//    game.clear()
   }
+  
 }

@@ -1,23 +1,27 @@
 import wollok.game.*
 import extras.*
 import personajes.*
+import heroina.heroina
 import config.*
 
 class Momento {
   const titulo
   const background = "background.jpg"
   const visuals = #{}
-  const config = configVoid
+  const composedVisuals = #{}
+//  const configuration = configVoid
   
   method inicializar(){
     self.setBackground()
-    config.config()
+    /**
+     * acá salta un bug ya que no se limpia la
+     * configuración de otro momento.
+     * ¿Es posible eliminar las configuraciones anteriores?
+     */
+//    configuration.config()
     self.addVisuals()
     self.addTitle()
   }
-//  method unmount(){
-//    visuals.forEach({visual=>game.removeVisual(visual)})
-//  }
   
   method setBackground(){
     game.boardGround(background)
@@ -26,6 +30,8 @@ class Momento {
     visuals.forEach({visual=>
       game.addVisual(visual)
       visual.boot()
+    })
+    composedVisuals.forEach({composedVisual=>composedVisual.add()
     })
   }
   method addTitle(){
@@ -52,10 +58,12 @@ object creditos inherits Momento(
   titulo=["CREDITOS", "Muy rico todo"]
 ){}
 object pdcObjetoCompuesto inherits Momento(
-  titulo=["PDC", "Probando Objeto Compuesto"]
+  titulo=["PDC", "Probando Objeto Compuesto"],
+  composedVisuals=#{heroina}
+//  configuration=configPDCObjetoCompuesto
 ){}
 object pdcJuego inherits Momento(
   titulo=["PDC", "Probando Juego"],
-  visuals=#{brocoli, naveEnemiga},
-  config=configPDCJuego
+  visuals=#{brocoli, naveEnemiga}
+//  configuration=configPDCJuego
 ){}
