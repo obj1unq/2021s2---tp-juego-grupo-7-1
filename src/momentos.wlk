@@ -27,12 +27,12 @@ class Momento {
     game.boardGround(background)
   }
   method addVisuals(){
+    // TODO: unificar y darle trato polimorfico
     visuals.forEach({visual=>
       game.addVisual(visual)
       visual.boot()
     })
-    composedVisuals.forEach({composedVisual=>composedVisual.add()
-    })
+    composedVisuals.forEach({composedVisual=>composedVisual.add()})
   }
   method addTitle(){
     var titleString = ""
@@ -41,6 +41,8 @@ class Momento {
     console.println(titleString)
   }
 }
+
+
 
 object tituloJuego inherits Momento(
   titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]

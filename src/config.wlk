@@ -11,9 +11,11 @@ class Config{
   method configurarTeclas(){}
 }
 object configVoid inherits Config{}
+
+
 object configGlobal inherits Config{
   override method configurarTeclas() {
-    console.println("entre 1")
+//    console.println("entre 1")
     keyboard.num1().onPressDo({gameManager.cambiarAMomento(tituloJuego)})
     keyboard.num2().onPressDo({gameManager.cambiarAMomento(presentacionNivel)})
     keyboard.num3().onPressDo({gameManager.cambiarAMomento(juego)})
@@ -24,17 +26,20 @@ object configGlobal inherits Config{
   }
 }
 
+
 object configPDCJuego inherits Config{
   override method configurarTeclas() {
-    console.println("entre 2")
+//    console.println("entre 2")
     keyboard.left().onPressDo({ brocoli.irA(brocoli.position().left(1)) })
     keyboard.right().onPressDo({ brocoli.irA(brocoli.position().right(1)) })
     keyboard.space().onPressDo({ brocoli.disparar() })
   }
 }
+
+
 object configPDCObjetoCompuesto inherits Config{
   override method configurarTeclas() {
-    console.println("entre 3")
+//    console.println("entre 3")
     keyboard.left().onPressDo({ heroina.irA(heroina.position().left(1)) })
     keyboard.right().onPressDo({ heroina.irA(heroina.position().right(1)) })
     keyboard.up().onPressDo({ heroina.irA(heroina.position().up(1)) })

@@ -17,7 +17,6 @@ object gameManager {
   
   method boot(){
     self.cambiarAMomento(tituloJuego)
-    
   }
   
   method cambiarAMomento(momento){
