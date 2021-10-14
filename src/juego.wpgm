@@ -13,6 +13,7 @@ object configurator{
     configurations.forEach({item=>item.config()})
   }
 }
+
 program juego {
   
   // GLOBAL CONFIG

@@ -1,7 +1,22 @@
 import wollok.game.*
 
+
+// TODO: Modificar el nombre a 'Movil'
 class Visual{
-  method boot(){}
+	method boot(){
+	}
+	
+	// TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
+  
+  	// TODO: Eventualmente cambiar el nombre de los métodos 
+  	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
+  	method ancho() {
+		return game.width()
+	}
+	
+	method alto() {
+		return game.height()
+	}
 }
 
 object brocoli inherits Visual{
@@ -11,14 +26,6 @@ object brocoli inherits Visual{
 
 	method mitadAncho() {
 		return self.ancho() / 2
-	}
-	
-	method ancho() {
-		return game.width()
-	}
-	
-	method alto() {
-		return game.height()
 	}
 	
 	method irA(nuevaPosicion) {
@@ -34,13 +41,11 @@ object brocoli inherits Visual{
 
 
 class Bala inherits Visual{
+	// TODO: Mover esta logica para que el brocoli le pase la posicion
 	var property position = game.at(brocoli.position().x(), brocoli.position().y() + 1)
 
 	method image() = "asparagus.png"
 
-	method alto() {
-		return game.height()
-	}
 
 	method removerDisparo(){
 		game.removeTickEvent("MOVIMIENTO_DE_BALA")
@@ -54,12 +59,17 @@ class Bala inherits Visual{
 			self.removerDisparo()
 		}
 	}
+	
 	method dispararse(){
 	  game.addVisual(self)
-	  game.onTick(50, "MOVIMIENTO_DE_BALA" , {self.desplazar()})
+	  //game.onTick(50, "MOVIMIENTO_DE_BALA" + self.identity().toString() , {self.desplazar()})
+	  game.onTick(50, "MOVIMIENTO_DE_BALA", {self.desplazar()})
 	  game.onCollideDo(self, { elemento => elemento.eliminar(self) })  
 	}
 	override method boot(){}
+	
+	// TODO: Colocar metodo destruirse al colisionar con la nave enemiga.
+	
 }
 
 
@@ -70,14 +80,6 @@ object naveEnemiga inherits Visual{
 	const property limiteDer = 48 
 
 	method image() = "hotdog.png"
-	
-	method ancho() {
-		return game.width()
-	}
-	
-	method alto() {
-		return game.height()
-	}
 	
 	method puedeMoverIzquierda() {
 		return self.position().x() > limiteDer or mueveIzquierda
