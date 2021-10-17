@@ -1,7 +1,7 @@
 import wollok.game.*
 import Pixel.*
 
-class ObjetoCompuesto{
+class CompositeVisual{
   const width
   const height
   const assetPrefix
