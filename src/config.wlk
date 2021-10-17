@@ -37,9 +37,9 @@ object configPDCJuego inherits Config{
 
 object configPDCObjetoCompuesto inherits Config{
   override method configurarTeclas() {
-    keyboard.left().onPressDo({ heroShip.irA(heroShip.position().left(1)) })
-    keyboard.right().onPressDo({ heroShip.irA(heroShip.position().right(1)) })
-    keyboard.up().onPressDo({ heroShip.irA(heroShip.position().up(1)) })
-    keyboard.down().onPressDo({ heroShip.irA(heroShip.position().down(1)) })
+    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
+    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
+    keyboard.up().onPressDo({ heroShip.goTo(heroShip.position().up(1)) })
+    keyboard.down().onPressDo({ heroShip.goTo(heroShip.position().down(1)) })
   }
 }

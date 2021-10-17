@@ -53,9 +53,9 @@ object creditos inherits Momento(
 ){}
 object pdcObjetoCompuesto inherits Momento(
   titulo=["PDC", "Probando Objeto Compuesto"],
-  visuals=#{}
+  visuals=#{heroShip}
 ){}
 object pdcJuego inherits Momento(
   titulo=["PDC", "Probando Juego"],
-  visuals=#{heroShip, naveEnemiga}
+  visuals=#{naveEnemiga}
 ){}
