@@ -7,7 +7,7 @@ class Anchor{
     // asigna la posición del objeto, sin modificar otros atributos del estado.
     position = _posicion
   }
-  method irA(nuevaPosicion) {
+  method goTo(nuevaPosicion) {
     // si bien parece igual al setter de position,
     // este puede incluir lógica de movimiento.
     position = nuevaPosicion

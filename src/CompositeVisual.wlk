@@ -27,14 +27,16 @@ class CompositeVisual{
     return comp
   }
   method add(){
-    self.composition().forEach({fila=>
-      fila.forEach({pixel=>game.addVisual(pixel)})
+    self.composition().forEach({
+      fila=>fila.forEach({
+        pixel=>game.addVisual(pixel)
+      })
     })
     game.addVisual(self.anchor())
   }
   
-  method irA(nuevaPosicion) {
-    anchor.irA(nuevaPosicion)
+  method goTo(nuevaPosicion) {
+    anchor.goTo(nuevaPosicion)
   }
   method position(){
     return anchor.position()
