@@ -3,14 +3,19 @@ import wollok.game.*
 
 // TODO: Modificar el nombre a 'Movil'
 class Visual{
-	method boot(){
-	}
+  /**
+   * NOTE: Visual childs must use add() method to be added to the, instead of
+   * the direct "game.add(...)". This allows polymorphic functionallities to
+   * both native and CompositeVisuals objects.
+   */
 	
 	// TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
 	
-  	// TODO: Eventualmente cambiar el nombre de los métodos 
-  	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
-  	
+	// TODO: Eventualmente cambiar el nombre de los métodos 
+	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
+  method add(){
+    game.addVisual(self)
+  }
   method width() = game.width() 
 	method height() = game.height()
 	method xCenter() = self.width() / 2
@@ -62,7 +67,6 @@ class Bullet inherits Visual{
 	  	}
 	  )  
 	}
-	override method boot(){}	
 }
 /* 
 class Enemy inherits Visual{
@@ -103,6 +107,9 @@ object naveEnemiga inherits Visual{
 	const property limiteDer = 48 
 
 	method image() = "hotdog.png"
+	override method initialize(){
+	  game.onTick(50000, "MOVIMIENTO_DE_ENEMIGO", { self.mover() })
+	}
 	
 	method puedeMoverIzquierda() {
 		return self.position().x() > limiteDer or mueveIzquierda
@@ -129,9 +136,5 @@ object naveEnemiga inherits Visual{
 		game.removeVisual(self)
 	}
   
-  override method boot(){
-    game.onTick(50000, "MOVIMIENTO_DE_ENEMIGO", { self.mover() })
-  }
 }
 
-*/
