@@ -11,27 +11,27 @@ class Visual{
   	// TODO: Eventualmente cambiar el nombre de los métodos 
   	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
   	
-  	method width() = game.width() 
+  method width() = game.width() 
 	method height() = game.height()
 	method xCenter() = self.width() / 2
 	
 }
 
-object heroShip inherits Visual{
-	var property position = game.at(self.xCenter(), 0)
-
-	method image() = "brocoli.png"
-	
-	method goTo(newPosition) {
-		if(newPosition.x().between(0, self.ancho() - 2)) { position = newPosition }
-	}
-	
-	method shoot() {
-	  const bullet = new Bullet( position = self.position().up(1) ) 
-	  bullet.shoot()
-	}
-
-}
+//object heroShip inherits Visual{
+//	var property position = game.at(self.xCenter(), 0)
+//
+//	method image() = "brocoli.png"
+//	
+//	method goTo(newPosition) {
+//		if(newPosition.x().between(0, self.width() - 2)) { position = newPosition }
+//	}
+//	
+//	method shoot() {
+//	  const bullet = new Bullet( position = self.position().up(1) ) 
+//	  bullet.shoot()
+//	}
+//
+//}
 
 
 class Bullet inherits Visual{

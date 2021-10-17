@@ -1,15 +1,13 @@
 import wollok.game.*
 import extras.*
 import personajes.*
-import heroina.heroina
+import heroShip.*
 import config.*
 
 class Momento {
   const titulo
   const background = "background.jpg"
   const visuals = #{}
-  const composedVisuals = #{}
-//  const configuration = configVoid
   
   method inicializar(){
     self.setBackground()
@@ -27,18 +25,12 @@ class Momento {
     game.boardGround(background)
   }
   method addVisuals(){
-    // TODO: unificar y darle trato polimorfico
-    visuals.forEach({visual=>
-      game.addVisual(visual)
-      visual.boot()
-    })
-    composedVisuals.forEach({composedVisual=>composedVisual.add()})
+    visuals.forEach({visual=>visual.add()})
   }
   method addTitle(){
     var titleString = ""
     titulo.forEach({line=>titleString=titleString+line+"\n"})
     mensaje.text(titleString)
-    console.println(titleString)
   }
 }
 
@@ -61,11 +53,9 @@ object creditos inherits Momento(
 ){}
 object pdcObjetoCompuesto inherits Momento(
   titulo=["PDC", "Probando Objeto Compuesto"],
-  composedVisuals=#{heroina}
-//  configuration=configPDCObjetoCompuesto
+  visuals=#{}
 ){}
 object pdcJuego inherits Momento(
   titulo=["PDC", "Probando Juego"],
   visuals=#{heroShip, naveEnemiga}
-//  configuration=configPDCJuego
 ){}

@@ -2,7 +2,7 @@ import wollok.game.*
 import gameManager.gameManager
 import momentos.*
 import personajes.*
-import heroina.heroina
+import heroShip.*
 
 class Config{
   method config(){
@@ -15,7 +15,6 @@ object configVoid inherits Config{}
 
 object configGlobal inherits Config{
   override method configurarTeclas() {
-//    console.println("entre 1")
     keyboard.num1().onPressDo({gameManager.cambiarAMomento(tituloJuego)})
     keyboard.num2().onPressDo({gameManager.cambiarAMomento(presentacionNivel)})
     keyboard.num3().onPressDo({gameManager.cambiarAMomento(juego)})
@@ -28,21 +27,19 @@ object configGlobal inherits Config{
 
 
 object configPDCJuego inherits Config{
-  override method configurarTeclas() {
-//    console.println("entre 2")
-    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
-    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
-    keyboard.space().onPressDo({ heroShip.shoot() })
-  }
+//  override method configurarTeclas() {
+//    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
+//    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
+//    keyboard.space().onPressDo({ heroShip.shoot() })
+//  }
 }
 
 
 object configPDCObjetoCompuesto inherits Config{
   override method configurarTeclas() {
-//    console.println("entre 3")
-    keyboard.left().onPressDo({ heroina.irA(heroina.position().left(1)) })
-    keyboard.right().onPressDo({ heroina.irA(heroina.position().right(1)) })
-    keyboard.up().onPressDo({ heroina.irA(heroina.position().up(1)) })
-    keyboard.down().onPressDo({ heroina.irA(heroina.position().down(1)) })
+    keyboard.left().onPressDo({ heroShip.irA(heroShip.position().left(1)) })
+    keyboard.right().onPressDo({ heroShip.irA(heroShip.position().right(1)) })
+    keyboard.up().onPressDo({ heroShip.irA(heroShip.position().up(1)) })
+    keyboard.down().onPressDo({ heroShip.irA(heroShip.position().down(1)) })
   }
 }
