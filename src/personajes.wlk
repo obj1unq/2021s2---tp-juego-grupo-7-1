@@ -7,72 +7,95 @@ class Visual{
 	}
 	
 	// TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
-  
+	
   	// TODO: Eventualmente cambiar el nombre de los métodos 
   	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
-  	method ancho() {
-		return game.width()
-	}
+  	
+  	method width() = game.width() 
+	method height() = game.height()
+	method xCenter() = self.width() / 2
 	
-	method alto() {
-		return game.height()
-	}
 }
 
-object brocoli inherits Visual{
-	var property position = game.at(self.mitadAncho() ,0)
+object heroShip inherits Visual{
+	var property position = game.at(self.xCenter(), 0)
 
 	method image() = "brocoli.png"
-
-	method mitadAncho() {
-		return self.ancho() / 2
+	
+	method goTo(newPosition) {
+		if(newPosition.x().between(0, self.ancho() - 2)) { position = newPosition }
 	}
 	
-	method irA(nuevaPosicion) {
-		if(nuevaPosicion.x().between(0, self.ancho() - 2)) { position = nuevaPosicion }
-	}
-	
-	method disparar() {
-	  const bala = new Bala()
-	  bala.dispararse()
+	method shoot() {
+	  const bullet = new Bullet( position = self.position().up(1) ) 
+	  bullet.shoot()
 	}
 
 }
 
 
-class Bala inherits Visual{
-	// TODO: Mover esta logica para que el brocoli le pase la posicion
-	var property position = game.at(brocoli.position().x(), brocoli.position().y() + 1)
+class Bullet inherits Visual{
+	var property position 
 
 	method image() = "asparagus.png"
-
-
-	method removerDisparo(){
-		game.removeTickEvent("MOVIMIENTO_DE_BALA")
+	
+	method remove(){
+		game.removeTickEvent("BULLET_MOVEMENT" + self.identity().toString())
 		game.removeVisual(self)
 	}
 
-	method desplazar() {
-		if(self.position().y() < self.alto()-4) {
+	method move() {
+		if(self.position().y() < self.height()-4) {
 			position = self.position().up(1)
 		} else {
-			self.removerDisparo()
+			self.remove()
 		}
 	}
 	
-	method dispararse(){
+	method shoot(){
 	  game.addVisual(self)
-	  //game.onTick(50, "MOVIMIENTO_DE_BALA" + self.identity().toString() , {self.desplazar()})
-	  game.onTick(50, "MOVIMIENTO_DE_BALA", {self.desplazar()})
-	  game.onCollideDo(self, { elemento => elemento.eliminar(self) })  
+	  game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), {self.move()})
+	  game.onCollideDo(self, 
+	  	{ 
+	  		target => 	target.getHit()
+	  					self.remove()
+	  	}
+	  )  
 	}
-	override method boot(){}
+	override method boot(){}	
+}
+/* 
+class Enemy inherits Visual{
+	// Propiedades de la Flota
+	var property anchor
+ 	var property xDelta
+  	var property yDelta
+  	
+  	// Propiedades de la nave
+  	const property award
+  	var property life
+  	
+  	method image() = "hotdog.png"
+  	
+	method position(){
+		return game.at(
+	      anchor.position().x()+xDelta,
+	      anchor.position().y()+yDelta
+	    )
+	}
 	
-	// TODO: Colocar metodo destruirse al colisionar con la nave enemiga.
-	
+	method getHit(){
+	  console.println("colision")
+	  	if(life > 1) { 
+	  		life -=1 
+	  	} else {
+			game.removeTickEvent("ENEMY_MOVEMENT" + self.identity().toString())
+			game.removeVisual(self)
+		}
+	}
 }
 
-
+*/
 object naveEnemiga inherits Visual{
 	var mueveIzquierda = true
 	var property position = game.center()		// lo centre para probar 
@@ -100,17 +123,15 @@ object naveEnemiga inherits Visual{
 		}
 	}
 	
-	method eliminar(_bala){
+	method getHit(){
 	  console.println("colision")
-		game.removeTickEvent("MOVIMIENTO_DE_BALA")
-		game.removeVisual(_bala)
 		game.removeTickEvent("MOVIMIENTO_DE_ENEMIGO")
 		game.removeVisual(self)
 	}
   
   override method boot(){
-    game.onTick(50, "MOVIMIENTO_DE_ENEMIGO", { self.mover() })
+    game.onTick(50000, "MOVIMIENTO_DE_ENEMIGO", { self.mover() })
   }
 }
 
-
+*/

@@ -30,9 +30,9 @@ object configGlobal inherits Config{
 object configPDCJuego inherits Config{
   override method configurarTeclas() {
 //    console.println("entre 2")
-    keyboard.left().onPressDo({ brocoli.irA(brocoli.position().left(1)) })
-    keyboard.right().onPressDo({ brocoli.irA(brocoli.position().right(1)) })
-    keyboard.space().onPressDo({ brocoli.disparar() })
+    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
+    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
+    keyboard.space().onPressDo({ heroShip.shoot() })
   }
 }
 

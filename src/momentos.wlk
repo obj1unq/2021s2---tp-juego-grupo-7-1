@@ -66,6 +66,6 @@ object pdcObjetoCompuesto inherits Momento(
 ){}
 object pdcJuego inherits Momento(
   titulo=["PDC", "Probando Juego"],
-  visuals=#{brocoli, naveEnemiga}
+  visuals=#{heroShip, naveEnemiga}
 //  configuration=configPDCJuego
 ){}
