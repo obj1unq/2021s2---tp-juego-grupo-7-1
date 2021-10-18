@@ -22,7 +22,7 @@ program juego {
   game.height(30)
   
   // BOOTING TASKS
-  gameManager.boot()
+  gameManager.initialize()
   configurator.config()
   
   //
