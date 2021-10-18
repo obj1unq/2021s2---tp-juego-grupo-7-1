@@ -30,4 +30,6 @@ object gameManager {
     // garbage collector ???
   }
   
+  method increaseScore(amount){ score += amount }
+  
 }

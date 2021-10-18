@@ -12,5 +12,3 @@ program juego {
   gameManager.initialize()  
 	game.start()
 }
-
-

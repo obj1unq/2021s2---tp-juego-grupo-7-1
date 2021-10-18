@@ -1,7 +1,7 @@
 import wollok.game.*
 
 class Anchor{
-  var property position
+  var property position = game.center()
   
   method position(_posicion){
     // asigna la posición del objeto, sin modificar otros atributos del estado.

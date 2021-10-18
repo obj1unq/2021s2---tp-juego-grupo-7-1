@@ -1,25 +1,10 @@
 import wollok.game.*
+import Visual.Visual
+import Bullet.Bullet
+import Anchor.Anchor
+import gameManager.gameManager
 
-
-// TODO: Modificar el nombre a 'Movil'
-class Visual{
-  /**
-   * NOTE: Visual childs must use add() method to be added to the, instead of
-   * the direct "game.add(...)". This allows polymorphic functionallities to
-   * both native and CompositeVisuals objects.
-   */
-	
-	// TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
-	
-	// TODO: Eventualmente cambiar el nombre de los métodos 
-	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
-  method add(){
-    game.addVisual(self)
-  }	
-}
-
-object heroShipIndividual inherits Visual{ //nombre provisorio
-	var property position = self.startPosition()
+object heroShipIndividual inherits Visual(position = self.startPosition()){ //nombre provisorio
 	var property life = 3
 
 	method image() = "brocoli.png"
@@ -61,60 +46,25 @@ object heroShipIndividual inherits Visual{ //nombre provisorio
 }
 
 
-class Bullet inherits Visual{
-	var property position 
 
-	method image() = "asparagus.png"
-	
-	method initialize() {
-			  self.add()
-	}
-	
-	method remove(){
-		game.removeTickEvent("BULLET_MOVEMENT" + self.identity().toString())
-		game.removeVisual(self)
-	}
-
-	method move() {
-		if(self.position().y() < game.height()-4) { // reveer el area
-			position = self.position().up(1)
-		} else {
-			self.remove()
-		}
-	}
-	
-	method shoot(){
-	  game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), {self.move()})
-	  game.onCollideDo(self, 
-	  	{ 
-	  		target => 	target.receiveHit()
-	  					self.remove()
-	  	}
-	  )  
-	}
-	
-	method receiveHit() {
-		self.remove()
-	}
-}
  
 class Enemy inherits Visual{
 	// Propiedades del Coreografo
 	var property anchor = new Anchor()
  	var property xOffset
-  	var property yOffset
+  var property yOffset
   	
-  	// Propiedades de la nave
-  	const property award
-  	var property life = 2
+	// Propiedades de la nave
+	const property award = 1
+	var property life = 2
+	
+	method image() = "hotdog.png"
   	
-  	method image() = "hotdog.png"
-  	
-	method position(){
+	override method position(){
 		return game.at(
-	      anchor.position().x()+xOffset,
-	      anchor.position().y()+yOffset
-	    )
+      anchor.position().x()+xOffset,
+      anchor.position().y()+yOffset
+    )
 	}
 	
 	method receiveHit(){
@@ -144,7 +94,7 @@ class Kamikaze inherits Enemy{
 	var onBanzai = false
 	var banzaiX
 	
-  	override method image() = "hotdog.png" //agregar imagen enemiga
+  override method image() = "hotdog.png" //agregar imagen enemiga
 	
 	override method position() {
 		if (not onBanzai)  { 
