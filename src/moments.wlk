@@ -13,12 +13,13 @@ class Moment {
   
   method initialize(){
     self.setBackground()
-    configuration.configMoment(self)
+    self.configure()    
     self.addVisuals()
     self.addTitle()
   }
   
   method setBackground(){ game.boardGround(background) }
+  method configure(){ configuration.configMoment(self) }
   method addVisuals(){ visuals.forEach({visual=>visual.add()}) }
   
   method addTitle(){

@@ -2,7 +2,6 @@ import wollok.game.*
 
 import moments.gameTitle
 import extras.rawMessage
-import config.configGlobal 
 
 object gameManager {
   /**
@@ -10,7 +9,6 @@ object gameManager {
   > Se encargar de switchear de entre los momentos/modos
   > Carga los diferentes niveles.
   */
-  const globalConfig = configGlobal
   const genesis = gameTitle
   
   var property score = 0
@@ -25,7 +23,6 @@ object gameManager {
   method switchTo(moment){
     self.clearMoment()
     rawMessage.setup()
-    globalConfig.config()
     moment.initialize()
   }
   method clearMoment(){
