@@ -9,16 +9,19 @@ class MomentConfiguration{
   method configGlobal(){
     /**
      * TODO: Ver como pasar la clase por parámetro
-     * o abstraer la instanciación de los momentos
+     * o abstraer la instanciación de los momentos en una Factory
      */
-    console.println("configuro globales")
+//    console.println("configuro globales")
     keyboard.num1().onPressDo({gameManager.switchTo(gameTitle)})
     keyboard.num2().onPressDo({gameManager.switchTo(new GameCover())})
     keyboard.num3().onPressDo({gameManager.switchTo(new GamePlay())})
     keyboard.num4().onPressDo({gameManager.switchTo(gameOver)})
     keyboard.num5().onPressDo({gameManager.switchTo(credits)})
     keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
-    keyboard.num7().onPressDo({gameManager.switchTo(pdcJuego)})    
+    keyboard.num7().onPressDo({gameManager.switchTo(pdcJuego)})
+    
+    keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
+    keyboard.p().onPressDo({gameManager.increaseLevel()}) 
   }
 }
 object configVoid inherits MomentConfiguration{}

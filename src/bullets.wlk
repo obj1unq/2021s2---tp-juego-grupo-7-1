@@ -1,5 +1,6 @@
 import wollok.game.*
 import Visual.Visual
+import gameManager.gameManager
 
 class Bullet inherits Visual{
   method image() = "asparagus.png"

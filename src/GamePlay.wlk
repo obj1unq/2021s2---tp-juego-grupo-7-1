@@ -4,12 +4,16 @@ import HeroShip.HeroShip
 import gameManager.gameManager
 import levels.*
 
+object levels{
+  const property list = [level1, level2]
+}
+
 class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.level().toString()],
   configuration=configGamePlay
 ){
   const property heroShip = new HeroShip()
-  const levels = [level1]
+  const levelsList = levels.list()
   
   override method load(){
     super()
@@ -17,6 +21,6 @@ class GamePlay inherits Moment(
   }
   
   method loadLevel(levelNumber){
-    levels.get(levelNumber-1).load()
+    levelsList.get(levelNumber-1).load()
   }
 }
