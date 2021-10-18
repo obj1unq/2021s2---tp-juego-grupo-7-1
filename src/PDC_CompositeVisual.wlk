@@ -1,5 +1,5 @@
 import config.configPDCObjetoCompuesto
-import moments.Moment
+import Moment.Moment
 import HeroShip.HeroShip
 
 class PDC_CompositeVisual inherits Moment(
