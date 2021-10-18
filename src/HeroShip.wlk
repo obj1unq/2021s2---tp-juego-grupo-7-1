@@ -1,12 +1,12 @@
 import wollok.game.*
 import CompositeVisual.*
 import Anchor.*
-import Bullet.Bullet
+import bullets.Bullet
 
 class HeroShip inherits CompositeVisual(
   width=4,
   height=3,
-  anchor=new Anchor(position=game.center()),
+  anchor=new Anchor(),
   assetPrefix = "px-verde"
 ){
   var property position = self.startPosition()

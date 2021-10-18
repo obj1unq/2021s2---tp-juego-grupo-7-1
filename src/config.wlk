@@ -11,8 +11,9 @@ class MomentConfiguration{
      * TODO: Ver como pasar la clase por parámetro
      * o abstraer la instanciación de los momentos
      */
+    console.println("configuro globales")
     keyboard.num1().onPressDo({gameManager.switchTo(gameTitle)})
-    keyboard.num2().onPressDo({gameManager.switchTo(levelCover)})
+    keyboard.num2().onPressDo({gameManager.switchTo(new GameCover())})
     keyboard.num3().onPressDo({gameManager.switchTo(new GamePlay())})
     keyboard.num4().onPressDo({gameManager.switchTo(gameOver)})
     keyboard.num5().onPressDo({gameManager.switchTo(credits)})

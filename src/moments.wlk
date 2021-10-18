@@ -1,12 +1,12 @@
 import config.*
 import Moment.Moment
-
+import gameManager.gameManager
 
 object gameTitle inherits Moment(
   titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]
 ){}
-object levelCover inherits Moment(
-  titulo=["PRESENTACION_NIVEL", "Nivel xxx"]
+class GameCover inherits Moment(
+  titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.level().toString()]
 ){}
 //object gamePlay inherits Moment(
 //  titulo=["JUEGO"]

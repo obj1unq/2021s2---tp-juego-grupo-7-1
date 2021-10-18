@@ -11,19 +11,21 @@ object gameManager {
   */
   const genesis = gameTitle
   
+  var property levelObject
+  
   var property score = 0
   var property lifes = 5
   var property level = 1
    
   // ---------------------------------------------
-  method initialize(){
+  method load(){
     self.switchTo(genesis)
   }
   
   method switchTo(moment){
     self.clearMoment()
     rawMessage.setup()
-    moment.initialize()
+    moment.load()
   }
   method clearMoment(){
     game.clear()

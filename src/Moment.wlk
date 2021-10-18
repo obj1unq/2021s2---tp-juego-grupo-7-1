@@ -9,7 +9,7 @@ class Moment {
   const configuration = configVoid
   // ---------------------------------------
   
-  method initialize(){
+  method load(){
     self.setBackground()
     self.configure()    
     self.addVisuals()

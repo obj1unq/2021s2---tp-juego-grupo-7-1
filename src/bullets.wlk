@@ -35,3 +35,23 @@ class Bullet inherits Visual{
     self.remove()
   }
 }
+
+class EnemyBullet inherits Bullet{
+  const award = 10
+
+  override method image() = "asparagus.png" // agregar imagen de tiro enemigo ".png" 
+  
+
+  override method move() {
+    if(self.position().y() > 0) {
+      position = self.position().down(1)
+    } else {
+      self.remove()
+    }
+  }
+  
+  override method receiveHit() {
+    gameManager.increaseScore(award)  // Crear Score
+    self.remove()
+  }
+}

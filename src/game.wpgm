@@ -9,6 +9,6 @@ program juego {
   game.height(30)
   
   // BOOTING TASKS
-  gameManager.initialize()  
+  gameManager.load()  
 	game.start()
 }

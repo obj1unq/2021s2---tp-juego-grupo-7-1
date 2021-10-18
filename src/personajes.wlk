@@ -1,6 +1,6 @@
 import wollok.game.*
 import Visual.Visual
-import Bullet.Bullet
+import bullets.Bullet
 import Anchor.Anchor
 import gameManager.gameManager
 
@@ -48,114 +48,11 @@ object heroShipIndividual inherits Visual(position = self.startPosition()){ //no
 
 
  
-class Enemy inherits Visual{
-	// Propiedades del Coreografo
-	var property anchor = new Anchor()
- 	var property xOffset
-  var property yOffset
-  	
-	// Propiedades de la nave
-	const property award = 1
-	var property life = 2
-	
-	method image() = "hotdog.png"
-  	
-	override method position(){
-		return game.at(
-      anchor.position().x()+xOffset,
-      anchor.position().y()+yOffset
-    )
-	}
-	
-	method receiveHit(){
-//	  console.println("colision")
-	  	if(life > 1) { 
-	  		life -=1 
-	  	} else {
-			self.die()
-		}
-	}
-	
-	method shoot(){
-	  	const bullet = new EnemyBullet( position = self.position().down(1) ) 
-	  	bullet.shoot()
-	}
-	
-	method die(){
-		game.removeVisual(self)
-		gameManager.increaseScore(award)  // Crear Score
-	}
-	
-	
-	
-}
 
-class Kamikaze inherits Enemy{
-	var onBanzai = false
-	var banzaiX
-	
-  override method image() = "hotdog.png" //agregar imagen enemiga
-	
-	override method position() {
-		if (not onBanzai)  { 
-			return game.at(
-	      		anchor.position().x()+xOffset,
-	      		anchor.position().y()+yOffset
-	    	) 
-	    } else {
-	    	return game.at(
-	      		banzaiX,
-	      		anchor.position().y()+yOffset
-	    	) 
-	    }	
-	}
-	
-	method banzai(){
-		onBanzai = true
-		banzaiX = self.position().x() 
-		life = 1
-		game.onTick(50, "ENEMY_MOVEMENT" + self.identity().toString(), {self.move()})
-	  	game.onCollideDo(self, 
-	  			{ 
-	  				target => 	target.receiveHit()
-	  							self.die()
-	  			}
-	  		)	
-	}	
-	
-	method move() {
-		if(self.position().y() > 0) {
-			position = self.position().down(1)
-		} else {
-			self.remove()
-		}
-	}
-	
-	method remove() {
-		game.removeTickEvent("ENEMY_MOVEMENT" + self.identity().toString())
-		game.removeVisual(self)
-	}
-}
 
-class EnemyBullet inherits Bullet{
-	const award = 10
 
-	override method image() = "asparagus.png" // agregar imagen de tiro enemigo ".png" 
-	
 
-	override method move() {
-		if(self.position().y() > 0) {
-			position = self.position().down(1)
-		} else {
-			self.remove()
-		}
-	}
-	
-	override method receiveHit() {
-		gameManager.increaseScore(award)  // Crear Score
-		self.remove()
-	}
-}
+
 
 
 
