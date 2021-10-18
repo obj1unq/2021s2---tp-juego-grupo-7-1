@@ -57,6 +57,6 @@ object credits inherits Moment(
 //}
 object pdcJuego inherits Moment(
   titulo=["PDC", "Probando Juego"],
-  visuals=#{naveEnemiga},
+//  visuals=#{naveEnemiga},
   configuration=configPDCJuego
 ){}
