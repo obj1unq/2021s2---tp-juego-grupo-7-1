@@ -23,13 +23,16 @@ class Enemy inherits Visual{
   
   method receiveHit(){
 //    console.println("colision")
+// podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
+// con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
+// si tiene la misma orientacion no tendria que restar vidas (?)
       if(life > 1) { 
         life -=1 
       } else {
       self.die()
     }
   }
-  
+ 
   method shoot(){
       const bullet = new EnemyBullet( position = self.position().down(1) ) 
       bullet.shoot()

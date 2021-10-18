@@ -52,6 +52,9 @@ class EnemyBullet inherits Bullet{
   }
   
   override method receiveHit() {
+// podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
+// con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
+// si tiene la misma orientacion no tendria que eliminarse (?)
     gameManager.increaseScore(award)  // Crear Score
     self.remove()
   }

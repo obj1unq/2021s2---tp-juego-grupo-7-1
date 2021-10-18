@@ -27,7 +27,7 @@ class Coreographer {
     stepsDone += 1
     if (stepsPerDirection == stepsDone){
       self.switchDirection()
-      self.resetStepsCount()
+      self.resetStepsCount()     
     }
   }
   method switchDirection(){direction = direction*-1}
