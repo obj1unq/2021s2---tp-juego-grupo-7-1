@@ -24,10 +24,15 @@ class MomentConfiguration{
 object configVoid inherits MomentConfiguration{}
 
 object configPDCJuego inherits MomentConfiguration{
-//  override method configurarTeclas() {
-//    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
-//    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
-//    keyboard.space().onPressDo({ heroShip.shoot() })
+//  override method configMoment(moment){
+//    super(moment)
+//    self.configHeroShip(moment.heroShip())
+//  }
+//  method configHeroShip(heroShip){
+//    // TODO: Implementar lógica de direcciones como objetos
+//    keyboard.left().onPressDo({   heroShip.goTo(heroShip.position().left(1)) })
+//    keyboard.right().onPressDo({  heroShip.goTo(heroShip.position().right(1)) })
+//    keyboard.space().onPressDo({  heroShip.shoot() })
 //  }
 }
 
