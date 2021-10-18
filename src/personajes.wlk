@@ -15,28 +15,50 @@ class Visual{
 	// y tratar de ubicarlos en un objeto mas abstracto (Objeto area (? )
   method add(){
     game.addVisual(self)
-  }
-  method width() = game.width() 
-	method height() = game.height()
-	method xCenter() = self.width() / 2
-	
+  }	
 }
 
-//object heroShip inherits Visual{
-//	var property position = game.at(self.xCenter(), 0)
-//
-//	method image() = "brocoli.png"
-//	
-//	method goTo(newPosition) {
-//		if(newPosition.x().between(0, self.width() - 2)) { position = newPosition }
-//	}
-//	
-//	method shoot() {
-//	  const bullet = new Bullet( position = self.position().up(1) ) 
-//	  bullet.shoot()
-//	}
-//
-//}
+object heroShipIndividual inherits Visual{ //nombre provisorio
+	var property position = self.startPosition()
+	var property life = 3
+
+	method image() = "brocoli.png"
+	
+	method initialize() {
+		game.onCollideDo(self, 
+		  	{ 
+		  		console.println("se para el juego")
+		  	}
+		)  
+	}
+	
+	method startPosition() {
+		return game.at(game.width()/2, 0)
+	}
+	
+	method goTo(newPosition) {
+		if(newPosition.x().between(0, game.width() - 2)) { position = newPosition }
+	}
+	
+	method shoot() {
+	  const bullet = new Bullet( position = self.position().up(1) ) 
+	  bullet.shoot()
+	}
+	
+	method receiveHit(){
+//	  console.println("colision")
+	  	if(life > 1) { 
+	  		life -=1 
+	  	} else {
+			self.die()
+		}
+	}
+	
+	method die() { 
+		console.println("la quedé")
+	}
+
+}
 
 
 class Bullet inherits Visual{
@@ -44,13 +66,17 @@ class Bullet inherits Visual{
 
 	method image() = "asparagus.png"
 	
+	method initialize() {
+			  self.add()
+	}
+	
 	method remove(){
 		game.removeTickEvent("BULLET_MOVEMENT" + self.identity().toString())
 		game.removeVisual(self)
 	}
 
 	method move() {
-		if(self.position().y() < self.height()-4) {
+		if(self.position().y() < game.height()-4) { // reveer el area
 			position = self.position().up(1)
 		} else {
 			self.remove()
@@ -58,48 +84,134 @@ class Bullet inherits Visual{
 	}
 	
 	method shoot(){
-	  game.addVisual(self)
 	  game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), {self.move()})
 	  game.onCollideDo(self, 
 	  	{ 
-	  		target => 	target.getHit()
+	  		target => 	target.receiveHit()
 	  					self.remove()
 	  	}
 	  )  
 	}
+	
+	method receiveHit() {
+		self.remove()
+	}
 }
-/* 
+ 
 class Enemy inherits Visual{
-	// Propiedades de la Flota
-	var property anchor
- 	var property xDelta
-  	var property yDelta
+	// Propiedades del Coreografo
+	var property anchor = new Anchor()
+ 	var property xOffset
+  	var property yOffset
   	
   	// Propiedades de la nave
   	const property award
-  	var property life
+  	var property life = 2
   	
   	method image() = "hotdog.png"
   	
 	method position(){
 		return game.at(
-	      anchor.position().x()+xDelta,
-	      anchor.position().y()+yDelta
+	      anchor.position().x()+xOffset,
+	      anchor.position().y()+yOffset
 	    )
 	}
 	
-	method getHit(){
-	  console.println("colision")
+	method receiveHit(){
+//	  console.println("colision")
 	  	if(life > 1) { 
 	  		life -=1 
 	  	} else {
-			game.removeTickEvent("ENEMY_MOVEMENT" + self.identity().toString())
-			game.removeVisual(self)
+			self.die()
 		}
+	}
+	
+	method shoot(){
+	  	const bullet = new EnemyBullet( position = self.position().down(1) ) 
+	  	bullet.shoot()
+	}
+	
+	method die(){
+		game.removeVisual(self)
+		gameManager.increaseScore(award)  // Crear Score
+	}
+	
+	
+	
+}
+
+class Kamikaze inherits Enemy{
+	var onBanzai = false
+	var banzaiX
+	
+  	override method image() = "hotdog.png" //agregar imagen enemiga
+	
+	override method position() {
+		if (not onBanzai)  { 
+			return game.at(
+	      		anchor.position().x()+xOffset,
+	      		anchor.position().y()+yOffset
+	    	) 
+	    } else {
+	    	return game.at(
+	      		banzaiX,
+	      		anchor.position().y()+yOffset
+	    	) 
+	    }	
+	}
+	
+	method banzai(){
+		onBanzai = true
+		banzaiX = self.position().x() 
+		life = 1
+		game.onTick(50, "ENEMY_MOVEMENT" + self.identity().toString(), {self.move()})
+	  	game.onCollideDo(self, 
+	  			{ 
+	  				target => 	target.receiveHit()
+	  							self.die()
+	  			}
+	  		)	
+	}	
+	
+	method move() {
+		if(self.position().y() > 0) {
+			position = self.position().down(1)
+		} else {
+			self.remove()
+		}
+	}
+	
+	method remove() {
+		game.removeTickEvent("ENEMY_MOVEMENT" + self.identity().toString())
+		game.removeVisual(self)
 	}
 }
 
-*/
+class EnemyBullet inherits Bullet{
+	const award = 10
+
+	override method image() = "asparagus.png" // agregar imagen de tiro enemigo ".png" 
+	
+
+	override method move() {
+		if(self.position().y() > 0) {
+			position = self.position().down(1)
+		} else {
+			self.remove()
+		}
+	}
+	
+	override method receiveHit() {
+		gameManager.increaseScore(award)  // Crear Score
+		self.remove()
+	}
+}
+
+
+
+
+
+/*
 object naveEnemiga inherits Visual{
 	var mueveIzquierda = true
 	var property position = game.center()		// lo centre para probar 
@@ -130,7 +242,7 @@ object naveEnemiga inherits Visual{
 		}
 	}
 	
-	method getHit(){
+	method receiveHit(){
 	  console.println("colision")
 		game.removeTickEvent("MOVIMIENTO_DE_ENEMIGO")
 		game.removeVisual(self)
@@ -138,3 +250,4 @@ object naveEnemiga inherits Visual{
   
 }
 
+*/
