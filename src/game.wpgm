@@ -1,18 +1,5 @@
 import wollok.game.*
 import gameManager.*
-//import config.*
-
-//object configurator{
-//  const configurations = #{
-//    configGlobal,
-//    configPDCJuego,
-//    configPDCObjetoCompuesto
-//  }
-//  method config(){
-//    console.println("confiugrup")
-//    configurations.forEach({item=>item.config()})
-//  }
-//}
 
 program juego {
   // GLOBAL CONFIG
@@ -22,10 +9,7 @@ program juego {
   game.height(30)
   
   // BOOTING TASKS
-  gameManager.initialize()
-//  configurator.config()
-  
-  //
+  gameManager.initialize()  
 	game.start()
 }
 
