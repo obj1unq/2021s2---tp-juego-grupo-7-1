@@ -1,7 +1,6 @@
 import wollok.game.*
 
 
-// TODO: Modificar el nombre a 'Movil'
 class Visual{
   /**
    * NOTE: Visual childs must use add() method to be added to the, instead of

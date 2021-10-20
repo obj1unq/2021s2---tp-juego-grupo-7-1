@@ -6,6 +6,7 @@ import Coreographer.Coreographer
 class Level{
   const formationOrigin = game.at(1,game.height()-4)
   
+  // TODO: refactorizar la vinculación del anchor con el coreographer
   const property anchor = new Anchor(position=formationOrigin)
   const formation
   const coreographer = new Coreographer()

@@ -5,9 +5,7 @@ class FormationItem{
   const xOffsetSize = 5
   const yOffsetSize = 3
   
-  method loadItem(rowIndex, itemIndex){
-//    console.println(rowIndex.toString() + " " +itemIndex.toString())
-  }
+  method loadItem(rowIndex, itemIndex){}
   method anchor(){
     return gameManager.levelObject().anchor()
   }

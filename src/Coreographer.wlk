@@ -6,13 +6,15 @@ class Coreographer {
   const stepSize = 1
   var stepsDone = 0
   var direction = 1
+  var speed = 5.0
   
   
   method activate(){
+    // TODO: refactorizar la vinculación del anchor con el coreographer
     const anchor = gameManager.levelObject().anchor()
     
     game.onTick(
-      200,
+      self.tickDuration(),
       "LEVEL_ANCHOR_MOVEMENT" + self.identity().toString(),
       {
         anchor.goTo(self.nextPosition(anchor))
@@ -32,4 +34,8 @@ class Coreographer {
   }
   method switchDirection(){direction = direction*-1}
   method resetStepsCount(){stepsDone = 0}
+  
+  method tickDuration(){
+    return 1.0 / speed * 1000
+  }
 }

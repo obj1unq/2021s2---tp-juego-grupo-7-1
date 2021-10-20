@@ -21,6 +21,15 @@ class Enemy inherits Visual{
     )
   }
   
+  override method add(){
+    super()
+    self.activate()
+  } 
+  
+  method activate(){
+    self.activateAttack()
+  }
+  
   method receiveHit(){
 //    console.println("colision")
 // podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
@@ -37,9 +46,31 @@ class Enemy inherits Visual{
       const bullet = new EnemyBullet( position = self.position().down(1) ) 
       bullet.shoot()
   }
+  method nextShootDelay(){
+    // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
+    return 10000.randomUpTo(50000)
+  }
   
   method die(){
     game.removeVisual(self)
+    self.removeShotTickEvent()
     gameManager.increaseScore(award)  // Crear Score
+  }
+  method activateAttack(){
+    game.onTick(
+      self.nextShootDelay(),
+      "NEXT_SHOT_DELAY" + self.identity().toString(),
+      {
+        self.shoot()
+        self.resetAttack()
+      }
+    )
+  }
+  method resetAttack(){
+    self.removeShotTickEvent()
+    self.activateAttack()
+  }
+  method removeShotTickEvent(){
+    game.removeTickEvent("NEXT_SHOT_DELAY" + self.identity().toString())    
   }
 }
