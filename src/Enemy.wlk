@@ -11,6 +11,7 @@ class Enemy inherits Visual{
   var property anchor
   var property xOffset
   var property yOffset
+  var firstShotDone = false
   
   method image() = "hotdog.png"
   
@@ -48,7 +49,10 @@ class Enemy inherits Visual{
   }
   method nextShootDelay(){
     // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
-    return 10000.randomUpTo(50000)
+    const min = if (!firstShotDone) 3000 else 20000
+    const max = if (!firstShotDone) 10000 else 50000
+    firstShotDone = !firstShotDone
+    return min.randomUpTo(max)
   }
   
   method die(){
