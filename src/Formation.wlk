@@ -35,11 +35,11 @@ object k inherits FormationItem{
 }
 object _ inherits FormationItem{}
 
-class FRow{
-  const property i = [] // i for items
+class FormationRow{
+  const property items = [] // i for items
   method loadItems(rowIndex){
     var itemIndex = 0
-    i.forEach({item =>
+    items.forEach({item =>
       item.loadItem(rowIndex, itemIndex)
       itemIndex += 1
     })
