@@ -30,14 +30,18 @@ object heroShipIndividual inherits Visual(position = self.startPosition()){ //no
 	  bullet.shoot()
 	}
 	
-	method receiveHit(){
-//	  console.println("colision")
-	  	if(life > 1) { 
-	  		life -=1 
-	  	} else {
-			self.die()
-		}
-	}
+	method receiveHit(Harmless){
+  	  if (not Harmless) {
+  	  	self.lifeDecrease()
+  	  }
+  }
+  
+  method lifeDecrease() {
+      if(life > 1) { 
+        life -=1 
+      } else {
+      self.die()
+  }
 	
 	method die() { 
 		console.println("la quedé")

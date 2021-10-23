@@ -41,7 +41,7 @@ class Bullet inherits Visual {
     self.add()
     game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), { self.move()})
     game.onCollideDo(self, { target =>
-      target.receiveHit()
+      target.receiveHit(goesUp)
       self.remove()
     })
   }

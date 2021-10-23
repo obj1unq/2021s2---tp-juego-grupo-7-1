@@ -31,16 +31,17 @@ class Enemy inherits Visual{
     self.activateAttack()
   }
   
-  method receiveHit(){
-//    console.println("colision")
-// podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
-// con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
-// si tiene la misma orientacion no tendria que restar vidas (?)
+  method receiveHit(Harmful){
+  	  if (Harmful) {
+  	  	self.lifeDecrease()
+  	  }
+  }
+  
+  method lifeDecrease() {
       if(life > 1) { 
         life -=1 
       } else {
       self.die()
-    }
   }
  
   method shoot(){
@@ -58,7 +59,7 @@ class Enemy inherits Visual{
   method die(){
     game.removeVisual(self)
     self.removeShotTickEvent()
-    gameManager.increaseScore(award)  // Crear Score
+    gameManager.increaseScore(award)
   }
   method activateAttack(){
     game.onTick(
