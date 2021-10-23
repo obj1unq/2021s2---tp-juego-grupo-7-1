@@ -37,8 +37,7 @@ class Coreographer {
       self.switchDirection()
       self.resetStepsCount()
       mustDescend = true
-      speed += 0.5
-      console.println(speed)     
+      speed += 0.5 
     }
   }
   method switchDirection(){direction = direction*-1}
