@@ -4,9 +4,10 @@ import gameManager.gameManager
 class Coreographer {
   const stepsPerDirection = 16
   const stepSize = 1
+  var mustDescend = false
   var stepsDone = 0
   var direction = 1
-  var speed = 5.0
+  var speed = 3.0
   
   
   method activate(){
@@ -23,13 +24,21 @@ class Coreographer {
     )
   }
   method nextPosition(anchor){
-    return anchor.position().right(stepSize*direction)
+  	if (mustDescend) {
+  		mustDescend = false
+  		return anchor.position().down(1)
+  	} else {
+    	return anchor.position().right(stepSize*direction)	
+    }
   }
   method performStep(){
     stepsDone += 1
     if (stepsPerDirection == stepsDone){
       self.switchDirection()
-      self.resetStepsCount()     
+      self.resetStepsCount()
+      mustDescend = true
+      speed += 0.5
+      console.println(speed)     
     }
   }
   method switchDirection(){direction = direction*-1}
