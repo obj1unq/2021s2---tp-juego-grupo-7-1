@@ -44,7 +44,7 @@ class Enemy inherits Visual{
   }
  
   method shoot(){
-      const bullet = new EnemyBullet( position = self.position().down(1) ) 
+      const bullet = new EnemyBullet( position = self.position().down(1), goesUp = false ) 
       bullet.shoot()
   }
   method nextShootDelay(){

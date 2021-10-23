@@ -3,6 +3,8 @@ import Visual.Visual
 import gameManager.gameManager
 
 class Bullet inherits Visual {
+	
+  const goesUp 
 
   method image() = "asparagus.png"
 
@@ -12,11 +14,27 @@ class Bullet inherits Visual {
   }
 
   method move() {
-    if (self.position().y() < game.height() - 4) { // reveer el area
-      position = self.position().up(1)
+    if (self.limit()) { // reveer el area
+      self.nextPosition()
     } else {
       self.remove()
     }
+  }
+  
+  method limit() {
+  	return if (goesUp) {
+  	  self.position().y() < game.height() - 4
+  	} else {
+  	  self.position().y() > 0
+  	}
+  }
+  
+  method nextPosition() {
+  	if (goesUp) {
+  	  position = self.position().up(1)
+  	} else {
+  	  position = self.position().down(1)
+  	}
   }
 
   method shoot() {
@@ -40,19 +58,11 @@ class EnemyBullet inherits Bullet {
 
   override method image() = "asparagus.png" // agregar imagen de tiro enemigo ".png" 
 
-  override method move() {
-    if (self.position().y() > 0) {
-      position = self.position().down(1)
-    } else {
-      self.remove()
-    }
-  }
-
   override method receiveHit() {
 // podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
 // con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
 // si tiene la misma orientacion no tendria que eliminarse (?)
-    gameManager.increaseScore(award) // Crear Score
+    gameManager.increaseScore(award) 
     self.remove()
   }
 
