@@ -18,7 +18,7 @@ object heroShipIndividual inherits Visual(position = self.startPosition()){ //no
 	}
 	
 	method startPosition() {
-		return game.at(game.width()/2, 0)
+		return game.at(25, 1)
 	}
 	
 	method goTo(newPosition) {

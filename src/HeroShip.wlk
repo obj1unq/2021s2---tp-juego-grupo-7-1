@@ -21,7 +21,7 @@ class HeroShip inherits CompositeVisual(
   }
   
   method startPosition() {
-    return game.at(game.width()/2, 0)
+    return game.at(25, 0)
   }
   
   override method goTo(newPosition) {
