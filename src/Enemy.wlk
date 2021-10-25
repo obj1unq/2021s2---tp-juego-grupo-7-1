@@ -42,10 +42,12 @@ class Enemy inherits Visual{
         life -=1 
       } else {
       self.die()
+      
+      }
   }
  
   method shoot(){
-      const bullet = new EnemyBullet( position = self.position().down(1), goesUp = false ) 
+      const bullet = bulletFactory.create(self.position().down(1), true) 
       bullet.shoot()
   }
   method nextShootDelay(){

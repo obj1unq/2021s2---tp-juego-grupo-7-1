@@ -12,6 +12,7 @@ object gameManager {
   */
   const genesis = gameTitle
   
+  // TODO: chequear que esto tal vez convenga que viva en GamePlay
   var property levelObject
   
   var property score = 0

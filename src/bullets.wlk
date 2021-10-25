@@ -38,6 +38,7 @@ class Bullet inherits Visual {
   }
 
   method shoot() {
+    console.println("disparo")
     self.add()
     game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), { self.move()})
     game.onCollideDo(self, { target =>
@@ -65,6 +66,15 @@ class EnemyBullet inherits Bullet {
     gameManager.increaseScore(award) 
     self.remove()
   }
+}
 
+object bulletFactory{
+  const bullets = #{}
+  
+  method create(_position, isEnemy){
+    const bullet = new EnemyBullet( position = _position, goesUp = !isEnemy )
+    bullets.add(bullet)
+    return bullet
+  }
 }
 
