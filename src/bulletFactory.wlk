@@ -1,5 +1,5 @@
 object bulletFactory{
-  const bullets = #{}
+  const property bullets = #{}
   
   method create(_position, isEnemy){
     const bullet = new EnemyBullet( position = _position, goesUp = !isEnemy )

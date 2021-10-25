@@ -49,6 +49,7 @@ class Enemy inherits Visual{
   method shoot(){
       const bullet = bulletFactory.create(self.position().down(1), true) 
       bullet.shoot()
+      self.resetAttack()
   }
   method nextShootDelay(){
     // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
@@ -67,9 +68,8 @@ class Enemy inherits Visual{
     game.onTick(
       self.nextShootDelay(),
       "NEXT_SHOT_DELAY" + self.identity().toString(),
-      {
+      	{
         self.shoot()
-        self.resetAttack()
       }
     )
   }

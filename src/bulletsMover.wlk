@@ -1,6 +1,6 @@
 object bulletsMover{
-  var counter = 0
+//  var counter = 0
   method activate(){
-    game.onTick(50, "BULLET_MOVER", { counter += 1 })
+    game.onTick(50, "BULLET_MOVER", { // })
   }
 }
