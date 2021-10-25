@@ -40,7 +40,7 @@ class Bullet inherits Visual {
   method shoot() {
     console.println("disparo")
     self.add()
-    game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), { self.move()})
+//    game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), { self.move()})
     game.onCollideDo(self, { target =>
       target.receiveHit(goesUp)
       self.remove()
@@ -50,7 +50,6 @@ class Bullet inherits Visual {
   method receiveHit() {
     self.remove()
   }
-
 }
 
 class EnemyBullet inherits Bullet {
