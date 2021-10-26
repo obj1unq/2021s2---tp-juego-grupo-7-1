@@ -3,13 +3,6 @@ import gameManager.gameManager
 import Anchor.Anchor
 import Coreographer.Coreographer
 
-object bulletsMover{
-  var counter = 0
-  method activate(){
-    game.onTick(50, "BULLET_MOVER", { counter += 1})
-  }
-}
-
 class Level{
   const formationOrigin = game.at(1,game.height()-4)
   
