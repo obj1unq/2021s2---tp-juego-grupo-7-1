@@ -25,11 +25,11 @@ object gameManager {
   }
   
   method switchTo(moment){
-    self.clearMoment()
+    self.clearPreviousMoment()
     rawMessage.setup()
     moment.load()
   }
-  method clearMoment(){
+  method clearPreviousMoment(){
     game.clear()
     // garbage collector ???
   }

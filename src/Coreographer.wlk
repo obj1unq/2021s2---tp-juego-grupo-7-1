@@ -1,5 +1,6 @@
 import wollok.game.game
 import gameManager.gameManager
+import tickCalculator.*
 
 class Coreographer {
   const stepsPerDirection = 16
@@ -15,7 +16,7 @@ class Coreographer {
     const anchor = gameManager.levelObject().anchor()
     
     game.onTick(
-      self.tickDuration(),
+      tickCalculator.speedBasedTick(speed),
       "LEVEL_ANCHOR_MOVEMENT" + self.identity().toString(),
       {
         anchor.goTo(self.nextPosition(anchor))
@@ -42,8 +43,4 @@ class Coreographer {
   }
   method switchDirection(){direction = direction*-1}
   method resetStepsCount(){stepsDone = 0}
-  
-  method tickDuration(){
-    return 1.0 / speed * 1000
-  }
 }
