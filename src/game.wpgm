@@ -1,7 +1,7 @@
 import wollok.game.*
 import gameManager.*
 
-program juego {
+program game {
   // GLOBAL CONFIG
   game.title("Space Invaders")
   game.cellSize(20)
