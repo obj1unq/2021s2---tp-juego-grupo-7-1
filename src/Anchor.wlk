@@ -15,4 +15,6 @@ class Anchor{
   method image() {
     return "px-void.png"
   }
+  
+  method receiveHit(boolean) {} //dummy
 }

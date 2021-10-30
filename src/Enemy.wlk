@@ -3,8 +3,11 @@ import Visual.Visual
 import bullets.*
 import Anchor.Anchor
 import gameManager.gameManager
+import bulletFactory.*
 
 class Enemy inherits Visual{
+
+  const property goesUp = false
   const property award = 1
   var property life = 2
   
@@ -47,9 +50,8 @@ class Enemy inherits Visual{
   }
  
   method shoot(){
-      const bullet = bulletFactory.create(self.position().down(1), true) 
+      const bullet = bulletFactory.create(self.position().down(1), goesUp) 
       bullet.shoot()
-      self.resetAttack()
   }
   method nextShootDelay(){
     // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
@@ -65,19 +67,11 @@ class Enemy inherits Visual{
     gameManager.increaseScore(award)
   }
   method activateAttack(){
-    game.onTick(
+    game.schedule(
       self.nextShootDelay(),
-      "NEXT_SHOT_DELAY" + self.identity().toString(),
-      	{
+      {
         self.shoot()
       }
     )
-  }
-  method resetAttack(){
-    self.removeShotTickEvent()
-    self.activateAttack()
-  }
-  method removeShotTickEvent(){
-    game.removeTickEvent("NEXT_SHOT_DELAY" + self.identity().toString())    
   }
 }

@@ -1,8 +1,10 @@
 import wollok.game.*
 import gameManager.*
+import objetoDePrueba.*
 
 program juego {
   // GLOBAL CONFIG
+  
   game.title("Space Invaders")
   game.cellSize(20)
   game.width(50)
@@ -11,4 +13,7 @@ program juego {
   // BOOTING TASKS
   gameManager.load()  
 	game.start()
+	
 }
+
+
