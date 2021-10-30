@@ -3,6 +3,7 @@ import gameManager.gameManager
 import moments.*
 import PDC_CompositeVisual.PDC_CompositeVisual
 import GamePlay.GamePlay
+import directions.*
 
 
 //OPCIONES 
@@ -64,8 +65,8 @@ object configGamePlay inherits MomentConfiguration{
   }
   method configHeroShip(heroShip){
     // TODO: Implementar lógica de direcciones como objetos
-    keyboard.left().onPressDo({   heroShip.goTo(heroShip.position().left(1)) })
-    keyboard.right().onPressDo({  heroShip.goTo(heroShip.position().right(1)) })
+    keyboard.left().onPressDo({   heroShip.turn(left) })
+    keyboard.right().onPressDo({  heroShip.turn(right) })
     keyboard.space().onPressDo({  heroShip.shoot() })
   }
 }
@@ -77,10 +78,9 @@ object configPDCObjetoCompuesto inherits MomentConfiguration{
     self.configHeroShip(moment.heroShip())
   }
   method configHeroShip(heroShip){
-    // TODO: Implementar lógica de direcciones como objetos
-    keyboard.left().onPressDo({ heroShip.goTo(heroShip.position().left(1)) })
-    keyboard.right().onPressDo({ heroShip.goTo(heroShip.position().right(1)) })
-    keyboard.up().onPressDo({ heroShip.goTo(heroShip.position().up(1)) })
-    keyboard.down().onPressDo({ heroShip.goTo(heroShip.position().down(1)) })
+    keyboard.left().onPressDo({  heroShip.turn(left) })
+    keyboard.right().onPressDo({ heroShip.turn(right) })
+    keyboard.up().onPressDo({    heroShip.turn(up) })
+    keyboard.down().onPressDo({  heroShip.turn(down) })
   }
 }
