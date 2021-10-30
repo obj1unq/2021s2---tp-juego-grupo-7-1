@@ -1,6 +1,6 @@
 import wollok.game.*
 import gameManager.*
-import objetoDePrueba.*
+
 
 program juego {
   // GLOBAL CONFIG

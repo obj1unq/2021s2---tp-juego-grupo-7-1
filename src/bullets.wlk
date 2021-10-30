@@ -1,6 +1,7 @@
 import wollok.game.*
 import Visual.Visual
 import gameManager.gameManager
+import bulletFactory.*
 
 class Bullet inherits Visual {
 	
@@ -10,6 +11,7 @@ class Bullet inherits Visual {
 
   method remove() {
     game.removeVisual(self)
+    bulletFactory.bullets().remove(self)
   }
 
   method move() {
@@ -30,9 +32,9 @@ class Bullet inherits Visual {
   
   method nextPosition() {
   	if (goesUp) {
-  	  position = self.position().up(1)
+  	  self.position( self.position().up(1) )
   	} else {
-  	  position = self.position().down(1)
+  	  self.position( self.position().down(1) )
   	}
   }
 
