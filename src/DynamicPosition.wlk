@@ -3,11 +3,18 @@ import wollok.game.*
 class DynamicPosition{
   var property x = 0
   var property y = 0
+  
+  var property xMin = -10
+  var property xMax = game.width() + 10
+  var property yMin = -10
+  var property yMax = game.height() + 10
 
-  method moveUp(steps) {    y += steps }
-  method moveRight(steps) { x += steps }
-  method moveDown(steps) {  y -= steps }
-  method moveLeft(steps) {  x -= steps }
+  method moveUp(steps){     y = yMax.min(y + steps) }
+  method moveRight(steps){  x = xMax.min(x + steps) }
+  method moveDown(steps){   y = yMin.max(y - steps) }
+  method moveLeft(steps){   x = xMin.max(x - steps) }
+  
+  
 }
 object gameDimensions{
   /**
