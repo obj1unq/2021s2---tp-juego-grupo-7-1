@@ -8,7 +8,7 @@ class CompositeVisual{
   const height
   const assetPrefix
   const position = new DynamicPosition(x=3, y=3)
-  const anchorImage = "px-anchor.png"
+  const anchorImage = "px-void.png"
   
   const property anchor = new Anchor(position=position, image=anchorImage)
   const showAnchor = true
