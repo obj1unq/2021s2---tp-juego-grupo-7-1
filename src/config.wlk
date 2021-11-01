@@ -6,38 +6,6 @@ import GamePlay.GamePlay
 import directions.*
 
 
-//OPCIONES 
-
-// object gameTitle inherits MomentConfiguration {
-//	
-//	override method image() { return ".png"}
-//	
-//
-//	Tipico de juego el Pulse cualquier tecla para empezar  -------------
-
-//	override method configTeclas() {    
-//		keyboard.any().onPressDo({ GamePlay.iniciar() })
-//	}
-//}
-
-// Se puede usar al finalizar el juego para volver al menu ----------
-
-//object credits inherits MomentConfiguration { 
-//	
-//	override method image() { return ".png"}
-
-// PODRIA SER  PARA VOLVER AL MENU
-
-//	override method configGlobal() {
-//		keyboard.any().onPressDo({ gameTitle.iniciar() })
-  
-//  O PODRIA SER PARA SALIR DEL JUEGO 
-
-//	override method configGlobal() {
-//		keyboard.any().onPressDo({ game.stop() })
-//	}
-//}
-
 class MomentConfiguration{  
   method configMoment(moment){ self.configGlobal() }
   method configGlobal(){
@@ -84,3 +52,37 @@ object configPDCObjetoCompuesto inherits MomentConfiguration{
     keyboard.down().onPressDo({  heroShip.turn(down) })
   }
 }
+
+
+
+//OPCIONES 
+
+// object gameTitle inherits MomentConfiguration {
+//  
+//  override method image() { return ".png"}
+//  
+//
+//  Tipico de juego el Pulse cualquier tecla para empezar  -------------
+
+//  override method configTeclas() {    
+//    keyboard.any().onPressDo({ GamePlay.iniciar() })
+//  }
+//}
+
+// Se puede usar al finalizar el juego para volver al menu ----------
+
+//object credits inherits MomentConfiguration { 
+//  
+//  override method image() { return ".png"}
+
+// PODRIA SER  PARA VOLVER AL MENU
+
+//  override method configGlobal() {
+//    keyboard.any().onPressDo({ gameTitle.iniciar() })
+  
+//  O PODRIA SER PARA SALIR DEL JUEGO 
+
+//  override method configGlobal() {
+//    keyboard.any().onPressDo({ game.stop() })
+//  }
+//}
