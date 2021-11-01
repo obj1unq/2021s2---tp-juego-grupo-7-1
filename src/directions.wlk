@@ -1,26 +1,24 @@
 class Direction{
-  method nextPosition(visual){
-    return visual.position()
-  }
+  method nextPosition(visual){}
 }
 object left inherits Direction {
   override method nextPosition(visual){
-    return visual.position().left(1)
+    visual.position().moveLeft(1)
   }
 }
 object right inherits Direction {
   override method nextPosition(visual){
-    return visual.position().right(1)
+    visual.position().moveRight(1)
   }
 }
 object up inherits Direction {
   override method nextPosition(visual){
-    return visual.position().up(1)
+    visual.position().moveUp(1)
   }
 }
 object down inherits Direction {
   override method nextPosition(visual){
-    return visual.position().down(1)
+    visual.position().moveDown(1)
   }
 }
 object neutral inherits Direction {}
