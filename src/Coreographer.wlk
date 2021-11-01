@@ -10,7 +10,7 @@ class Coreographer {
   var switchsDone = 0
   var direction = right
   var speed = 10.0
-  var anchor
+  var anchor = null
   const movementTickID = "ANCHOR_MOVEMENT" + self.identity().toString() 
   
   method activate(){
