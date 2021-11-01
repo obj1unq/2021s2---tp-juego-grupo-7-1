@@ -11,7 +11,5 @@ class Visual{
   // TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
   
   var property position = dynamicPositionManager.createAtCenter()
-  method add(){
-    game.addVisual(self)
-  } 
+  method add(){ game.addVisual(self) }
 }
