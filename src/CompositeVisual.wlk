@@ -9,20 +9,16 @@ class CompositeVisual{
   const property anchor = new Anchor()
   const showAnchor = true
   
+  method position(){ return anchor.position() }
+  
   method add(){
     self.composition().forEach({
       fila=>fila.forEach({ pixel=>game.addVisual(pixel) })
     })
-    
     if (showAnchor) game.addVisual(self.anchor())
   }
   
-  method goTo(nuevaPosicion) {
-    anchor.goTo(nuevaPosicion)
-  }
-  method position(){
-    return anchor.position()
-  }
+  
   
   method composition(){
     const comp = []
@@ -42,4 +38,7 @@ class CompositeVisual{
     })
     return comp
   }
+//  method goTo(nuevaPosicion) {
+//    anchor.goTo(nuevaPosicion)
+//  }
 }
