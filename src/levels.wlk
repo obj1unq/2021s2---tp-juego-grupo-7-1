@@ -1,7 +1,7 @@
 import wollok.game.game
 import gameManager.gameManager
 import positions.*
-import Formation.*
+import formations.*
 import extras.Anchor
 import Coreographer.Coreographer
 
