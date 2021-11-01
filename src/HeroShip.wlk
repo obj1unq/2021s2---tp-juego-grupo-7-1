@@ -12,18 +12,18 @@ class HeroShip inherits CompositeVisual(
 ){
   var property life = 3
   var property speed = 50.0
+
+  const xMin = 2
+  const xMax = game.width() - 2
+  const yMin = 2
+  const yMax = game.height() - 2
+  
   var direction = neutral
   
   override method add() {
     super()
-    game.onTick(
-      tickCalculator.speedBasedTick(speed),
-      "MOVEMENT" + self.identity().toString(),
-      {
-        self.move()
-      }
-    ) 
-    
+    self.activateMovement()
+    self.setupAreaLimiting()    
   }
   method turn(_direction){
     direction = _direction
@@ -32,6 +32,19 @@ class HeroShip inherits CompositeVisual(
     direction.nextPosition(anchor)
   }
   
+  method activateMovement(){
+    game.onTick(
+      tickCalculator.speedBasedTick(speed),
+      "MOVEMENT" + self.identity().toString(),
+      { self.move() }
+    ) 
+  }
+  method setupAreaLimiting(){
+    self.position().xMin(xMin)
+    self.position().xMax(xMax)
+    self.position().yMin(yMin)
+    self.position().yMax(yMax)
+  }
 //  override method goTo(newPosition) {
 //    if(newPosition.x().between(1, game.width() - 2)) {
 //      anchor.position(newPosition)
