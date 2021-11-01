@@ -8,7 +8,6 @@ import directions.neutral
 class HeroShip inherits CompositeVisual(
   width=3,
   height=2,
-  anchor=new Anchor(),
   assetPrefix = "px-verde"
 ){
   var property position = self.startPosition()
