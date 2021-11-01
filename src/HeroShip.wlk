@@ -19,7 +19,8 @@ class HeroShip inherits CompositeVisual(
   width=3,
   height=2,
   assetPrefix = "px-verde",
-  position=new DynamicPosition(x=3, y=3)
+  position=new DynamicPosition(x=3, y=3),
+  anchorImage="hero1.png"
 ){
   var property life = 3
   var property speed = 50.0

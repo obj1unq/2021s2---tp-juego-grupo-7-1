@@ -9,7 +9,7 @@ class Pixel{
   method position(){
     return game.at(
       anchor.position().x()+xDelta,
-      anchor.position().y()+yDelta
+      anchor.position().y()-yDelta
     )
   }
 }
