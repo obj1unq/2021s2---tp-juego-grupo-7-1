@@ -1,12 +1,7 @@
 import wollok.game.*
 import gameManager.*
 
-<<<<<<< HEAD
-
-program juego {
-=======
-program game {
->>>>>>> branch 'feature_bullet_mover' of git@github.com:obj1unq/2021s2---tp-juego-grupo-7-1.git
+program spaceInvaders{
   // GLOBAL CONFIG
   
   game.title("Space Invaders")
