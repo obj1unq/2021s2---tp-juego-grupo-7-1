@@ -1,12 +1,14 @@
 import wollok.game.*
 import Anchor.*
 import Pixel.*
+import DynamicPosition.*
 
 class CompositeVisual{
   const width
   const height
   const assetPrefix
-  const property anchor = new Anchor()
+  const position=new DynamicPosition(x=3, y=3)
+  const property anchor = new Anchor(position=position)
   const showAnchor = true
   
   method position(){ return anchor.position() }

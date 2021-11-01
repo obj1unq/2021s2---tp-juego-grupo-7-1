@@ -1,8 +1,6 @@
 import wollok.game.*
 import gameManager.gameManager
 import moments.*
-import PDC_CompositeVisual.PDC_CompositeVisual
-import GamePlay.GamePlay
 import directions.*
 
 

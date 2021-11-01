@@ -1,7 +1,7 @@
 import wollok.game.*
 
 import moments.gameTitle
-import GamePlay.*
+import levels.levels
 import extras.rawMessage
 
 object gameManager {

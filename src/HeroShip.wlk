@@ -1,14 +1,25 @@
 import wollok.game.*
 import CompositeVisual.*
 import Anchor.*
-import bullets.Bullet
-import tickCalculator.tickCalculator
-import directions.neutral
+import bullets.*
+import extras.tickCalculator
+import directions.*
+import DynamicPosition.*
+
+object heroShipFactory{
+  var lastCreated = null
+  method create(){
+    lastCreated = new HeroShip()
+    return lastCreated
+  }
+  method lastCreated() = lastCreated
+}
 
 class HeroShip inherits CompositeVisual(
   width=3,
   height=2,
-  assetPrefix = "px-verde"
+  assetPrefix = "px-verde",
+  position=new DynamicPosition(x=3, y=3)
 ){
   var property life = 3
   var property speed = 50.0
@@ -45,16 +56,12 @@ class HeroShip inherits CompositeVisual(
     self.position().yMin(yMin)
     self.position().yMax(yMax)
   }
-//  override method goTo(newPosition) {
-//    if(newPosition.x().between(1, game.width() - 2)) {
-//      anchor.position(newPosition)
-//    }
-//  }
   
-//  method shoot() {
-//    const bullet = new Bullet( position = self.position().up(1) ) 
-//    bullet.shoot()
-//  }
+  method shoot() {
+    const bullet = heroBulletFactory.create(position=self.position().up()) 
+    bullet.shoot()
+  }
+  
   
 //  method receiveHit(){
 ////    console.println("colision")

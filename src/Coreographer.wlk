@@ -1,6 +1,6 @@
 import wollok.game.game
 import gameManager.gameManager
-import tickCalculator.*
+import extras.tickCalculator
 import directions.*
 
 class Coreographer {

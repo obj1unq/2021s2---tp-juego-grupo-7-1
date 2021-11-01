@@ -1,11 +1,11 @@
 import config.*
 import gameManager.gameManager
-import HeroShip.HeroShip
+import HeroShip.heroShipFactory
 import wollok.game.*
 import extras.*
 import config.*
 import levels.*
-import bulletsMover.*
+import bullets.*
 
 class Moment {
   const titulo
@@ -47,10 +47,11 @@ object credits inherits Moment(
 
 class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.level().toString()],
-  configuration=configGamePlay
+  configuration=configGamePlay,
+  visuals=#{heroShipFactory.create()}
 ){
   
-  const property heroShip = new HeroShip()
+  const property heroShip = heroShipFactory.lastCreated()
   const levelsList = levels.list()
   
   override method load(){
@@ -64,11 +65,10 @@ class GamePlay inherits Moment(
   }
 }
 
-
 class PDC_CompositeVisual inherits Moment(
   titulo=["PDC", "Probando Objeto Compuesto"],
-  configuration=configPDCObjetoCompuesto
+  configuration=configPDCObjetoCompuesto,
+  visuals=#{heroShipFactory.create()}
 ){
-  const property heroShip = new HeroShip()
-  const visuals = #{heroShip} // this throws alert but it's correct!
+  const property heroShip = heroShipFactory.lastCreated()
 }
