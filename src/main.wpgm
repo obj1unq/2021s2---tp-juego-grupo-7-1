@@ -12,7 +12,4 @@ program spaceInvaders{
   // BOOTING TASKS
   gameManager.load()  
 	game.start()
-	
 }
-
-
