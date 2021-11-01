@@ -72,5 +72,28 @@ class EnemyBullet inherits Bullet {
   }
 }
 
+object bulletFactory{
+  const property bullets = #{}
+  
+  method create(_position, _goesUp){
+    const newBullet = new EnemyBullet( position = _position, goesUp = _goesUp)
+    
+    bullets.add(newBullet)
+    return newBullet
+  }
+}
+
+import wollok.game.*
+import bulletFactory.*
+import bullets.*
 
 
+object bulletsMover{
+//  var counter = 0
+  method activate(){
+    game.onTick(50, "BULLET_MOVER", { bulletFactory.bullets().forEach(
+        { bullet => bullet.move()}
+      ) }
+    ) 
+  }
+}
