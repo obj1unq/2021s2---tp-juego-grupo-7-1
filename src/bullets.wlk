@@ -1,16 +1,20 @@
 import wollok.game.*
 import visuals.Visual
 import gameManager.gameManager
-import directions.down
+import directions.*
 import extras.tickCalculator
 
-class BulletFactory{
+
+object bulletsFactory{
   const property bullets = #{}
-  method create(_position)  
-}
-object heroBulletFactory inherits BulletFactory{
-  override method create(_position){
+   
+  method createHeroBullet(_position){
     const newBullet = new HeroBullet(position=_position)
+    bullets.add(newBullet)
+    return newBullet
+  }
+  method createEnemyBullet(_position){
+    const newBullet = new EnemyBullet(position=_position)
     bullets.add(newBullet)
     return newBullet
   }
@@ -18,7 +22,6 @@ object heroBulletFactory inherits BulletFactory{
 
 object bulletsMover{
   const speed = 20.0
-  const bulletsFactory = #{heroBulletFactory}
   
   method activate(){
     game.onTick(
@@ -28,10 +31,8 @@ object bulletsMover{
     ) 
   }
   method moveBullets(){
-    bulletsFactory.forEach({bulletFactory=>
-      bulletFactory.bullets().forEach({bullet=>
-        bullet.move()
-      })      
+    bulletsFactory.bullets().forEach({
+      bullet => bullet.move()
     })
   }
 }
@@ -42,15 +43,11 @@ class Bullet inherits Visual {
 
   method remove() {
     game.removeVisual(self)
-    bulletFactory.bullets().remove(self)
+    bulletsFactory.bullets().remove(self)
   }
 
   method move() {
     direction.nextPosition(self)
-//    if (self.limit()) { // reveer el area
-//    } else {
-//      self.remove()
-//    }
   }
   
 //  method limit() {
@@ -63,7 +60,6 @@ class Bullet inherits Visual {
 
   method shoot() {
     self.add()
-//    game.onTick(50, "BULLET_MOVEMENT" + self.identity().toString(), { self.move()})
   }
   override method add(){
     super()
@@ -81,20 +77,23 @@ class Bullet inherits Visual {
 //    }
 //  }
 }
-
-class EnemyBullet inherits Bullet {
-
+class HeroBullet inherits Bullet(direction=up) {
   const award = 10
 
-  override method image() = "asparagus.png" // agregar imagen de tiro enemigo ".png" 
+  override method image() = "heroBullet.png" // agregar imagen de tiro enemigo ".png" 
+}
+class EnemyBullet inherits Bullet {
+  const award = 10
 
-  override method receiveHit(direction) {
-// podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
-// con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
-// si tiene la misma orientacion no tendria que eliminarse (?)
-    if (direction != goesUp) {
-    	gameManager.increaseScore(award) 
-    	self.remove()	
-    }
-  }
+  override method image() = "enemyBullet.png" // agregar imagen de tiro enemigo ".png" 
+
+//  override method receiveHit(direction) {
+//// podriamos agregar un validar disparo que compruebe si el disparo le tendria q hacer danio, remover o nada.
+//// con darle una orientacion a la bala (arriba y abajo) segun quien dispare si hero o enemy?
+//// si tiene la misma orientacion no tendria que eliminarse (?)
+//    if (direction != goesUp) {
+//    	gameManager.increaseScore(award) 
+//    	self.remove()	
+//    }
+//  }
 }

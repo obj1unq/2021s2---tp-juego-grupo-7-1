@@ -59,8 +59,8 @@ class HeroShip inherits CompositeVisual(
   }
   
   method shoot() {
-//    const bullet = heroBulletFactory.create(position=self.position().up()) 
-//    bullet.shoot()
+    const bullet = bulletsFactory.createHeroBullet(self.position().translated(1,1)) 
+    bullet.shoot()
   }
   
   

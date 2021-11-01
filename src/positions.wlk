@@ -27,6 +27,9 @@ class DynamicPosition{
   method right(){ return new DynamicPosition(x=self.x()+1, y=self.y())   }
   method down(){  return new DynamicPosition(x=self.x(),   y=self.y()-1) }
   method left(){  return new DynamicPosition(x=self.x()-1, y=self.y())   }
+  method translated(xOffset, yOffset){
+    return new DynamicPosition(x=self.x()+xOffset, y=self.y()+yOffset)
+  }
 }
 
 class SafeArea{

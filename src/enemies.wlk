@@ -3,7 +3,7 @@ import visuals.Visual
 import bullets.*
 import extras.Anchor
 import gameManager.gameManager
-//import bulletFactory.*
+import positions.*
 
 class Enemy inherits Visual {
 
@@ -18,7 +18,10 @@ class Enemy inherits Visual {
   method image() = "hotdog.png"
 
   override method position() {
-    return game.at(anchor.position().x() + xOffset, anchor.position().y() + yOffset)
+    return dynamicPositionManager.create(
+      anchor.position().x() + xOffset,
+      anchor.position().y() + yOffset
+    )
   }
 
   override method add() {
@@ -42,10 +45,10 @@ class Enemy inherits Visual {
     }
   }
 
-//  method shoot() {
-//    const bullet = bulletFactory.create(self.position().down(1), goesUp)
-//    bullet.shoot()
-//  }
+  method shoot() {
+    const bullet = bulletsFactory.createEnemyBullet(self.position().translated(0, -1))
+    bullet.shoot()
+  }
 
   method nextShootDelay() {
     // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
@@ -61,7 +64,7 @@ class Enemy inherits Visual {
   }
 
   method activateAttack() {
-//    game.schedule(self.nextShootDelay(), { self.shoot()})
+    game.schedule(self.nextShootDelay(), { self.shoot()})
   }
 
 }
@@ -75,13 +78,13 @@ class Kamikaze inherits Enemy(award = 2, life = 3) {
 
   override method image() = "mcdonalds.png" // agregar imagen enemiga
 
-  override method position() {
-    if (not onBanzai) {
-      return game.at(anchor.position().x() + xOffset, anchor.position().y() + yOffset)
-    } else {
-      return game.at(banzaiX, anchor.position().y() + yOffset)
-    }
-  }
+//  override method position() {
+//    if (not onBanzai) {
+//      return game.at(anchor.position().x() + xOffset, anchor.position().y() + yOffset)
+//    } else {
+//      return game.at(banzaiX, anchor.position().y() + yOffset)
+//    }
+//  }
 
   method banzai() {
     onBanzai = true
