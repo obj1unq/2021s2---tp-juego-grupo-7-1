@@ -13,10 +13,15 @@ class DynamicPosition{
   method moveRight(steps){  x = xMax.min(x + steps) }
   method moveDown(steps){   y = yMin.max(y - steps) }
   method moveLeft(steps){   x = xMin.max(x - steps) }
-  
-  
+}
+class SafeArea{
+  var property xMin = 2
+  var property xMax = game.width() - 2
+  var property yMin = 2
+  var property yMax = game.height() - 2
 }
 object gameDimensions{
+  const property safeArea = new SafeArea()
   /**
    * Horizontal Center
    */
@@ -25,6 +30,8 @@ object gameDimensions{
    * Vertical Center
    */
   method vCenter() = game.height().div(2)
+  
+  
     
 }
 object dynamicPositionManager{

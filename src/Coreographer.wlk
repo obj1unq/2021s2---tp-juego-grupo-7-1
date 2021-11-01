@@ -1,46 +1,61 @@
 import wollok.game.game
 import gameManager.gameManager
 import tickCalculator.*
+import directions.*
 
 class Coreographer {
   const stepsPerDirection = 16
-  const stepSize = 1
-  var mustDescend = false
   var stepsDone = 0
-  var direction = 1
-  var speed = 3.0
-  
+  const switchsPerLine = 4
+  var switchsDone = 0
+  var direction = right
+  var speed = 10.0
+  var anchor
+  const movementTickID = "ANCHOR_MOVEMENT" + self.identity().toString() 
   
   method activate(){
-    // TODO: refactorizar la vinculación del anchor con el coreographer
-    const anchor = gameManager.levelObject().anchor()
-    
+    anchor = gameManager.levelObject().anchor()
+    self.activateMovement()
+  }
+  
+  method activateMovement(){
     game.onTick(
       tickCalculator.speedBasedTick(speed),
-      "LEVEL_ANCHOR_MOVEMENT" + self.identity().toString(),
-      {
-        anchor.goTo(self.nextPosition(anchor))
-        self.performStep()
-      }
+      movementTickID,
+      { self.performStep() }
     )
   }
-  method nextPosition(anchor){
-  	if (mustDescend) {
-  		mustDescend = false
-  		return anchor.position().down(1)
-  	} else {
-    	return anchor.position().right(stepSize*direction)	
-    }
+  method destroyMovement(){
+    game.removeTickEvent(movementTickID)
+  }
+  method resetMovement(){
+    self.destroyMovement()
+    self.activateMovement()
   }
   method performStep(){
+    direction.nextPosition(anchor)
     stepsDone += 1
-    if (stepsPerDirection == stepsDone){
-      self.switchDirection()
-      self.resetStepsCount()
-      mustDescend = true
-      speed += 0.5 
+    
+    if(self.completeStepsPerDirection()){
+      self.manageSwitchAndDescend()
+      self.increaseSpeed(0.5)
     }
   }
-  method switchDirection(){direction = direction*-1}
-  method resetStepsCount(){stepsDone = 0}
+  method completeStepsPerDirection(){
+    return stepsDone%stepsPerDirection == stepsPerDirection-1
+  }
+  method completeSwitchsPerLine(){
+    return switchsDone%switchsPerLine == switchsPerLine-1
+  }
+  
+  method manageSwitchAndDescend(){
+    direction = direction.inverse()
+    switchsDone += 1
+    if(self.completeSwitchsPerLine()) self.descend()
+  }
+  method descend(){ down.nextPosition(anchor) }
+  method increaseSpeed(amount){
+    speed = speed + amount
+    self.resetMovement()
+  }
 }

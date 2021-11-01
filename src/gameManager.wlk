@@ -31,7 +31,6 @@ object gameManager {
   }
   method clearPreviousMoment(){
     game.clear()
-    // garbage collector ???
   }
   
   method increaseScore(amount){ score += amount }

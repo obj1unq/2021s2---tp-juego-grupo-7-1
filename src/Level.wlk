@@ -2,9 +2,12 @@ import wollok.game.game
 import gameManager.gameManager
 import Anchor.Anchor
 import Coreographer.Coreographer
+import DynamicPosition.*
 
 class Level{
-  const formationOrigin = game.at(1,game.height()-4)
+  const formationOrigin = dynamicPositionManager.create(
+    gameDimensions.safeArea().xMin(), gameDimensions.safeArea().yMax()
+  ) 
   
   // TODO: refactorizar la vinculación del anchor con el coreographer
   const property anchor = new Anchor(position=formationOrigin)
