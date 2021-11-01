@@ -25,3 +25,7 @@ object level2 inherits Level(
     ]
   )
 ){}
+
+object levels{
+  const property list = [level1, level2]
+}
