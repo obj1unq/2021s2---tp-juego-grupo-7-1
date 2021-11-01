@@ -18,8 +18,6 @@ class CompositeVisual{
     if (showAnchor) game.addVisual(self.anchor())
   }
   
-  
-  
   method composition(){
     const comp = []
     (0..height-1).forEach({indexH=>
@@ -38,7 +36,4 @@ class CompositeVisual{
     })
     return comp
   }
-//  method goTo(nuevaPosicion) {
-//    anchor.goTo(nuevaPosicion)
-//  }
 }
