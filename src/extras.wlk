@@ -9,7 +9,7 @@ object tickCalculator {
 }
 
 class Anchor inherits Visual{
-  const image = "heroShip.png"
+  const image = "px-anchor.png"
   method image() { return image }
   //method receiveHit(boolean) {} //dummy
 }
@@ -23,7 +23,7 @@ class Pixel{
   method position(){
     return game.at(
       anchor.position().x()+xDelta,
-      anchor.position().y()-yDelta
+      anchor.position().y()+yDelta
     )
   }
 }
