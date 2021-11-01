@@ -11,7 +11,6 @@ class MomentConfiguration{
      * TODO: Ver como pasar la clase por parámetro
      * o abstraer la instanciación de los momentos en una Factory
      */
-//    console.println("configuro globales")
     keyboard.num1().onPressDo({gameManager.switchTo(gameTitle)})
     keyboard.num2().onPressDo({gameManager.switchTo(new GameCover())})
     keyboard.num3().onPressDo({gameManager.switchTo(new GamePlay())})
@@ -24,15 +23,16 @@ class MomentConfiguration{
   }
 }
 object configVoid inherits MomentConfiguration{}
+
 object configGamePlay inherits MomentConfiguration{
   override method configMoment(moment){
     super(moment)
     self.configHeroShip(moment.heroShip())
   }
   method configHeroShip(heroShip){
-    // TODO: Implementar lógica de direcciones como objetos
     keyboard.left().onPressDo({   heroShip.turn(left) })
     keyboard.right().onPressDo({  heroShip.turn(right) })
+    keyboard.down().onPressDo({  heroShip.turn(neutral) })
     keyboard.space().onPressDo({  heroShip.shoot() })
   }
 }

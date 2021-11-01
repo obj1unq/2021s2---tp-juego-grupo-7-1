@@ -1,14 +1,27 @@
 import wollok.game.*
-import Anchor.*
-import Pixel.*
-import DynamicPosition.*
+import positions.*
+import extras.Anchor
+import extras.Pixel
+
+class Visual{
+  /**
+   * NOTE: Visual childs must use add() method to be added to the stage,
+   * instead of the direct "game.add(...)". This allows polymorphic
+   * behavior to both native and CompositeVisuals objects.
+   */
+  
+  // TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
+  
+  var property position = dynamicPositionManager.createAtCenter()
+  method add(){ game.addVisual(self) }
+}
 
 class CompositeVisual{
   const width
   const height
   const assetPrefix
   const position = new DynamicPosition(x=3, y=3)
-  const anchorImage = "px-void.png"
+  const anchorImage = "mcdonalds.png"
   
   const property anchor = new Anchor(position=position, image=anchorImage)
   const showAnchor = true

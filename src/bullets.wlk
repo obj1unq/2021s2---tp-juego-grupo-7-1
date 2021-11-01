@@ -1,5 +1,5 @@
 import wollok.game.*
-import Visual.Visual
+import visuals.Visual
 import gameManager.gameManager
 import directions.down
 import extras.tickCalculator

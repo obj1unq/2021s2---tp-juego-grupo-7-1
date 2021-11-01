@@ -12,7 +12,6 @@ class Moment {
   const background = "background.jpg"
   const visuals = #{}
   const configuration = configVoid
-  // ---------------------------------------
   
   method load(){
     self.setBackground()
@@ -31,19 +30,6 @@ class Moment {
     rawMessage.text(titleString)
   }
 }
-
-object gameTitle inherits Moment(
-  titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]
-){}
-class GameCover inherits Moment(
-  titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.level().toString()]
-){}
-object gameOver inherits Moment(
-  titulo=["FINAL_JUEGO", "A tu casa rey"]
-){}
-object credits inherits Moment(
-  titulo=["CREDITOS", "Muy rico todo"]
-){}
 
 class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.level().toString()],
@@ -65,6 +51,9 @@ class GamePlay inherits Moment(
   }
 }
 
+/**
+ * PROVISORIOS
+ */
 class PDC_CompositeVisual inherits Moment(
   titulo=["PDC", "Probando Objeto Compuesto"],
   configuration=configPDCObjetoCompuesto,
@@ -72,3 +61,16 @@ class PDC_CompositeVisual inherits Moment(
 ){
   const property heroShip = heroShipFactory.lastCreated()
 }
+
+object gameTitle inherits Moment(
+  titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]
+){}
+class GameCover inherits Moment(
+  titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.level().toString()]
+){}
+object gameOver inherits Moment(
+  titulo=["FINAL_JUEGO", "A tu casa rey"]
+){}
+object credits inherits Moment(
+  titulo=["CREDITOS", "Muy rico todo"]
+){}

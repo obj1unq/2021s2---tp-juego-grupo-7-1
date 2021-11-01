@@ -1,8 +1,8 @@
 import wollok.game.game
 import gameManager.gameManager
-import DynamicPosition.*
+import positions.*
 import Formation.*
-import Anchor.Anchor
+import extras.Anchor
 import Coreographer.Coreographer
 
 class Level{

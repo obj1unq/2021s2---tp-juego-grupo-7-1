@@ -1,10 +1,10 @@
 import wollok.game.*
-import CompositeVisual.*
-import Anchor.*
-import bullets.*
+import visuals.CompositeVisual
+import extras.Anchor
 import extras.tickCalculator
+import bullets.*
 import directions.*
-import DynamicPosition.*
+import positions.*
 
 object heroShipFactory{
   var lastCreated = null
@@ -19,8 +19,7 @@ class HeroShip inherits CompositeVisual(
   width=3,
   height=2,
   assetPrefix = "px-verde",
-  position=new DynamicPosition(x=3, y=3),
-  anchorImage="brocoli.png"
+  position=new DynamicPosition(x=3, y=3)
 ){
   var property life = 3
   var property speed = 50.0
@@ -59,8 +58,8 @@ class HeroShip inherits CompositeVisual(
   }
   
   method shoot() {
-    const bullet = heroBulletFactory.create(position=self.position().up()) 
-    bullet.shoot()
+//    const bullet = heroBulletFactory.create(position=self.position().up()) 
+//    bullet.shoot()
   }
   
   

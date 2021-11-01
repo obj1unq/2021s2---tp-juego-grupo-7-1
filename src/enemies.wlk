@@ -1,9 +1,9 @@
 import wollok.game.*
-import Visual.Visual
+import visuals.Visual
 import bullets.*
-import Anchor.Anchor
+import extras.Anchor
 import gameManager.gameManager
-import bulletFactory.*
+//import bulletFactory.*
 
 class Enemy inherits Visual {
 
@@ -42,10 +42,10 @@ class Enemy inherits Visual {
     }
   }
 
-  method shoot() {
-    const bullet = bulletFactory.create(self.position().down(1), goesUp)
-    bullet.shoot()
-  }
+//  method shoot() {
+//    const bullet = bulletFactory.create(self.position().down(1), goesUp)
+//    bullet.shoot()
+//  }
 
   method nextShootDelay() {
     // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
@@ -65,8 +65,6 @@ class Enemy inherits Visual {
   }
 
 }
-
-
 
 class Private inherits Enemy(award = 1, life = 2) {}
 

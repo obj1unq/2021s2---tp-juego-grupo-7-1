@@ -1,5 +1,14 @@
 import wollok.game.*
 
+object dynamicPositionManager{
+  method create(x, y){
+    return new DynamicPosition(x=x, y=y)
+  }
+  method createAtCenter(){
+    return self.create(gameDimensions.hCenter(), gameDimensions.vCenter())
+  }
+}
+
 class DynamicPosition{
   var property x = 0
   var property y = 0
@@ -20,7 +29,6 @@ class DynamicPosition{
   method left(){  return new DynamicPosition(x=self.x()-1, y=self.y())   }
 }
 
-
 class SafeArea{
   var property xMin = 2
   var property xMax = game.width() - 2
@@ -28,25 +36,11 @@ class SafeArea{
   var property yMax = game.height() - 2
 }
 
-
 object gameDimensions{
   const property safeArea = new SafeArea()
-  /**
-   * Horizontal Center
-   */
+  // Horizontal Center
   method hCenter() = game.width().div(2)
-  /**
-   * Vertical Center
-   */
+  
+  // Vertical Center
   method vCenter() = game.height().div(2)  
-}
-
-
-object dynamicPositionManager{
-  method create(x, y){
-    return new DynamicPosition(x=x, y=y)
-  }
-  method createAtCenter(){
-    return self.create(gameDimensions.hCenter(), gameDimensions.vCenter())
-  }
 }
