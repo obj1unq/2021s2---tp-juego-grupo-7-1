@@ -1,5 +1,7 @@
 import wollok.game.*
 import gameManager.*
+import extras.objetoPrueba.*
+
 
 program spaceInvaders{
   // GLOBAL CONFIG
