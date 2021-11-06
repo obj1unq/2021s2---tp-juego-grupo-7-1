@@ -47,7 +47,7 @@ class Bullet inherits Visual {
     bulletsFactory.bullets().remove(self)
   }
   
-  method isInsideSafeArea(){}
+  method isInsideSafeArea()
 
   method move() {
   	if (self.isInsideSafeArea()) {
@@ -62,21 +62,10 @@ class Bullet inherits Visual {
   method shoot() {
     self.add()
   }
-  override method add(){
-    super()
-    self.setupCollisions()
+    
+  method receiveHit() {
+  	self.remove()
   }
-  method setupCollisions(){
-//    game.onCollideDo(self, { target =>
-//      self.receiveHit(target.goesUp())
-//      target.receiveHit(goesUp)
-//    })
-  }
-//  method receiveHit(direction) {
-//  	if (direction != goesUp) {
-//    	self.remove()
-//    }
-//  }
 }
 class HeroBullet inherits Bullet(direction=up) {
 
@@ -85,14 +74,33 @@ class HeroBullet inherits Bullet(direction=up) {
   override method isInsideSafeArea() {
   	return self.position().y() <= gameDimensions.safeArea().yMax()
   }
+  
+  override method add(){
+    super()
+    self.setupCollisions()
+  }
+  
+  method setupCollisions() {
+  	game.onCollideDo(self, 
+  		{ 
+			target => self.hit(target)
+					  self.remove()
+  		}
+  	)
+  }
+  
+  method hit(target) {
+  	target.receiveHit()
+  }
 }
 class EnemyBullet inherits Bullet {
-  const award = 10
+  const property award = 10
 
   override method image() = "enemyBullet.png" 
   
   override method isInsideSafeArea() {
   	return self.position().y() >= gameDimensions.safeArea().yMin()
   }
-
+  
+  
 }

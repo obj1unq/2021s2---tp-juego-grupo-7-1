@@ -33,8 +33,8 @@ class Enemy inherits Visual {
     self.activateAttack()
   }
 
-  method receiveHit(harmful) {
-    if(harmful){ self.lifeDecrease() }
+  method receiveHit() {
+    self.lifeDecrease()
   }
 
   method lifeDecrease() {
@@ -78,23 +78,15 @@ class Kamikaze inherits Enemy(award = 2, life = 3) {
 
   override method image() = "mcdonalds.png" // agregar imagen enemiga
 
-//  override method position() {
-//    if (not onBanzai) {
-//      return game.at(anchor.position().x() + xOffset, anchor.position().y() + yOffset)
-//    } else {
-//      return game.at(banzaiX, anchor.position().y() + yOffset)
-//    }
-//  }
-
   method banzai() {
     onBanzai = true
     banzaiX = self.position().x()
     life = 1
     game.onTick(50, "ENEMY_MOVEMENT" + self.identity().toString(), { self.move()})
-    game.onCollideDo(self, { target =>
-      target.receiveHit()
-      self.die()
-    })
+//    game.onCollideDo(self, { target =>
+//      target.receiveHit()
+//      self.die()
+//    })
   }
 
   method move() {
@@ -106,7 +98,6 @@ class Kamikaze inherits Enemy(award = 2, life = 3) {
   }
 
   method remove() {
-    game.removeTickEvent("ENEMY_MOVEMENT" + self.identity().toString())
     game.removeVisual(self)
   }
 
