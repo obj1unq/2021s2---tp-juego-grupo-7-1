@@ -69,9 +69,9 @@ class Enemy inherits Visual {
 
 }
 
-class Private inherits Enemy(award = 1, life = 2) {}
+class Private inherits Enemy(award = 1, life = 1) {}
 
-class Kamikaze inherits Enemy(award = 2, life = 3) {
+class Kamikaze inherits Enemy(award = 2, life = 2) {
 
   var onBanzai = false
   var banzaiX = null
