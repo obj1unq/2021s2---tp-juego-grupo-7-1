@@ -11,7 +11,7 @@ object tickCalculator {
 class Anchor inherits Visual{
   const image = "px-anchor.png"
   method image() { return image }
-  //method receiveHit(boolean) {} //dummy
+  method receiveHit() {}
 }
 
 class Pixel{
@@ -25,6 +25,10 @@ class Pixel{
       anchor.position().x()+xDelta,
       anchor.position().y()+yDelta
     )
+  }
+  
+  method receiveHit() {
+  	console.println("me dio")
   }
 }
 

@@ -81,7 +81,7 @@ class HeroBullet inherits Bullet(direction=up) {
   }
   
   method setupCollisions() {
-  	game.onCollideDo(self, 
+  	game.whenCollideDo(self, 
   		{ 
 			target => self.hit(target)
 					  self.remove()

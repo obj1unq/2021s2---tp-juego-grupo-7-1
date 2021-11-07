@@ -35,8 +35,15 @@ class HeroShip inherits CompositeVisual(
   override method add() {
     super()
     self.activateMovement()
-    self.setupAreaLimiting()    
+    self.setupAreaLimiting() 
   }
+  
+  method setupCollisions() {
+  	self.composition().forEach({
+      fila=>fila.forEach({ pixel=>game.onCollideDo(pixel, {pixel.receiveHit()}) })
+    })
+  }
+  
   method turn(_direction){
     direction = _direction
   }
@@ -58,22 +65,24 @@ class HeroShip inherits CompositeVisual(
     self.position().yMax(yMax)
   }
   
+  method receiveHit() {
+    self.lifeDecrease()
+  }
+
+  method lifeDecrease() {
+    if (life > 1) {
+      life -= 1
+    } else {
+      self.die()
+    }
+  }
+  
+  method die() { 
+    game.stop()
+  }
+  
   method shoot() {
     const bullet = bulletsFactory.createHeroBullet(self.position().translated(1,1)) 
     bullet.shoot()
   }
-  
-  
-//  method receiveHit(){
-////    console.println("colision")
-//      if(life > 1) { 
-//        life -=1 
-//      } else {
-//      self.die()
-//    }
-//  }
-//  
-//  method die() { 
-//    console.println("la quedé")
-//  }
 }
