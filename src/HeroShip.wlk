@@ -36,13 +36,16 @@ class HeroShip inherits CompositeVisual(
     super()
     self.activateMovement()
     self.setupAreaLimiting() 
+    self.setupCollisions()
   }
   
-//  method setupCollisions() {
-//  	self.composition().forEach({
-//      fila=>fila.forEach({ pixel=>game.onCollideDo(pixel, {pixel.receiveHit()}) })
-//    })
-//  }
+  method setupCollisions() {
+  	self.composition().forEach({
+      fila => fila.forEach({pixel=>
+        game.whenCollideDo(pixel, {foreign => pixel.receiveHit() })
+      })
+    })
+  }
   
   method turn(_direction){
     direction = _direction

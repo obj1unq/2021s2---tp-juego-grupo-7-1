@@ -22,20 +22,20 @@ class CompositeVisual{
   const assetPrefix
   const position = new DynamicPosition(x=3, y=3)
   const anchorImage = "px-anchor.png"
-  
+  const composition = []
   const property anchor = new Anchor(position=position, image=anchorImage)
   const showAnchor = true
   
   method position(){ return anchor.position() }
   
   method add(){
+    self.compose()
     self.composition().forEach({
       fila=>fila.forEach({ pixel=>game.addVisual(pixel) })
     })
     if (showAnchor) game.addVisual(self.anchor())
   }
-  method composition(){
-    const comp = []
+  method compose(){
     (0..height-1).forEach({indexH=>
       const filaActual = []
       (0..width-1).forEach({indexW =>
@@ -48,8 +48,8 @@ class CompositeVisual{
           )
         )
       })
-      comp.add(filaActual)
-    })
-    return comp
+      composition.add(filaActual)
+    })   
   }
+  method composition() = composition
 }
