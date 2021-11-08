@@ -24,6 +24,7 @@ class HeroShip inherits CompositeVisual(
 ){
   var property life = 3
   var property speed = 50.0
+  var property energy = 100
 
   const xMin = 2
   const xMax = game.width() - 2
@@ -68,17 +69,7 @@ class HeroShip inherits CompositeVisual(
     self.position().yMax(yMax)
   }
   
-  method receiveHit() {
-    self.lifeDecrease()
-  }
 
-  method lifeDecrease() {
-    if (life > 1) {
-      life -= 1
-    } else {
-      self.die()
-    }
-  }
   
   method die() { 
     game.stop()
@@ -88,4 +79,41 @@ class HeroShip inherits CompositeVisual(
     const bullet = bulletsFactory.createHeroBullet(self.position().translated(1,1)) 
     bullet.shoot()
   }
+  
+  //  method receiveHit() {
+//    self.lifeDecrease()
+//  }
+//
+//  method lifeDecrease() {
+//    if (life > 1) {
+//      life -= 1
+//    } else {
+//      self.die()
+//    }
+//  }
+   method receiveHit() {
+		energy = 0.max(energy - 10)
+		
+		if (self.itsDead()) {
+			// imagen de nave destruida
+			self.lose()
+		}
+	}
+	method itsDead(){
+		return energy == 0
+	}
+	
+	method lose() {
+		if(life > 1){
+			 game.say(self, "Perdiste una vida")
+			 life -= 1
+		} else { game.say(self, "Perdiste una vida") 
+				 self.endGame()
+				// self.die()
+		}
+	}
+	method endGame() {
+		game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
+	}
 }
+
