@@ -13,7 +13,7 @@ class Enemy inherits Visual {
   var property anchor
   var property xOffset
   var property yOffset
-  var firstShotDone = false
+//  var firstShotDone = false
 
   method image() = "hotdog.png"
 
@@ -30,7 +30,11 @@ class Enemy inherits Visual {
   }
 
   method activate() {
-    self.activateAttack()
+  	const time = self.nextShootDelay()
+  	if (game.hasVisual(self)) {
+    	self.activateAttack(time)
+    	game.schedule(time, { self.activate() } )
+ 	}
   }
 
   method receiveHit() {
@@ -51,11 +55,13 @@ class Enemy inherits Visual {
   }
 
   method nextShootDelay() {
-    // TODO: acá puede haber una lógcia de firstShotDelay y nextShot ordinario
-    const min = if (!firstShotDone) 3000 else 20000
-    const max = if (!firstShotDone) 10000 else 50000
-    firstShotDone = !firstShotDone
+    
+    const min = 3000	//if (!firstShotDone) 3000 else 6000
+    const max = 30000	//if (!firstShotDone) 10000 else 20000
+    //firstShotDone = !firstShotDone
+    //self.activateAttack()
     return min.randomUpTo(max)
+    
   }
 
   method die() {
@@ -63,8 +69,8 @@ class Enemy inherits Visual {
     gameManager.increaseScore(award)
   }
 
-  method activateAttack() {
-    game.schedule(self.nextShootDelay(), { self.shoot()})
+  method activateAttack(time) {
+    game.schedule(time, { self.shoot()})
   }
 
 }
