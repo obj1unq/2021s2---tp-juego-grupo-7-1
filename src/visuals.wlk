@@ -14,6 +14,17 @@ class Visual{
   
   var property position = dynamicPositionManager.createAtCenter()
   method add(){ game.addVisual(self) }
+  method move()
+  method isInsideSafeArea() {
+  	return self.position().y() >= gameDimensions.safeArea().yMin()
+  }
+  method activate()
+  method activateAttack(time, attack) {
+    game.schedule(time, attack)
+  }
+  method attackDelay(min,max) {
+    return min.randomUpTo(max)
+  }
 }
 
 class CompositeVisual{

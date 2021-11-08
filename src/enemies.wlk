@@ -29,10 +29,10 @@ class Enemy inherits Visual {
     self.activate()
   }
 
-  method activate() {
-  	const time = self.nextShootDelay()
+  override method activate() {
+  	const time = self.attackDelay(3000,15000)
   	if (game.hasVisual(self)) {
-    	self.activateAttack(time)
+    	self.activateAttack(time, { self.shoot()})
     	game.schedule(time, { self.activate() } )
  	}
   }
@@ -54,23 +54,10 @@ class Enemy inherits Visual {
     bullet.shoot()
   }
 
-  method nextShootDelay() {
-    
-    const min = 3000	//if (!firstShotDone) 3000 else 6000
-    const max = 30000	//if (!firstShotDone) 10000 else 20000
-    //firstShotDone = !firstShotDone
-    //self.activateAttack()
-    return min.randomUpTo(max)
-    
-  }
 
   method die() {
     game.removeVisual(self)
     gameManager.increaseScore(award)
-  }
-
-  method activateAttack(time) {
-    game.schedule(time, { self.shoot()})
   }
 
 }
@@ -80,25 +67,39 @@ class Private inherits Enemy(award = 1, life = 1) {}
 class Kamikaze inherits Enemy(award = 2, life = 2) {
 
   var onBanzai = false
-  var banzaiX = null
+  var banzaiXY = null
 
   override method image() = "mcdonalds.png" // agregar imagen enemiga
 
-  method banzai() {
-    onBanzai = true
-    banzaiX = self.position().x()
-    life = 1
-    game.onTick(50, "ENEMY_MOVEMENT" + self.identity().toString(), { self.move()})
-//    game.onCollideDo(self, { target =>
-//      target.receiveHit()
-//      self.die()
-//    })
+  override method position() {
+  	if (onBanzai) {
+  		return banzaiXY
+  	} else {
+  		super()
+  	}
   }
 
-  method move() {
-    if (self.position().y() > 0) {
-      position = self.position().down(1)
+  method banzai() {
+    banzaiXY = self.position()
+    onBanzai = true
+    life = 1
+    
+    game.onTick(50, "BANZAI" + self.identity().toString(), { self.move()})
+  }
+  
+  override method activate() {
+  	const time = self.attackDelay(15000,120000)
+  	if (game.hasVisual(self)) {
+    	self.activateAttack(time, { self.banzai() } )
+    	game.schedule(time, { self.activate() } )
+ 	}
+  }
+
+  override method move() {
+    if (self.isInsideSafeArea()) {
+      self.position().moveDown(1)
     } else {
+      game.removeTickEvent("BANZAI" + self.identity().toString())
       self.remove()
     }
   }

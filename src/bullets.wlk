@@ -46,10 +46,8 @@ class Bullet inherits Visual {
     game.removeVisual(self)
     bulletsFactory.bullets().remove(self)
   }
-  
-  method isInsideSafeArea()
 
-  method move() {
+  override method move() {
   	if (self.isInsideSafeArea()) {
       direction.nextPosition(self)
     } else {
@@ -96,11 +94,6 @@ class HeroBullet inherits Bullet(direction=up) {
 class EnemyBullet inherits Bullet {
   const property award = 10
 
-  override method image() = "enemyBullet.png" 
-  
-  override method isInsideSafeArea() {
-  	return self.position().y() >= gameDimensions.safeArea().yMin()
-  }
-  
+  override method image() = "enemyBullet.png"  
   
 }
