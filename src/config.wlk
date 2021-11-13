@@ -25,18 +25,7 @@ class MomentConfiguration{
 }
 object configVoid inherits MomentConfiguration{}
 
-object configGamePlay inherits MomentConfiguration{
-  override method configMoment(moment){
-    super(moment)
-    self.configHeroShip(moment.heroShip())
-  }
-  method configHeroShip(heroShip){
-    keyboard.left().onPressDo({   heroShip.turn(left) })
-    keyboard.right().onPressDo({  heroShip.turn(right) })
-    keyboard.down().onPressDo({  heroShip.turn(neutral) })
-    keyboard.space().onPressDo({  heroShip.shoot() })
-  }
-}
+
 
 
 object configPDCObjetoCompuesto inherits MomentConfiguration{

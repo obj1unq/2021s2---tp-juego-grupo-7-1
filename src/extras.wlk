@@ -12,6 +12,9 @@ class Anchor inherits Visual{
   const image = "px-anchor.png"
   method image() { return image }
   method receiveHit() {}
+  
+  override method move(){}
+  override method activate(){}
 }
 
 class Pixel{
