@@ -1,6 +1,6 @@
 import wollok.game.*
 
-object dynamicPositionManager{
+object dynamicPositionFactory{
   method create(x, y){
     return new DynamicPosition(x=x, y=y)
   }

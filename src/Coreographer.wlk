@@ -13,8 +13,8 @@ class Coreographer {
   var anchor = null
   const movementTickID = "ANCHOR_MOVEMENT" + self.identity().toString() 
   
-  method activate(){
-    anchor = gameManager.levelObject().anchor()
+  method activate(_anchor){
+    anchor = _anchor
     self.activateMovement()
   }
   

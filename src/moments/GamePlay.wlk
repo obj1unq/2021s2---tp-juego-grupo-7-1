@@ -3,32 +3,35 @@ import gameManager.gameManager
 import config.MomentConfiguration
 import HeroShip.heroShipFactory
 import bullets.bulletsMover
-import levels.main.levels
+import levels.levels.levels
 import moments.Moment.*
 import directions.*
 
 
 class GamePlay inherits Moment(
-  titulo=["JUEGO", "Nivel " + gameManager.level().toString()],
-  configuration=configGamePlay,
-  visuals=#{heroShipFactory.create()}
+  titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
+  configuration=configGamePlay
 ){
-  
-  const property heroShip = heroShipFactory.lastCreated()
+  var property level
+  const property heroShip = heroShipFactory.create()
   
   
   override method load(){
+    self.loadLevel(gameManager.levelNumber())
+    self.prepareVisuals()
+    
     super()
-//    self.setBackground()
-//    self.configure()    
-//    self.addVisuals()
-//    self.addTitle()
-    self.loadLevel(gameManager.level())
     bulletsMover.activate()
   }
   
   method loadLevel(levelNumber){
-    levels.list().get(levelNumber-1).load()
+    levels.level(levelNumber).load(self)
+  }
+  method prepareVisuals(){
+    visuals.add(heroShip)
+    level.visuals().forEach({item=>
+      visuals.add(item)
+    })
   }
 }
 

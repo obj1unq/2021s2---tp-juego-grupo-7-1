@@ -1,55 +1,72 @@
 import enemies.*
 import gameManager.gameManager
 
-class FormationItem{
+class FormationItemReference{
   const xOffsetSize = 5
   const yOffsetSize = 3
   
-  method loadItem(rowIndex, itemIndex){}
-  method anchor(){
-    return gameManager.levelObject().anchor()
-  }
+//  method anchor() = gameManager.levelObject().anchor()
+  method newInstance(rowIndex, itemIndex)
 }
 
-object p inherits FormationItem{
-  override method loadItem(rowIndex, itemIndex){
-    const item = new Private(
-      anchor=self.anchor(),
+object p inherits FormationItemReference{
+  override method newInstance(rowIndex, itemIndex){
+    return new Private(
       xOffset=itemIndex*xOffsetSize,
       yOffset=-1*rowIndex*yOffsetSize
     )
-    item.add()
   }
 }
-object k inherits FormationItem{
-  override method loadItem(rowIndex, itemIndex){
-    const item = new Kamikaze(
-      anchor=self.anchor(),
+object k inherits FormationItemReference{
+  override method newInstance(rowIndex, itemIndex){
+    return new Kamikaze(
       xOffset=itemIndex*xOffsetSize,
       yOffset=-1*rowIndex*yOffsetSize
     )
-    item.add()
   }
 }
-object _ inherits FormationItem{}
+object _ inherits FormationItemReference{
+  override method newInstance(rowIndex, itemIndex){
+    return new VoidEnemy()
+  }
+}
 
 class FormationRow{
-  const property items = [] // i for items
-  method loadItems(rowIndex){
+  const property refs = []
+  const items = []
+
+  method instantiateItems(rowIndex){
     var itemIndex = 0
-    items.forEach({item =>
-      item.loadItem(rowIndex, itemIndex)
+    refs.forEach({ref =>
+      items.add(
+        ref.newInstance(rowIndex, itemIndex)
+      )
       itemIndex += 1
     })
   }
+  method assignAnchor(anchor){
+    items.forEach({item=>
+      item.anchor(anchor)
+    })
+  }
+  method visuals() = items.asSet()
 }
+
+
 class Formation{
   const property rows = []
-  method loadItems(){
-    var index = 0
-    rows.forEach({row =>
-      row.loadItems(index)
-      index += 1
+  
+  method initialize(){
+    var rowIndex = 0
+    rows.forEach({row => 
+      row.instantiateItems(rowIndex)
+      rowIndex += 1
+    })
+  }
+  method visuals() = rows.flatMap({row => row.visuals()})
+  method assignAnchor(anchor){
+    rows.forEach({row=>
+      row.assignAnchor(anchor)
     })
   }
 }

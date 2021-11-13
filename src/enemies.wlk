@@ -10,7 +10,7 @@ class Enemy inherits Visual {
   const property goesUp = false
   const property award = 1
   var property life = 2
-  var property anchor
+  var property anchor = null
   var property xOffset
   var property yOffset
 //  var firstShotDone = false
@@ -18,7 +18,7 @@ class Enemy inherits Visual {
   method image() = "hotdog.png"
 
   override method position() {
-    return dynamicPositionManager.create(
+    return dynamicPositionFactory.create(
       anchor.position().x() + xOffset,
       anchor.position().y() + yOffset
     )
@@ -62,7 +62,9 @@ class Enemy inherits Visual {
 
 }
 
-class Private inherits Enemy(award = 1, life = 1) {}
+class Private inherits Enemy(award = 1, life = 1) {
+  override method move(){}
+}
 
 class Kamikaze inherits Enemy(award = 2, life = 2) {
 
@@ -110,3 +112,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
 
 }
 
+class VoidEnemy{
+  method anchor(_anchor){}
+  method add(){}
+}

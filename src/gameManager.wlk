@@ -1,6 +1,6 @@
 import wollok.game.*
 import moments.extras.gameTitle
-import levels.levels
+import levels.levels.levels
 import extras.rawMessage
 
 object gameManager {
@@ -11,12 +11,10 @@ object gameManager {
   */
   const genesis = gameTitle
   
-  // TODO: chequear que esto tal vez convenga que viva en GamePlay
-  var property levelObject
   
   var property score = 0
   var property lifes = 5
-  var property level = 1
+  var property levelNumber = 1
    
   // ---------------------------------------------
   method load(){
@@ -33,7 +31,7 @@ object gameManager {
   }
   
   method increaseScore(amount){ score += amount }
-  method increaseLevel(){ level = (level+1).min(levels.list().size()) }
-  method decreaseLevel(){ level = 1.max(level-1) }
+  method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.list().size()) }
+  method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
 }

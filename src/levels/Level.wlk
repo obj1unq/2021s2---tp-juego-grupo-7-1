@@ -5,35 +5,35 @@ import extras.Anchor
 import Coreographer.Coreographer
 
 class Level{
-  const formationOrigin = dynamicPositionManager.create(
+  const formationOrigin = dynamicPositionFactory.create(
     gameDimensions.safeArea().xMin(), gameDimensions.safeArea().yMax()
   ) 
   
   // TODO: refactorizar la vinculación del anchor con el coreographer
   const property anchor = new Anchor(position=formationOrigin)
-  const formation
+  const property enemiesFormation
   const coreographer = new Coreographer()
   
-  method load(){
-    self.storeLevelObject()
-    self.loadAnchor()
-    self.activateBulletsMover()
-    self.loadEnemies()
-    self.activateCoreographer()
+  method load(_gamePlay){
+    self.storeLevelObject(_gamePlay)
+    self.enemiesFormation().assignAnchor(anchor)
+    self.activateCoreographer(anchor)
+    
+    self.DEV_loadAnchor()
   }
-  method storeLevelObject(){
-    gameManager.levelObject(self)    
+  method storeLevelObject(_gamePlay){
+    _gamePlay.level(self)    
   }
-  method loadAnchor(){
+//  method loadEnemies(){
+//    formation.loadItems()
+//  }
+  method activateCoreographer(_anchor){
+    coreographer.activate(_anchor)
+  }
+  method visuals(){
+    return self.enemiesFormation().visuals()
+  }
+  method DEV_loadAnchor(){
     game.addVisual(anchor)
-  }
-  method activateBulletsMover(){
-    // bulletsMover----
-  }
-  method loadEnemies(){
-    formation.loadItems()
-  }
-  method activateCoreographer(){
-    coreographer.activate()
   }
 }

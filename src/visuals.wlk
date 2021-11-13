@@ -3,6 +3,7 @@ import positions.*
 import extras.Anchor
 import extras.Pixel
 
+
 class Visual{
   /**
    * NOTE: Visual childs must use add() method to be added to the stage,
@@ -12,7 +13,7 @@ class Visual{
   
   // TODO: Evaluar que esta clase tenga los metodos de los movimientos delimitados.
   
-  var property position = dynamicPositionManager.createAtCenter()
+  var property position = dynamicPositionFactory.createAtCenter()
   method add(){ game.addVisual(self) }
   method move()
   method isInsideSafeArea() {
