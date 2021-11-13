@@ -9,7 +9,6 @@ class Level{
     gameDimensions.safeArea().xMin(), gameDimensions.safeArea().yMax()
   ) 
   
-  // TODO: refactorizar la vinculación del anchor con el coreographer
   const property anchor = new Anchor(position=formationOrigin)
   const property enemiesFormation
   const coreographer = new Coreographer()
@@ -24,9 +23,6 @@ class Level{
   method storeLevelObject(_gamePlay){
     _gamePlay.level(self)    
   }
-//  method loadEnemies(){
-//    formation.loadItems()
-//  }
   method activateCoreographer(_anchor){
     coreographer.activate(_anchor)
   }
@@ -34,6 +30,9 @@ class Level{
     return self.enemiesFormation().visuals()
   }
   method DEV_loadAnchor(){
+    /**
+     * DEV ONLY METHOD: Loads into screen the 
+     */
     game.addVisual(anchor)
   }
 }

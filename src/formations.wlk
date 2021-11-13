@@ -38,9 +38,8 @@ class FormationRow{
   method instantiateItems(rowIndex){
     var itemIndex = 0
     refs.forEach({ref =>
-      items.add(
-        ref.newInstance(rowIndex, itemIndex)
-      )
+      const newInstance = ref.newInstance(rowIndex, itemIndex)
+      items.add(newInstance)
       itemIndex += 1
     })
   }
