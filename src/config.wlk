@@ -1,6 +1,7 @@
 import wollok.game.*
 import gameManager.gameManager
-import moments.*
+import moments.extras.*
+import moments.GamePlay.GamePlay
 import directions.*
 
 
