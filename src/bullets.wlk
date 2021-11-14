@@ -19,6 +19,14 @@ object bulletsFactory{
     bullets.add(newBullet)
     return newBullet
   }
+  
+  method enemyBullets() {
+  	return bullets.filter( {bullet => bullet.direction()==down })
+  }
+  
+  method bulletsOnScreen() {
+  	return self.enemyBullets().size()
+  }
 }
 
 object bulletsMover{
@@ -39,7 +47,7 @@ object bulletsMover{
 }
 
 class Bullet inherits Visual {
-  const direction = down
+  const property direction = down
   method image() = "bullet.png"
 
   method remove() {

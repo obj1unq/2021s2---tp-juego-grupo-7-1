@@ -61,9 +61,11 @@ class Enemy inherits Visual {
     }
   }
 
-  method shoot() {
-    const bullet = bulletsFactory.createEnemyBullet(self.position().translated(0, -1))
-    bullet.shoot()
+  method shoot() { 
+  	if (bulletsFactory.bulletsOnScreen() < 5) {
+    	const bullet = bulletsFactory.createEnemyBullet(self.position().translated(0, -1))
+    	bullet.shoot()
+   	}
   }
 
 
