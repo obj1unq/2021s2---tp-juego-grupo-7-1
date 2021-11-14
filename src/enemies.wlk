@@ -7,7 +7,7 @@ import positions.*
 
 class Enemy inherits Visual {
 
-  const property goesUp = false
+//  const property goesUp = false
   const property award = 1
   var property life = 2
   var property anchor = null
@@ -30,9 +30,21 @@ class Enemy inherits Visual {
   }
 
   override method activate() {
-  	const time = self.attackDelay(3000,15000)
+  	self.activateShooting()
+  }
+  
+  method activateShooting() {
+  	self.activate({ self.shoot() },7000,21000)
+  }
+  
+  method activate(attack, minTime, maxTime) {
+  	const time = self.attackDelay(minTime, maxTime)
+  	self.attack(time, attack)
+  }
+  
+  method attack(time, attack) {
   	if (game.hasVisual(self)) {
-    	self.activateAttack(time, { self.shoot()})
+    	self.activateAttack(time, attack)
     	game.schedule(time, { self.activate() } )
  	}
   }
@@ -56,8 +68,12 @@ class Enemy inherits Visual {
 
 
   method die() {
-    game.removeVisual(self)
+    self.remove()
     gameManager.increaseScore(award)
+  }
+  
+  method remove() {
+  	game.removeVisual(self)
   }
 
 }
@@ -70,6 +86,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
 
   var onBanzai = false
   var banzaiXY = null
+  var attackCounter = 0
 
   override method image() = "mcdonalds.png" // agregar imagen enemiga
 
@@ -86,15 +103,29 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
     onBanzai = true
     life = 1
     
-    game.onTick(50, "BANZAI" + self.identity().toString(), { self.move()})
+    game.onTick(100, "BANZAI" + self.identity().toString(), { self.move()})
   }
   
   override method activate() {
-  	const time = self.attackDelay(15000,120000)
-  	if (game.hasVisual(self)) {
-    	self.activateAttack(time, { self.banzai() } )
-    	game.schedule(time, { self.activate() } )
- 	}
+  	if (attackCounter < 5) {
+  		self.activateShooting() 
+  	} else if (not onBanzai){
+	self.activateRandomAttack() 
+	}
+	attackCounter += 1
+  }
+  
+  method activateRandomAttack() {
+  	const selector = (1..5).anyOne()
+  	  	if (selector==1) {
+  		self.activateBanzai()
+  	} else {
+  		self.activateShooting()
+  	}
+  }
+  
+  method activateBanzai() {
+  	self.activate({ self.banzai() },20000,60000))
   }
 
   override method move() {
@@ -104,10 +135,6 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
       game.removeTickEvent("BANZAI" + self.identity().toString())
       self.remove()
     }
-  }
-
-  method remove() {
-    game.removeVisual(self)
   }
 
 }
