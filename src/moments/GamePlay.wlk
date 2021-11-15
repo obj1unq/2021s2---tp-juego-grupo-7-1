@@ -18,21 +18,18 @@ class GamePlay inherits Moment(
   
   override method load(){
     self.loadLevel(gameManager.levelNumber())
-    self.prepareVisuals()
     super()
-    
     bulletsMover.activate()
-    visuals.clear()
   }
   
   method loadLevel(levelNumber){
-    levels.level(levelNumber).load(self)
+    levels.loadLevel(levelNumber, self)
   }
-  method prepareVisuals(){
-    visuals.add(heroShip)
-    level.visuals().forEach({item=>
-      visuals.add(item)
-    })
+  override method visuals(){
+    return (
+        #{heroShip}
+      + level.visuals()  
+    ) 
   }
 }
 

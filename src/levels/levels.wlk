@@ -34,4 +34,8 @@ object levels{
   const list = [level1, level2]
   method quantity() = list.size()
   method level(levelNumber) = list.get(levelNumber-1)
+  method loadLevel(levelNumber, gamePlay){
+    const currentLevel = self.level(levelNumber)
+    currentLevel.load(gamePlay)
+  }
 }

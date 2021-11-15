@@ -5,7 +5,7 @@ import extras.rawMessage
 class Moment {
   const titulo
   const background = "background.jpg"
-  const visuals = #{}
+  const property visuals = #{}
   const configuration = configVoid
   
   method load(){
@@ -17,7 +17,7 @@ class Moment {
   
   method setBackground(){ game.boardGround(background) }
   method configure(){ configuration.configMoment(self) }
-  method addVisuals(){ visuals.forEach({visual=>visual.add()}) }
+  method addVisuals(){ self.visuals().forEach({visual=>visual.add()}) }
   method addTitle(){
     var titleString = ""
     titulo.forEach({line=>titleString=titleString+line+"\n"})
