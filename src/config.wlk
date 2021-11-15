@@ -1,7 +1,6 @@
 import wollok.game.*
 import gameManager.gameManager
 import moments.extras.*
-import moments.GamePlay.GamePlay
 import directions.*
 
 
@@ -14,7 +13,7 @@ class MomentConfiguration{
      */
     keyboard.num1().onPressDo({gameManager.switchTo(gameTitle)})
     keyboard.num2().onPressDo({gameManager.switchTo(new GameCover())})
-    keyboard.num3().onPressDo({gameManager.switchTo(new GamePlay())})
+    keyboard.num3().onPressDo({gameManager.switchToGamePlay()})
     keyboard.num4().onPressDo({gameManager.switchTo(gameOver)})
     keyboard.num5().onPressDo({gameManager.switchTo(credits)})
     keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
@@ -26,7 +25,19 @@ class MomentConfiguration{
 object configVoid inherits MomentConfiguration{}
 
 
-
+object configGamePlay inherits MomentConfiguration{
+  override method configMoment(moment){
+    self.configHeroShip(moment.heroShip())
+    keyboard.c().onPressDo({self.configGlobal()}) 
+//    super(moment)
+  }
+  method configHeroShip(heroShip){
+    keyboard.left().onPressDo({   heroShip.turn(left) })
+    keyboard.right().onPressDo({  heroShip.turn(right) })
+    keyboard.down().onPressDo({  heroShip.turn(neutral) })
+    keyboard.space().onPressDo({  heroShip.shoot() })
+  }
+}
 
 object configPDCObjetoCompuesto inherits MomentConfiguration{
   override method configMoment(moment){

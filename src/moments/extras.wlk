@@ -18,7 +18,7 @@ object gameTitle inherits Moment(
   titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]
 ){}
 class GameCover inherits Moment(
-  titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.level().toString()]
+  titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.levelNumber().toString()]
 ){}
 object gameOver inherits Moment(
   titulo=["FINAL_JUEGO", "A tu casa rey"]

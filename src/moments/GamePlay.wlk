@@ -1,9 +1,9 @@
 import wollok.game.keyboard
 import gameManager.gameManager
-import config.MomentConfiguration
+import config.configGamePlay
 import HeroShip.heroShipFactory
 import bullets.bulletsMover
-import levels.levels.levels
+import levels.levels.*
 import moments.Moment.*
 import directions.*
 
@@ -12,16 +12,17 @@ class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
 ){
-  var property level
+  var property level = null
   const property heroShip = heroShipFactory.create()
   
   
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     self.prepareVisuals()
-    
     super()
+    
     bulletsMover.activate()
+    visuals.clear()
   }
   
   method loadLevel(levelNumber){
@@ -35,15 +36,3 @@ class GamePlay inherits Moment(
   }
 }
 
-object configGamePlay inherits MomentConfiguration{
-  override method configMoment(moment){
-    super(moment)
-    self.configHeroShip(moment.heroShip())
-  }
-  method configHeroShip(heroShip){
-    keyboard.left().onPressDo({   heroShip.turn(left) })
-    keyboard.right().onPressDo({  heroShip.turn(right) })
-    keyboard.down().onPressDo({  heroShip.turn(neutral) })
-    keyboard.space().onPressDo({  heroShip.shoot() })
-  }
-}

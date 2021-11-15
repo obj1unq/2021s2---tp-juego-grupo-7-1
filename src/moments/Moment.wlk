@@ -10,15 +10,14 @@ class Moment {
   
   method load(){
     self.setBackground()
-    self.configure()    
     self.addVisuals()
     self.addTitle()
+    self.configure()
   }
   
   method setBackground(){ game.boardGround(background) }
   method configure(){ configuration.configMoment(self) }
   method addVisuals(){ visuals.forEach({visual=>visual.add()}) }
-  
   method addTitle(){
     var titleString = ""
     titulo.forEach({line=>titleString=titleString+line+"\n"})

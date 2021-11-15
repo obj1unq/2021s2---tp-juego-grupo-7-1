@@ -42,6 +42,7 @@ class FormationRow{
       items.add(newInstance)
       itemIndex += 1
     })
+    refs.clear()
   }
   method assignAnchor(anchor){
     items.forEach({item=>

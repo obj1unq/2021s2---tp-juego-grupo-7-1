@@ -1,5 +1,6 @@
 import wollok.game.*
 import moments.extras.gameTitle
+import moments.GamePlay.*
 import levels.levels.levels
 import extras.rawMessage
 
@@ -21,7 +22,13 @@ object gameManager {
     self.switchTo(genesis)
   }
   
+  method switchToGamePlay(){
+    self.switchTo(new GamePlay())
+  }
+  
   method switchTo(moment){
+    console.println("switchTo: " + moment.toString())
+    
     self.clearPreviousMoment()
     rawMessage.setup()
     moment.load()
@@ -31,7 +38,7 @@ object gameManager {
   }
   
   method increaseScore(amount){ score += amount }
-  method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.list().size()) }
+  method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
 }
