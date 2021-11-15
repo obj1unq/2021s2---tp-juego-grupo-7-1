@@ -15,6 +15,10 @@ class Moment {
     self.configure()
   }
   
+  
+  /** -----------------------------------------------------
+   * Private Methods
+   */
   method setBackground(){ game.boardGround(background) }
   method configure(){ configuration.configMoment(self) }
   method addVisuals(){ self.visuals().forEach({visual=>visual.add()}) }

@@ -6,8 +6,6 @@ import gameManager.gameManager
 import positions.*
 
 class Enemy inherits Visual {
-
-  const property goesUp = false
   const property award = 1
   var property life = 2
   var property anchor = null
@@ -29,7 +27,7 @@ class Enemy inherits Visual {
     self.activate()
   }
 
-  override method activate() {
+  method activate() {
   	const time = self.attackDelay(3000,15000)
   	if (game.hasVisual(self)) {
     	self.activateAttack(time, { self.shoot()})
@@ -59,12 +57,16 @@ class Enemy inherits Visual {
     game.removeVisual(self)
     gameManager.increaseScore(award)
   }
+  method activateAttack(time, attack) {
+    game.schedule(time, attack)
+  }
+  method attackDelay(min,max) {
+    return min.randomUpTo(max)
+  }
 
 }
 
-class Private inherits Enemy(award = 1, life = 1) {
-  override method move(){}
-}
+class Private inherits Enemy(award = 1, life = 1) {}
 
 class Kamikaze inherits Enemy(award = 2, life = 2) {
 
@@ -77,7 +79,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
   	if (onBanzai) {
   		return banzaiXY
   	} else {
-  		super()
+  		return super()
   	}
   }
 
@@ -97,7 +99,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
  	}
   }
 
-  override method move() {
+  method move() {
     if (self.isInsideSafeArea()) {
       self.position().moveDown(1)
     } else {

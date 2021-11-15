@@ -45,5 +45,15 @@ object gameDimensions{
   method hCenter() = game.width().div(2)
   
   // Vertical Center
-  method vCenter() = game.height().div(2)  
+  method vCenter() = game.height().div(2)
+  
+  method isInsideSafeArea(visual){
+    return (
+          visual.position().x() >= self.safeArea().xMin()
+      and visual.position().x() <= self.safeArea().xMax()
+      and visual.position().y() <= self.safeArea().yMax()
+      and visual.position().y() <= self.safeArea().yMax()
+    )
+    
+  }
 }

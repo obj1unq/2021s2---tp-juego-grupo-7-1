@@ -1,6 +1,6 @@
 import wollok.game.*
 import visuals.Visual
-import positions.dynamicPositionManager
+import positions.dynamicPositionFactory
 
 object tickCalculator {
   method speedBasedTick(speed){
@@ -12,9 +12,6 @@ class Anchor inherits Visual{
   const image = "px-anchor.png"
   method image() { return image }
   method receiveHit() {}
-  
-  override method move(){}
-  override method activate(){}
 }
 
 class Pixel{

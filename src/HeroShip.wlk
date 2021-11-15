@@ -18,7 +18,6 @@ object heroShipFactory{
 class HeroShip inherits CompositeVisual(
   width=3,
   height=2,
-  assetPrefix = "px-void",
   position=new DynamicPosition(x=3, y=3),
   anchorImage="heroShip.png"
 ){

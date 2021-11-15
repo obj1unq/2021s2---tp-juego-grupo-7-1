@@ -6,7 +6,8 @@ import Coreographer.Coreographer
 
 class Level{
   const formationOrigin = dynamicPositionFactory.create(
-    gameDimensions.safeArea().xMin(), gameDimensions.safeArea().yMax()
+    gameDimensions.safeArea().xMin(),
+    gameDimensions.safeArea().yMax()
   ) 
   
   const property anchor = new Anchor(position=formationOrigin)
@@ -20,15 +21,16 @@ class Level{
     
     self.DEV_loadAnchor()
   }
-  method storeLevelObject(_gamePlay){
-    _gamePlay.level(self)    
-  }
-  method activateCoreographer(_anchor){
-    coreographer.activate(_anchor)
-  }
-  method visuals(){
-    return self.enemiesFormation().visuals()
-  }
+  
+  method visuals() = self.enemiesFormation().visuals()
+  
+  
+  
+  /** -----------------------------------------------------
+   * Private Methods
+   */
+  method activateCoreographer(_anchor){ coreographer.activate(_anchor) }
+  method storeLevelObject(_gamePlay){ _gamePlay.level(self) }
   method DEV_loadAnchor(){
     /**
      * DEV ONLY METHOD: Loads into screen the 
