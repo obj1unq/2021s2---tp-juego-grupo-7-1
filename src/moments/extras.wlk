@@ -1,5 +1,5 @@
 import gameManager.gameManager
-import HeroShip.heroShipFactory
+import HeroShip.*
 import config.configPDCObjetoCompuesto
 import moments.Moment.Moment
 
@@ -8,10 +8,10 @@ import moments.Moment.Moment
  */
 class PDC_CompositeVisual inherits Moment(
   titulo=["PDC", "Probando Objeto Compuesto"],
-  configuration=configPDCObjetoCompuesto,
-  visuals=#{heroShipFactory.create()}
+  configuration=configPDCObjetoCompuesto
 ){
-  const property heroShip = heroShipFactory.lastCreated()
+  const property heroShip = new HeroShip()
+  override method visuals() = #{heroShip}
 }
 
 object gameTitle inherits Moment(

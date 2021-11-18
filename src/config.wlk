@@ -41,8 +41,8 @@ object configGamePlay inherits MomentConfiguration{
 
 object configPDCObjetoCompuesto inherits MomentConfiguration{
   override method configMoment(moment){
-    super(moment)
     self.configHeroShip(moment.heroShip())
+    keyboard.c().onPressDo({self.configGlobal()}) 
   }
   method configHeroShip(heroShip){
     keyboard.left().onPressDo({  heroShip.turn(left) })

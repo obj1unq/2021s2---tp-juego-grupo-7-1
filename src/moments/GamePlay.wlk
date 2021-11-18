@@ -1,7 +1,7 @@
 import wollok.game.keyboard
 import gameManager.gameManager
 import config.configGamePlay
-import HeroShip.heroShipFactory
+import HeroShip.HeroShip
 import bullets.bulletsMover
 import levels.levels.*
 import moments.Moment.*
@@ -13,7 +13,7 @@ class GamePlay inherits Moment(
   configuration=configGamePlay
 ){
   var property level = null
-  const property heroShip = heroShipFactory.create()
+  const property heroShip = new HeroShip()
   
   
   override method load(){

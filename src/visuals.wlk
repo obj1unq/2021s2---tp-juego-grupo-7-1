@@ -3,24 +3,18 @@ import positions.*
 import extras.Anchor
 import extras.Pixel
 
-class AbstractVisual{
-  method add()
-  method position()
-}
-
-class Visual inherits AbstractVisual{
+class Visual{
   const property position = dynamicPositionFactory.createAtCenter()
-  override method add(){ game.addVisual(self) }
+  method add(){ game.addVisual(self) }
   method isInsideSafeArea() {
     return gameDimensions.isInsideSafeArea(self)
   }
 }
 
-class CompositeVisual inherits AbstractVisual{
+class CompositeVisual inherits Visual{
   const width
   const height
   const assetPrefix = "px-void"
-  const position = new DynamicPosition(x=3, y=3)
   const anchorImage = "px-anchor.png"
   const composition = []
   const property anchor = new Anchor(position=position, image=anchorImage)
@@ -30,9 +24,7 @@ class CompositeVisual inherits AbstractVisual{
   
   override method add(){
     self.compose()
-    self.composition().forEach({
-      fila=>fila.forEach({ pixel=>game.addVisual(pixel) })
-    })
+    self.composition().forEach({ pixel=>game.addVisual(pixel) })
     if (showAnchor) game.addVisual(self.anchor())
   }
   method compose(){
@@ -57,5 +49,6 @@ class CompositeVisual inherits AbstractVisual{
       anchor=self.anchor()
     )
   }
-  method composition() = composition
+  method composition() = composition.flatten()
+  
 }

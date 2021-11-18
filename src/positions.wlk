@@ -17,6 +17,10 @@ class DynamicPosition{
   var property xMax = game.width() + 10
   var property yMin = -10
   var property yMax = game.height() + 10
+  
+  method initialize(){
+    console.println("creo posición")
+  }
 
   method moveUp(steps){     y = yMax.min(y + steps) }
   method moveRight(steps){  x = xMax.min(x + steps) }
@@ -27,6 +31,7 @@ class DynamicPosition{
   method right(){ return new DynamicPosition(x=self.x()+1, y=self.y())   }
   method down(){  return new DynamicPosition(x=self.x(),   y=self.y()-1) }
   method left(){  return new DynamicPosition(x=self.x()-1, y=self.y())   }
+  
   method translated(xOffset, yOffset){
     return new DynamicPosition(x=self.x()+xOffset, y=self.y()+yOffset)
   }
@@ -54,6 +59,5 @@ object gameDimensions{
       and visual.position().y() <= self.safeArea().yMax()
       and visual.position().y() <= self.safeArea().yMax()
     )
-    
   }
 }

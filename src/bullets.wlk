@@ -47,7 +47,7 @@ class Bullet inherits Visual {
     bulletsFactory.bullets().remove(self)
   }
 
-  override method move() {
+  method move() {
   	if (self.isInsideSafeArea()) {
       direction.nextPosition(self)
     } else {
@@ -73,19 +73,17 @@ class HeroBullet inherits Bullet(direction=up) {
   	return self.position().y() <= gameDimensions.safeArea().yMax()
   }
   
-  override method add(){
-    super()
-    self.setupCollisions()
-  }
+//  override method add(){
+//    super()
+//    self.setupCollisions()
+//  }
   
-  method setupCollisions() {
-  	game.whenCollideDo(self, 
-  		{ 
-			target => self.hit(target)
-					  self.remove()
-  		}
-  	)
-  }
+//  method setupCollisions() {
+//  	game.onCollideDo(self, {target =>
+//  	  self.hit(target)
+//		  self.remove()
+//  	})
+//  }
   
   method hit(target) {
   	target.receiveHit()

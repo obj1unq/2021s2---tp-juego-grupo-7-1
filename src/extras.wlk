@@ -14,21 +14,16 @@ class Anchor inherits Visual{
   method receiveHit() {}
 }
 
-class Pixel{
+class Pixel inherits Visual{
   var property anchor
   var property image
   var property xDelta
   var property yDelta
   
-  method position(){
-    return game.at(
-      anchor.position().x()+xDelta,
-      anchor.position().y()+yDelta
-    )
-  }
-  
-  method receiveHit() {
-  	console.println("me dio")
+  override method position(){
+    position.x(anchor.position().x()+xDelta)
+    position.y(anchor.position().y()+yDelta)
+    return position
   }
 }
 
