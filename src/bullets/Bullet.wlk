@@ -8,7 +8,7 @@ class Bullet inherits Visual {
 
   override method remove() {
     super()
-    bulletsFactory.bullets().remove(self)
+    bulletsFactory.remove(self)
   }
 
   method move() {

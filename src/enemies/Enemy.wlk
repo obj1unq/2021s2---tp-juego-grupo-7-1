@@ -1,4 +1,5 @@
 import wollok.game.game
+import config.settings.settings
 import visuals.Visual
 import bullets.bulletsFactory.bulletsFactory
 import bullets.HeroBullet.WithGetHeroBullet
@@ -32,10 +33,13 @@ class Enemy inherits WithGetHeroBullet and Visual {
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }
 
   method shoot() {
-    const bullet = bulletsFactory.createEnemyBullet(self)
-    bullet.shoot()
+    // TODO: esto se podría mandar todo al bullets factory, sin retornarle al
+    // shot la instancia. Que se dispare desde la factory.
+    if(bulletsFactory.enemyBulletsOnScreen() < settings.MAX_ENEMY_BULLETS_ON_SCREEN()){
+      const bullet = bulletsFactory.createEnemyBullet(self)
+      bullet.shoot()     
+    }
   }
-
 
   method die() {
     self.remove()
