@@ -4,13 +4,12 @@ import extras.Anchor
 import extras.Pixel
 
 class Visual{
-  const position = dynamicPositionFactory.createAtCenter()
-  method position() = position // avoid using property to prevent dynamicPosition re-instance
+  const property position = dynamicPositionFactory.createAtCenter()
+  const property limit = gameDimensions.globalLimit()
+//  method position() = position // avoid using property to prevent dynamicPosition re-instance
   method add(){ game.addVisual(self) }
   
-  method isInsideSafeArea() {
-    return gameDimensions.isInsideSafeArea(self)
-  }
+  method isInsideLimit() = limit.isInside(self)
 }
 
 class CompositeVisual inherits Visual{

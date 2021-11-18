@@ -1,5 +1,5 @@
 import wollok.game.*
-import moments.extras.gameTitle
+import moments.moments.gameTitle
 import moments.GamePlay.*
 import levels.levels.levels
 import extras.rawMessage

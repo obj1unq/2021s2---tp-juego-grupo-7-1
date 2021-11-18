@@ -1,5 +1,5 @@
 import wollok.game.*
-import config.configVoid
+import config.keyboard.configVoid
 import extras.rawMessage
 
 class Moment {
@@ -14,7 +14,6 @@ class Moment {
     self.addTitle()
     self.configure()
   }
-  
   
   /** -----------------------------------------------------
    * Private Methods

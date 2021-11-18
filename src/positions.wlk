@@ -10,12 +10,10 @@ class Limit{
     return (
           visual.position().y() <= self.up()
       and visual.position().x() <= self.right()
-      and visual.position().y() <= self.down()
+      and visual.position().y() >= self.down()
       and visual.position().x() >= self.left()
     )  
-  }
-  method limitedY(_y) = up.min(_y).max(down)
-  method limitedX(_x) = right.min(_x).max(left)
+  }  
 }
 
 object dynamicPositionFactory{
@@ -31,16 +29,14 @@ class DynamicPosition{
   var property x = 0
   var property y = 0
   
-  const limit = new Limit()
-  
   method initialize(){
     console.println("Creo " + self.toString())
   }
 
-  method moveUp(steps){     y = limit.limitedY(y+steps) }
-  method moveRight(steps){  x = limit.limitedX(x+steps) }
-  method moveDown(steps){   y = limit.limitedY(y-steps) }
-  method moveLeft(steps){   x = limit.limitedX(x-steps) }
+  method moveUp(steps){     y = y+steps }
+  method moveRight(steps){  x = x+steps }
+  method moveDown(steps){   y = y-steps }
+  method moveLeft(steps){   x = x-steps }
   
   method upNew(){    return new DynamicPosition(x=self.x(),   y=self.y()+1) }
   method rightNew(){ return new DynamicPosition(x=self.x()+1, y=self.y())   }
@@ -51,9 +47,6 @@ class DynamicPosition{
     return new DynamicPosition(x=self.x()+xOffset, y=self.y()+yOffset)
   }
 }
-
-
-
 
 object gameDimensions{
   const property globalLimit = new Limit()
@@ -66,4 +59,3 @@ object gameDimensions{
   
   method isInsideGlobalLimit(visual) = self.globalLimit().isInside(visual)
 }
-

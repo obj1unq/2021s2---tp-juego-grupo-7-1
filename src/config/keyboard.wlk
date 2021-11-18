@@ -1,11 +1,7 @@
 import wollok.game.*
 import gameManager.gameManager
-import moments.extras.*
+import moments.moments.*
 import directions.*
-
-object settings{
-  const property ACTIVATE_COLLISIONS = true
-}
 
 class MomentConfiguration{  
   method configMoment(moment){ self.configGlobal() }
@@ -49,6 +45,8 @@ object configPDCObjetoCompuesto inherits MomentConfiguration{
     keyboard.right().onPressDo({ heroShip.turn(right) })
     keyboard.up().onPressDo({    heroShip.turn(up) })
     keyboard.down().onPressDo({  heroShip.turn(down) })
+    keyboard.space().onPressDo({  heroShip.shoot() })
+    keyboard.n().onPressDo({  heroShip.turn(neutral) })
   }
 }
 

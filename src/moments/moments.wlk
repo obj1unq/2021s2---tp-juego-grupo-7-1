@@ -1,7 +1,8 @@
+import config.keyboard.configPDCObjetoCompuesto
 import gameManager.gameManager
-import HeroShip.*
-import config.configPDCObjetoCompuesto
 import moments.Moment.Moment
+import HeroShip.*
+import bullets.bulletsMover.bulletsMover
 
 /**
  * PROVISORIOS
@@ -12,6 +13,10 @@ class PDC_CompositeVisual inherits Moment(
 ){
   const property heroShip = new HeroShip()
   override method visuals() = #{heroShip}
+  override method load(){
+    super()
+    bulletsMover.activate()
+  }
 }
 
 object gameTitle inherits Moment(

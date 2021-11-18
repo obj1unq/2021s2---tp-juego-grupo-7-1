@@ -1,8 +1,8 @@
 import wollok.game.keyboard
 import gameManager.gameManager
-import config.configGamePlay
+import config.keyboard.configGamePlay
 import HeroShip.HeroShip
-import bullets.bulletsMover
+import bullets.bulletsMover.bulletsMover
 import levels.levels.*
 import moments.Moment.*
 import directions.*

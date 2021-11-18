@@ -6,8 +6,8 @@ import Coreographer.Coreographer
 
 class Level{
   const formationOrigin = dynamicPositionFactory.create(
-    gameDimensions.safeArea().xMin(),
-    gameDimensions.safeArea().yMax()
+    gameDimensions.globalLimit().left(),
+    gameDimensions.globalLimit().up()
   ) 
   
   const property anchor = new Anchor(position=formationOrigin)
