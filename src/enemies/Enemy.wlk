@@ -33,9 +33,7 @@ class Enemy inherits WithGetHeroBullet and Visual {
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }
 
   method shoot() {
-  	if (self.isOnScreen()) {
-  		bulletsFactory.shootEnemyBullet(self)
-  	}
+  	bulletsFactory.shootEnemyBullet(self)
   }
 
   method die() {
@@ -44,15 +42,15 @@ class Enemy inherits WithGetHeroBullet and Visual {
     gameManager.increaseScore(award)
   }
   
-  /** PRIVATES -------------------------------------------------------------- */
   method activateRecursiveAttack() {
-    game.schedule(self.randomAttackDelay(), {self.recursiveAttack()})
+  	if (self.isInsideLimit()) {
+      game.schedule(self.randomAttackDelay(), {self.recursiveAttack()})
+  	}
   }
   method recursiveAttack(){
-    self.shoot()
+  	self.attackType()
     self.activateRecursiveAttack()
   }
   method randomAttackDelay() = calc.randomInRange(3000, 15000)
-  
-
+  method attackType()
 }
