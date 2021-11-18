@@ -1,5 +1,6 @@
 import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
+import config.settings.settings
 
 object bulletsFactory{
   const property enemyBullets = #{}
@@ -23,5 +24,14 @@ object bulletsFactory{
     }else{
       heroBullets.remove(bullet)    
     }
+  }
+  method shootEnemyBullet(bullet){
+  	if(not self.tooMuchBullets()) {
+  	  const newBullet = self.createEnemyBullet(bullet)
+      newBullet.shoot()
+  	}
+  }
+  method tooMuchBullets() {
+  	return self.enemyBulletsOnScreen() >= settings.MAX_ENEMY_BULLETS_ON_SCREEN()
   }
 }

@@ -33,12 +33,9 @@ class Enemy inherits WithGetHeroBullet and Visual {
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }
 
   method shoot() {
-    // TODO: esto se podría mandar todo al bullets factory, sin retornarle al
-    // shot la instancia. Que se dispare desde la factory.
-    if(bulletsFactory.enemyBulletsOnScreen() < settings.MAX_ENEMY_BULLETS_ON_SCREEN()){
-      const bullet = bulletsFactory.createEnemyBullet(self)
-      bullet.shoot()     
-    }
+  	if (self.isOnScreen()) {
+  		bulletsFactory.shootEnemyBullet(self)
+  	}
   }
 
   method die() {
