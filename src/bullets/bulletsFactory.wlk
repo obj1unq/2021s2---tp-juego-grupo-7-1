@@ -9,8 +9,8 @@ object bulletsFactory{
     bullets.add(newBullet)
     return newBullet
   }
-  method createEnemyBullet(_position){
-    const newBullet = new EnemyBullet(position=_position)
+  method createEnemyBullet(enemy){
+    const newBullet = new EnemyBullet(position=enemy.position().translatedNew(0, -1))
     bullets.add(newBullet)
     return newBullet
   }

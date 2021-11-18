@@ -6,8 +6,8 @@ class Bullet inherits Visual {
   const direction
   method image() = "bullet.png"
 
-  method remove() {
-    game.removeVisual(self)
+  override method remove() {
+    super()
     bulletsFactory.bullets().remove(self)
   }
 
@@ -19,11 +19,7 @@ class Bullet inherits Visual {
   	}
   }
 
-  method shoot() {
-    self.add()
-  }
+  method shoot(){ self.add() }
     
-  method receiveHit() {
-  	self.remove()
-  }
+  method receiveHit(){ self.remove() }
 }

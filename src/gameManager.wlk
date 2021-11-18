@@ -16,6 +16,7 @@ object gameManager {
   var property score = 0
   var property lifes = 5
   var property levelNumber = 1
+  var property currentMoment
    
   // ---------------------------------------------
   method load(){
@@ -32,6 +33,7 @@ object gameManager {
     self.clearPreviousMoment()
     rawMessage.setup()
     moment.load()
+    self.currentMoment(moment)
   }
   method clearPreviousMoment(){
     game.clear()
@@ -40,5 +42,5 @@ object gameManager {
   method increaseScore(amount){ score += amount }
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
-  
+  method removeEnemy(enemy) = currentMoment.level().enemiesFormation().removeEnemy(enemy)
 }

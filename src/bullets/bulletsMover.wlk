@@ -1,7 +1,7 @@
 import wollok.game.game
 import config.settings.settings
 import bullets.bulletsFactory.bulletsFactory
-import extras.tickCalculator
+import extras.calc
 
 object bulletsMover{
   const speed = 20.0
@@ -9,7 +9,7 @@ object bulletsMover{
   method activate(){
     if(settings.ACTIVATE_BULLETS_MOVER()){
       game.onTick(
-        tickCalculator.speedBasedTick(speed),
+        calc.speedBasedTick(speed),
         "BULLET_MOVER", 
         { self.moveBullets() }
       )      

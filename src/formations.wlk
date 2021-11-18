@@ -1,5 +1,7 @@
-import enemies.*
 import gameManager.gameManager
+import enemies.Private.Private
+import enemies.Kamikaze.Kamikaze
+import enemies.VoidEnemy.VoidEnemy
 
 class FormationItemReference{
   const xOffsetSize = 5
@@ -68,5 +70,8 @@ class Formation{
     rows.forEach({row=>
       row.assignAnchor(anchor)
     })
+  }
+  method removeEnemy(enemy){
+    console.println("FALTA IMPLMENTAR Formation.removeEnemy()")
   }
 }

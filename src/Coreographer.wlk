@@ -1,6 +1,6 @@
 import wollok.game.game
 import gameManager.gameManager
-import extras.tickCalculator
+import extras.calc
 import directions.*
 
 class Coreographer {
@@ -20,7 +20,7 @@ class Coreographer {
   
   method activateMovement(){
     game.onTick(
-      tickCalculator.speedBasedTick(speed),
+      calc.speedBasedTick(speed),
       movementTickID,
       { self.performStep() }
     )

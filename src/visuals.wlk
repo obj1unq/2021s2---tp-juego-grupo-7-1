@@ -1,14 +1,15 @@
 import wollok.game.*
-import positions.*
+import positions.dynamicPositionFactory
+import positions.gameDimensions
 import extras.Anchor
 import extras.Pixel
 
 class Visual{
   const property position = dynamicPositionFactory.createAtCenter()
   const property limit = gameDimensions.globalLimit()
-//  method position() = position // avoid using property to prevent dynamicPosition re-instance
-  method add(){ game.addVisual(self) }
   
+  method add(){ game.addVisual(self) }
+  method remove(){ game.removeVisual(self) }
   method isInsideLimit() = limit.isInside(self)
 }
 
@@ -25,8 +26,12 @@ class CompositeVisual inherits Visual{
   
   override method add(){
     self.compose()
-    self.composition().forEach({ pixel=>game.addVisual(pixel) })
-    if (showAnchor) game.addVisual(self.anchor())
+    self.composition().forEach({ pixel=> pixel.add() })
+    if (showAnchor) self.anchor().add()
+  }
+  override method remove(){
+    self.composition().forEach({ pixel=> pixel.remove() })
+    if (showAnchor) self.anchor().remove()
   }
   method compose(){
     (0..height-1).forEach({indexH=>
