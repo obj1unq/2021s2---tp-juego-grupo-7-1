@@ -11,15 +11,13 @@ class Enemy inherits Visual {
   var property anchor = null
   var property xOffset
   var property yOffset
-//  var firstShotDone = false
 
   method image() = "hotdog.png"
 
-  override method position() {
-    return dynamicPositionFactory.create(
-      anchor.position().x() + xOffset,
-      anchor.position().y() + yOffset
-    )
+  override method position(){
+    position.x(anchor.position().x()+xOffset)
+    position.y(anchor.position().y()+yOffset)
+    return position
   }
 
   override method add() {
@@ -32,7 +30,7 @@ class Enemy inherits Visual {
   	if (game.hasVisual(self)) {
     	self.activateAttack(time, { self.shoot()})
     	game.schedule(time, { self.activate() } )
- 	}
+ 	  }
   }
 
   method receiveHit() {

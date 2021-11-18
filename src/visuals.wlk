@@ -4,8 +4,10 @@ import extras.Anchor
 import extras.Pixel
 
 class Visual{
-  const property position = dynamicPositionFactory.createAtCenter()
+  const position = dynamicPositionFactory.createAtCenter()
+  method position() = position // avoid using property to prevent dynamicPosition re-instance
   method add(){ game.addVisual(self) }
+  
   method isInsideSafeArea() {
     return gameDimensions.isInsideSafeArea(self)
   }

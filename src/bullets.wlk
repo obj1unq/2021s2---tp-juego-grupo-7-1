@@ -8,7 +8,8 @@ import positions.gameDimensions
 
 object bulletsFactory{
   const property bullets = #{}
-   
+  
+  
   method createHeroBullet(_position){
     const newBullet = new HeroBullet(position=_position)
     bullets.add(newBullet)
@@ -32,6 +33,7 @@ object bulletsMover{
     ) 
   }
   method moveBullets(){
+    console.println("cantidad de balas: " + bulletsFactory.bullets().size())
     bulletsFactory.bullets().forEach({
       bullet => bullet.move()
     })
@@ -50,12 +52,12 @@ class Bullet inherits Visual {
   method move() {
   	if (self.isInsideSafeArea()) {
       direction.nextPosition(self)
+      console.println(self.toString() + ": sigo viva")
     } else {
+      console.println(self.toString() + ": mori")
     	self.remove()
     }
   }
-  
-  method limit() {}
 
   method shoot() {
     self.add()

@@ -1,3 +1,4 @@
+import config.settings
 import wollok.game.*
 import visuals.CompositeVisual
 import extras.Anchor
@@ -26,35 +27,19 @@ class HeroShip inherits CompositeVisual(
   override method add() {
     super()
     self.activateMovement()
-    self.setupAreaLimiting()
+//    self.setupAreaLimiting()
     self.setupCollisions()
   }
-
-  method setupCollisions() {
-    // 
-    self.composition().forEach({pixel=>
-//      game.whenCollideDo(pixel, { foreign => self.receiveHit()})
-    })
-  }
+  
 
   method turn(_direction) {
     direction = _direction
   }
 
   method move() {
-    direction.nextPosition(anchor)
+    direction.nextPosition(self)
   }
-
-  method activateMovement() {
-    game.onTick(tickCalculator.speedBasedTick(speed), "MOVEMENT" + self.identity().toString(), { self.move()})
-  }
-
-  method setupAreaLimiting() {
-    self.position().xMin(xMin)
-    self.position().xMax(xMax)
-    self.position().yMin(yMin)
-    self.position().yMax(yMax)
-  }
+  
 
   method die() {
     game.stop()
@@ -92,6 +77,29 @@ class HeroShip inherits CompositeVisual(
   method endGame() {
     game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
   }
-
+  
+  /** PRIVATES -------------------------------------------------------------- */
+  
+  method activateMovement() {
+    game.onTick(
+      tickCalculator.speedBasedTick(speed),
+      "MOVEMENT" + self.identity().toString(),
+      { self.move()}
+    )
+  }
+//  method setupAreaLimiting() {
+//    self.position().xMin(xMin)
+//    self.position().xMax(xMax)
+//    self.position().yMin(yMin)
+//    self.position().yMax(yMax)
+//  }
+  method setupCollisions() {
+    if(settings.ACTIVATE_COLLISIONS()){
+      self.composition().forEach({pixel=>
+  //      game.whenCollideDo(pixel, { foreign => self.receiveHit()})
+      })
+      
+    }
+  }
 }
 

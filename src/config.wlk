@@ -3,6 +3,9 @@ import gameManager.gameManager
 import moments.extras.*
 import directions.*
 
+object settings{
+  const property ACTIVATE_COLLISIONS = true
+}
 
 class MomentConfiguration{  
   method configMoment(moment){ self.configGlobal() }
@@ -23,8 +26,6 @@ class MomentConfiguration{
   }
 }
 object configVoid inherits MomentConfiguration{}
-
-
 object configGamePlay inherits MomentConfiguration{
   override method configMoment(moment){
     self.configHeroShip(moment.heroShip())
@@ -38,7 +39,6 @@ object configGamePlay inherits MomentConfiguration{
     keyboard.space().onPressDo({  heroShip.shoot() })
   }
 }
-
 object configPDCObjetoCompuesto inherits MomentConfiguration{
   override method configMoment(moment){
     self.configHeroShip(moment.heroShip())
