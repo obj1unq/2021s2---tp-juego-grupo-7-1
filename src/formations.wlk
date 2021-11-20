@@ -2,6 +2,7 @@ import gameManager.gameManager
 import enemies.Private.Private
 import enemies.Kamikaze.Kamikaze
 import enemies.VoidEnemy.VoidEnemy
+import enemies.kamikazeMover.kamikazeMover
 
 class FormationItemReference{
   const xOffsetSize = 5

@@ -3,6 +3,7 @@ import gameManager.gameManager
 import moments.Moment.Moment
 import HeroShip.*
 import bullets.bulletsMover.bulletsMover
+import enemies.kamikazeMover.kamikazeMover
 
 /**
  * PROVISORIOS
@@ -16,6 +17,7 @@ class PDC_CompositeVisual inherits Moment(
   override method load(){
     super()
     bulletsMover.activate()
+    kamikazeMover.activate()
   }
 }
 

@@ -3,6 +3,7 @@ import enemies.Enemy.Enemy
 import directions.down
 import extras.calc
 import HeroShip.WithCollideWithHeroShip
+import kamikazeMover.kamikazeMover
 
 class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
 
@@ -21,9 +22,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
     banzaiPosition = self.position()
     onBanzai = true
     life = 1
-    // TODO: esto se podría mover con un solo mover tal como las balas
-    // algo asi como un kamikazeMover, o incluso se podría armar un mover genérico.
-    game.onTick(50, "BANZAI" + self.identity().toString(), {self.move()})
+    kamikazeMover.add(self)
   }
 
   method move() {
@@ -36,7 +35,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
 
   override method remove() {
     super()
-    game.removeTickEvent("BANZAI" + self.identity().toString())
+    kamikazeMover.remove(self)
   }
   
   override method collideWithHeroShip(heroship){ heroship.die() }
@@ -44,6 +43,12 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
   override method activateRecursiveAttack() {
   	super()
   	shootsDone += 1
+  }
+  
+  override method recursiveAttack() {
+  	if (not onBanzai) {
+  		super()
+  	}
   }
   
   override method attackType() {
