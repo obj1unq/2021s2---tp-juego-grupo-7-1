@@ -11,7 +11,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
   var banzaiPosition = null
   var shootsDone = 0
 
-  override method image() = "mcdonalds.png" // agregar imagen enemiga
+  override method image() = "kamikaze.png" // agregar imagen enemiga
 
   override method position() = if (onBanzai) banzaiPosition else super()
   

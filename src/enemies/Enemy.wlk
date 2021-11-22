@@ -14,7 +14,7 @@ class Enemy inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual {
   var property xOffset
   var property yOffset
 
-  method image() = "hotdog.png"
+  method image()
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
