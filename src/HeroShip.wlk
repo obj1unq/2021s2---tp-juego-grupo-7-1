@@ -31,9 +31,8 @@ class HeroShip inherits CompositeVisual(
   method move(){ direction.nextPositionLimited(self) }
 
   method shoot() {
-    // TODO: esto habría que optimizarlo con template method
-    const bullet = bulletsFactory.createHeroBullet(self.position().translatedNew(1, 2))
-    bullet.shoot()
+  	const bulletPosition = self.position().translatedNew(1, 2)
+    bulletsFactory.shootHeroBullet(bulletPosition)
   }
   /** PRIVATES -------------------------------------------------------------- */
   

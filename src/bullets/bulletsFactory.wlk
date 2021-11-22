@@ -31,6 +31,10 @@ object bulletsFactory{
       newBullet.shoot()
   	}
   }
+  method shootHeroBullet(_position) {
+  	  const newBullet = self.createHeroBullet(_position)
+  	  newBullet.shoot()
+  }
   method tooMuchBullets() {
   	return self.enemyBulletsOnScreen() >= settings.MAX_ENEMY_BULLETS_ON_SCREEN()
   }
