@@ -22,10 +22,12 @@ object p inherits FormationItemReference{
 }
 object k inherits FormationItemReference{
   override method newInstance(rowIndex, itemIndex){
-    return new Kamikaze(
+    const kamikazeShip = new Kamikaze(
       xOffset=itemIndex*xOffsetSize,
       yOffset=-1*rowIndex*yOffsetSize
     )
+    kamikazeMover.add(kamikazeShip)
+    return kamikazeShip
   }
 }
 object _ inherits FormationItemReference{

@@ -22,7 +22,6 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
     banzaiPosition = self.position()
     onBanzai = true
     life = 1
-    kamikazeMover.add(self)
   }
 
   method move() {
