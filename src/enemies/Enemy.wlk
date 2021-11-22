@@ -5,8 +5,9 @@ import bullets.bulletsFactory.bulletsFactory
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
 import extras.calc
+import HeroShip.WithCollideWithHeroShip
 
-class Enemy inherits WithGetHeroBullet and Visual {
+class Enemy inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual {
   const property award = 1
   var property life = 2
   var property anchor = null

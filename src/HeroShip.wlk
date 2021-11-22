@@ -93,7 +93,7 @@ class HeroShip inherits CompositeVisual(
 //    game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
 //  }  
 }
-mixin WithCollideWithHeroShip{
+mixin WithCollideWithHeroShip {
   /**
    * Usar este mixin aunque se vaya a sobre escribir tiene una función similar
    * al template method. Asegura que todos los objetos que puedan colisionar con
