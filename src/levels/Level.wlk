@@ -3,6 +3,8 @@ import gameManager.gameManager
 import positions.*
 import extras.Anchor
 import Coreographer.Coreographer
+import bullets.bulletsMover.bulletsMover
+import enemies.kamikazeMover.kamikazeMover
 
 class Level{
   const formationOrigin = dynamicPositionFactory.create(
@@ -17,8 +19,8 @@ class Level{
   method load(_gamePlay){
     self.storeLevelObject(_gamePlay)
     self.enemiesFormation().assignAnchor(anchor)
-    self.activateCoreographer(anchor)
-    
+    self.activateHelpers(anchor)
+ 
     self.DEV_loadAnchor()
   }
   
@@ -29,7 +31,11 @@ class Level{
   /** -----------------------------------------------------
    * Private Methods
    */
-  method activateCoreographer(_anchor){ coreographer.activate(_anchor) }
+  method activateHelpers(_anchor){
+    coreographer.activate(_anchor)
+    bulletsMover.activate()
+    kamikazeMover.activate()
+  }
   method storeLevelObject(_gamePlay){ _gamePlay.level(self) }
   method DEV_loadAnchor(){
     /**

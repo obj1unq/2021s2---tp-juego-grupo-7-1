@@ -6,6 +6,13 @@ import extras.Anchor
 import Coreographer.Coreographer
 import levels.Level.Level
 
+object level0 inherits Level(
+  enemiesFormation=new Formation(
+    rows=[
+      new FormationRow(refs=[_, p, _, _, _, _, _, _])
+    ]
+  )
+){}
 object level1 inherits Level(
   enemiesFormation=new Formation(
     rows=[
@@ -31,7 +38,7 @@ object level2 inherits Level(
 ){}
 
 object levels{
-  const list = [level1, level2]
+  const list = [level0, level1, level2]
   method quantity() = list.size()
   method level(levelNumber) = list.get(levelNumber-1)
   method loadLevel(levelNumber, gamePlay){

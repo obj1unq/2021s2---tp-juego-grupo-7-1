@@ -2,7 +2,6 @@ import gameManager.gameManager
 import enemies.Private.Private
 import enemies.Kamikaze.Kamikaze
 import enemies.VoidEnemy.VoidEnemy
-import enemies.kamikazeMover.kamikazeMover
 
 class FormationItemReference{
   const xOffsetSize = 5
@@ -21,14 +20,22 @@ object p inherits FormationItemReference{
   }
 }
 object k inherits FormationItemReference{
+  const kamikazes = #{}
   override method newInstance(rowIndex, itemIndex){
     const kamikazeShip = new Kamikaze(
       xOffset=itemIndex*xOffsetSize,
       yOffset=-1*rowIndex*yOffsetSize
     )
-    kamikazeMover.add(kamikazeShip)
+    kamikazes.add(kamikazeShip)
     return kamikazeShip
   }
+  method banzayers() = kamikazes.filter({kamikaze=> kamikaze.onBanzai()})
+  method moveBanzayers(){
+    self.banzayers().forEach({banzayer=>
+      banzayer.move()
+    })
+  }
+  method removeInstance(instance){ kamikazes.remove(instance) }
 }
 object _ inherits FormationItemReference{
   override method newInstance(rowIndex, itemIndex){
@@ -73,6 +80,7 @@ class Formation{
     rows.forEach({row=>
       row.assignAnchor(anchor)
     })
+    
   }
   method removeEnemy(enemy){
     console.println("FALTA IMPLMENTAR Formation.removeEnemy()")

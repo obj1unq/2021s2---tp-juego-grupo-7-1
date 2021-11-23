@@ -4,10 +4,12 @@ import directions.down
 import extras.calc
 import HeroShip.WithCollideWithHeroShip
 import kamikazeMover.kamikazeMover
+import HeroShip.WithCollideWithHeroShip
+import formations.k
 
-class Kamikaze inherits Enemy(award = 2, life = 2) {
+class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
 
-  var onBanzai = false
+  var property onBanzai = false
   var banzaiPosition = null
   var shootsDone = 0
 
@@ -34,7 +36,7 @@ class Kamikaze inherits Enemy(award = 2, life = 2) {
 
   override method remove() {
     super()
-    kamikazeMover.remove(self)
+    k.removeInstance(self)
   }
   
   override method collideWithHeroShip(heroship){ heroship.die() }
