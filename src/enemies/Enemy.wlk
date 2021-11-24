@@ -34,7 +34,9 @@ class Enemy inherits WithCollideWithHeroShip and WithGetHeroBullet and Visual {
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }
 
   method shoot() {
-  	bulletsFactory.shootEnemyBullet(self)
+  	if(game.hasVisual(self)) {
+  	  bulletsFactory.shootEnemyBullet(self)
+    }
   }
 
   method die() {
