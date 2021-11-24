@@ -9,7 +9,9 @@ class Visual{
   const property limit = gameDimensions.globalLimit()
   
   method add(){ game.addVisual(self) }
-  method remove(){ game.removeVisual(self) }
+  method remove(){
+    game.removeVisual(self)
+  }
   method isOnScreen() = game.hasVisual(self) 
   method isInsideLimit() = limit.isInside(self)
 }

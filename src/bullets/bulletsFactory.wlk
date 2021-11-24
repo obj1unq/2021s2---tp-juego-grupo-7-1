@@ -38,4 +38,7 @@ object bulletsFactory{
   method tooMuchBullets() {
   	return self.enemyBulletsOnScreen() >= settings.MAX_ENEMY_BULLETS_ON_SCREEN()
   }
+  method printBulletsCount(){
+    console.println("enmyB: " + enemyBullets.size() + " | hroB: " + heroBullets.size() + " | ttl: " + self.bullets().size())
+  }
 }

@@ -1,11 +1,11 @@
-import wollok.game.keyboard
+import wollok.game.*
 import gameManager.gameManager
 import config.keyboard.configGamePlay
 import HeroShip.HeroShip
 import levels.levels.*
 import moments.Moment.*
 import directions.*
-
+import bullets.bulletsFactory.bulletsFactory
 
 
 class GamePlay inherits Moment(
@@ -19,6 +19,7 @@ class GamePlay inherits Moment(
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     super()
+    game.onTick(250, "check bullets", {bulletsFactory.printBulletsCount()})
   }
   
   method loadLevel(levelNumber){

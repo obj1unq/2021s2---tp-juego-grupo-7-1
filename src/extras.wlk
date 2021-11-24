@@ -10,7 +10,7 @@ object calc{
   method randomInRange(min, max) = min.randomUpTo(max)
 }
 
-class Anchor inherits WithCollideWithHeroShip and Visual{
+class Anchor inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual{
   const image = "px-anchor.png"
   method image() { return image }
   method receiveHit() {}

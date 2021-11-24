@@ -9,8 +9,11 @@ class HeroBullet inherits Bullet(direction=up) {
   override method add(){
     super()
     self.setupCollisions()
+    
   }
-  
+  method decirNombre() {
+    console.println(self.identity().toString())
+  }
   method setupCollisions() {
   	game.onCollideDo(self, {target =>
   	  target.getHeroBullet()
