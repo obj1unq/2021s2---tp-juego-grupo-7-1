@@ -9,7 +9,7 @@ import levels.Level.Level
 object level0 inherits Level(
   enemiesFormation=new Formation(
     rows=[
-      new FormationRow(refs=[_, p, _, _, _, _, _, _])
+      new FormationRow(refs=[_, _, _, p, p, _, _, _])
     ]
   )
 ){}
