@@ -50,3 +50,16 @@ object listHandler{
     return popped
   }
 }
+
+object collisioner{
+  method onCollideDo(subject, closure){
+    const colliders = game.allVisuals().filter({visual=> 
+          visual.position().x() == subject.position().x()
+      and visual.position().y() == subject.position().y()
+    })
+    colliders.remove(subject)
+    colliders.forEach({collider=>
+      closure.apply(collider)
+    })
+  }
+}

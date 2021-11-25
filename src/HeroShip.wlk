@@ -49,8 +49,14 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
       self.composition().forEach({pixel=>
         game.onCollideDo(pixel, { foreign => foreign.collideWithHeroShip(self)})
       })
-      
     }
+//    game.onTick(50, "check_collisions", {
+//      self.composition().forEach({pixel=>
+//        collisioner.onCollideDo(pixel, {
+//          foreign => foreign.collideWithHeroShip(self)
+//        })      
+//      })      
+//    })
   }
 
   method getShot() {
