@@ -60,18 +60,9 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   }
 
   method getShot() {
-    energy = 0.max(energy - 10)
     console.println("HeroShip: receiveHit")
-//    if (self.itsDead()) {
-//      // imagen de nave destruida
-//      self.lose()
-//    }
-  }
-  
-  method die() {
-    game.stop()
-  }
-  
+    gameManager.looseLife()
+    
 }
 mixin WithCollideWithHeroShip {
   /**
