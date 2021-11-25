@@ -46,7 +46,7 @@ class Enemy inherits
 
   method die() {
     self.remove()
-    gameManager.removeEnemy(self)
+    self.level().removeEnemy(self)
     gameManager.increaseScore(award)
   }
   
@@ -61,4 +61,12 @@ class Enemy inherits
   }
   method randomAttackDelay() = calc.randomInRange(3000, 15000)
   method attackType()
+  
+  /**
+   * Private Methods -----------------------------------------------------------
+   */
+  method level(){
+    // Shortcut method to level
+    return gameManager.currentMoment().level()
+  }
 }

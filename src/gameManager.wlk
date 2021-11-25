@@ -42,5 +42,4 @@ object gameManager {
   method increaseScore(amount){ score += amount }
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
-  method removeEnemy(enemy) = currentMoment.level().enemiesFormation().removeEnemy(enemy)
 }

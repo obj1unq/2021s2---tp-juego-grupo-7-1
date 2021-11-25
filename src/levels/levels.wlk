@@ -1,10 +1,13 @@
 import wollok.game.game
 import gameManager.gameManager
+import levels.Level.Level
 import positions.*
 import formations.*
-import extras.Anchor
 import Coreographer.Coreographer
-import levels.Level.Level
+import enemies.Private.p
+import enemies.Kamikaze.k
+import enemies.VoidEnemy._
+import extras.Anchor
 
 object level0 inherits Level(
   enemiesFormation=new Formation(

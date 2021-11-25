@@ -11,7 +11,7 @@ class Level{
   const formationOrigin = dynamicPositionFactory.create(
     gameDimensions.globalLimit().left()+1,
     gameDimensions.globalLimit().up()-1
-  ) 
+  )
   
   const property anchor = new Anchor(position=formationOrigin)
   const property bulletsPool = new BulletsPool()
@@ -27,10 +27,8 @@ class Level{
   }
   
   method visuals() = self.enemiesFormation().visuals()
-  method enemiesQuantity(){
-    
-  }
-  
+  method enemiesTotal() = self.visuals().sum({i=> i.itemCount() })
+  method removeEnemy(enemy){}
   
   /** -----------------------------------------------------
    * Private Methods

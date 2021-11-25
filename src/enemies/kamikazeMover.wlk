@@ -1,7 +1,7 @@
 import config.settings.settings
 import wollok.game.game
 import extras.calc
-import formations.k
+import enemies.Kamikaze.k
 
 object kamikazeMover {
   const speed = 15.0

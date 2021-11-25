@@ -1,10 +1,11 @@
 import wollok.game.game
 import enemies.Enemy.Enemy
+import enemies.EnemyAlias.EnemyAlias
 import directions.down
 import extras.calc
 import kamikazeMover.kamikazeMover
 import HeroShip.WithCollideWithHeroShip
-import formations.k
+
 
 class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
 
@@ -60,4 +61,24 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
   	console.println(chances.toString())
   	if (chances == 5) self.scheduleBanzai() else self.shoot() 
   }
+}
+
+
+object k inherits EnemyAlias{
+  const kamikazes = #{}
+  override method newInstance(rowIndex, itemIndex){
+    const kamikazeShip = new Kamikaze(
+      xOffset=itemIndex*xOffsetSize,
+      yOffset=-1*rowIndex*yOffsetSize
+    )
+    kamikazes.add(kamikazeShip)
+    return kamikazeShip
+  }
+  method banzayers() = kamikazes.filter({kamikaze=> kamikaze.onBanzai()})
+  method moveBanzayers(){
+    self.banzayers().forEach({banzayer=>
+      banzayer.move()
+    })
+  }
+  method removeInstance(instance){ kamikazes.remove(instance) }
 }

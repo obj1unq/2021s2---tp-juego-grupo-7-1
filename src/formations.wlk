@@ -3,48 +3,6 @@ import enemies.Private.Private
 import enemies.Kamikaze.Kamikaze
 import enemies.VoidEnemy.VoidEnemy
 
-class FormationItemReference{
-  const xOffsetSize = 5
-  const yOffsetSize = 3
-  
-//  method anchor() = gameManager.levelObject().anchor()
-  method newInstance(rowIndex, itemIndex)
-  method itemCount() = 1
-}
-
-object p inherits FormationItemReference{
-  override method newInstance(rowIndex, itemIndex){
-    return new Private(
-      xOffset=itemIndex*xOffsetSize,
-      yOffset=-1*rowIndex*yOffsetSize
-    )
-  }
-}
-object k inherits FormationItemReference{
-  const kamikazes = #{}
-  override method newInstance(rowIndex, itemIndex){
-    const kamikazeShip = new Kamikaze(
-      xOffset=itemIndex*xOffsetSize,
-      yOffset=-1*rowIndex*yOffsetSize
-    )
-    kamikazes.add(kamikazeShip)
-    return kamikazeShip
-  }
-  method banzayers() = kamikazes.filter({kamikaze=> kamikaze.onBanzai()})
-  method moveBanzayers(){
-    self.banzayers().forEach({banzayer=>
-      banzayer.move()
-    })
-  }
-  method removeInstance(instance){ kamikazes.remove(instance) }
-}
-object _ inherits FormationItemReference{
-  override method newInstance(rowIndex, itemIndex){
-    return new VoidEnemy()
-  }
-  override method itemCount() = 0
-}
-
 class FormationRow{
   const property refs = []
   const items = []
@@ -64,6 +22,14 @@ class FormationRow{
     })
   }
   method visuals() = items.asSet()
+  method manageRemoveEnemy(enemy){
+    /**
+     * removes enemy if it's located in this row
+     */
+    if(items.contains(enemy)){
+      items.remove(enemy)
+    }
+  }
 }
 
 
@@ -85,6 +51,6 @@ class Formation{
     
   }
   method removeEnemy(enemy){
-    console.println("FALTA IMPLMENTAR Formation.removeEnemy()")
+    rows.forEach({row=> row.manageRemoveEnemy(enemy)})
   }
 }
