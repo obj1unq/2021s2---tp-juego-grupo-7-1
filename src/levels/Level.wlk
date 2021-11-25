@@ -27,8 +27,8 @@ class Level{
   }
   
   method visuals() = self.enemiesFormation().visuals()
-  method enemiesTotal() = self.visuals().sum({i=> i.itemCount() })
-  method removeEnemy(enemy){}
+  method enemiesTotal() = self.enemiesFormation().enemiesTotal()
+  method removeEnemy(enemy){ self.enemiesFormation().removeEnemy(enemy) }
   
   /** -----------------------------------------------------
    * Private Methods

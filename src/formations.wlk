@@ -14,7 +14,7 @@ class FormationRow{
       items.add(newInstance)
       itemIndex += 1
     })
-    refs.clear()
+//    refs.clear()
   }
   method assignAnchor(anchor){
     items.forEach({item=>
@@ -44,6 +44,8 @@ class Formation{
     })
   }
   method visuals() = rows.flatMap({row => row.visuals()})
+  
+  method enemiesTotal() = self.refs().sum({i=> i.itemCount() })
   method assignAnchor(anchor){
     rows.forEach({row=>
       row.assignAnchor(anchor)
@@ -53,4 +55,7 @@ class Formation{
   method removeEnemy(enemy){
     rows.forEach({row=> row.manageRemoveEnemy(enemy)})
   }
+  
+  /** privates -------------------------------------------------------------- */
+  method refs() = rows.flatMap({row => row.refs()})
 }
