@@ -7,7 +7,7 @@ import kamikazeMover.kamikazeMover
 import HeroShip.WithCollideWithHeroShip
 
 
-class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
+class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) {
 
   var property onBanzai = false
   var banzaiPosition = null
@@ -24,6 +24,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 2, life = 2) {
     banzaiPosition = self.position()
     onBanzai = true
     life = 1
+    award = 90
   }
 
   method move() {

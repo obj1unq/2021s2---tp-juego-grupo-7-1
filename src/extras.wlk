@@ -30,7 +30,7 @@ class Pixel inherits Visual{
   }
 }
 
-object rawMessage inherits WithGetHeroBullet {
+class RawMessage inherits WithGetHeroBullet {
   var property position = game.at(game.width()/2, game.height()-2)
   var property text = "HOLA"
   var property textColor = "FFFFFFFF"
@@ -38,6 +38,16 @@ object rawMessage inherits WithGetHeroBullet {
   method setup(){
     game.addVisual(self)
   }
+  
+  method clear(){
+  	game.removeVisual(self)
+  }
+}
+
+class Life inherits Visual {
+  const image = "life.png"
+  
+  method image() { return image }
 }
 
 object listHandler{

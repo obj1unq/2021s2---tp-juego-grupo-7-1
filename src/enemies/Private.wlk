@@ -1,7 +1,7 @@
 import enemies.Enemy.Enemy
 import enemies.EnemyAlias.EnemyAlias
 
-class Private inherits Enemy(award = 1, life = 1) {
+class Private inherits Enemy(award = 20, life = 1) {
 	override method image() = "private.png"
 	
 	override method attackType() {

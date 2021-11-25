@@ -13,8 +13,8 @@ class Enemy inherits
   and WithGetHeroBullet
   and Visual
  {
-  const property award = 1
-  var property life = 2
+  var property award = null
+  var property life = null
   var property anchor = null
   var property xOffset
   var property yOffset
@@ -33,6 +33,8 @@ class Enemy inherits
   }
 
   override method getHeroBullet() {
+  	gameManager.increaseScore(10)
+  	console.println( "puntaje :" + gameManager.score().toString())
     self.lifeDecrease()
   }
 
@@ -48,6 +50,7 @@ class Enemy inherits
     self.remove()
     self.level().removeEnemy(self)
     gameManager.increaseScore(award)
+    console.println( "puntaje :" + gameManager.score().toString())
   }
   
   method activateRecursiveAttack() {

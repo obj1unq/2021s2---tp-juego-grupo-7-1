@@ -1,6 +1,7 @@
 import wollok.game.*
 import config.keyboard.configVoid
-import extras.rawMessage
+import extras.RawMessage
+import gameManager.*
 
 class Moment {
   const titulo
@@ -24,6 +25,6 @@ class Moment {
   method addTitle(){
     var titleString = ""
     titulo.forEach({line=>titleString=titleString+line+"\n"})
-    rawMessage.text(titleString)
+    gameManager.title().text(titleString)
   }
 }

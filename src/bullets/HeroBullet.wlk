@@ -2,6 +2,7 @@ import wollok.game.game
 import bullets.Bullet.Bullet
 import directions.up
 import config.settings.settings
+import gameManager.gameManager
 
 class HeroBullet inherits Bullet(direction=up) {
   override method image() = "heroBullet.png"
