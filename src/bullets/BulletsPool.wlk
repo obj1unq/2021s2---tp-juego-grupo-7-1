@@ -2,48 +2,86 @@ import gameManager.gameManager
 import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
+import extras.listHandler
 
 class BulletsPool{
-  const property enemyBullets = #{}
-  const property heroBullets = #{}
+  const property enemyBullets = []
+  const property heroBullets = []
+  const property shootedEnemyBullets = []
+  const property shootedHeroBullets = []
   
-  method bullets() = enemyBullets + heroBullets
-  method load(){}
+  method shootedBullets() = shootedEnemyBullets + shootedHeroBullets
+  method load(){
+    self.preloadEnemyBullets()
+    self.preloadHeroBullets()
+  }
   
-  method createHeroBullet(_position){
-    const newBullet = new HeroBullet(position=_position)
-    heroBullets.add(newBullet)
-    return newBullet
-  }
-  method createEnemyBullet(enemy){
-    const newBullet = new EnemyBullet(position=enemy.position().translatedNew(0, -1))
-    enemyBullets.add(newBullet)
-    return newBullet
-  }
-  method enemyBulletsOnScreen() = self.enemyBullets().size()
+  
   method remove(bullet){
-    if(enemyBullets.contains(bullet)){
-      enemyBullets.remove(bullet)
+    if(shootedEnemyBullets.contains(bullet)){
+      shootedEnemyBullets.remove(bullet)
+      enemyBullets.add(bullet)
     }else{
-      heroBullets.remove(bullet)    
+      shootedHeroBullets.remove(bullet)
+      heroBullets.add(bullet)
     }
   }
-  method shootEnemyBullet(bullet){
-  	if(not self.tooMuchBullets()) {
-  	  const newBullet = self.createEnemyBullet(bullet)
-      newBullet.shoot()
+  
+  // TODO: Eliminar código repetido en los 2 métodos siguientes
+  method shootEnemyBullet(enemy){
+  	if(enemyBullets.size() > 0) {
+  	  const toShootBullet = listHandler.pop(enemyBullets)
+  	  shootedEnemyBullets.add(toShootBullet)
+  	  
+  	  toShootBullet.position().x(enemy.position().x())
+  	  toShootBullet.position().y(enemy.position().y() - 1)
+      toShootBullet.shoot()
   	}
   }
-  method shootHeroBullet(_position) {
-  	  const newBullet = self.createHeroBullet(_position)
-  	  newBullet.shoot()
+  method shootHeroBullet(heroShip) {
+  	if(heroBullets.size() > 0) {
+      const toShootBullet = listHandler.pop(heroBullets)
+      shootedHeroBullets.add(toShootBullet)
+      
+      toShootBullet.position().x(heroShip.position().x())
+      toShootBullet.position().y(heroShip.position().y() + 2)
+      toShootBullet.shoot()
+    }
   }
+  
+  
+  /**
+   * Private Methods -----------------------------------------------------------
+   */
+  method enemyBulletsOnScreen() = self.enemyBullets().size()
   method tooMuchBullets() {
   	return self.enemyBulletsOnScreen() >= settings.MAX_ENEMY_BULLETS_ON_SCREEN()
   }
-  method printBulletsCount(){
-    console.println("enmyB: " + enemyBullets.size() + " | hroB: " + heroBullets.size() + " | ttl: " + self.bullets().size())
+  method createHeroBullet(){
+    const newBullet = new HeroBullet()
+    heroBullets.add(newBullet)
   }
+  method createEnemyBullet(){
+    const newBullet = new EnemyBullet()
+    enemyBullets.add(newBullet)
+  }
+  
+  method preloadEnemyBullets(){
+    settings.ENEMY_BULLETS().times({i=> self.createEnemyBullet() })
+  }
+  method preloadHeroBullets(){
+    settings.ENEMY_BULLETS().times({i=> self.createHeroBullet() })
+  }
+//  method printBulletsCount(){
+//    console.println(
+//      "enmyB: "
+//      + enemyBullets.size()
+//      + " | hroB: "
+//      + heroBullets.size()
+//      + " | ttl: "
+//      + self.shootedBullets().size()
+//    )
+//  }
 }
 
 

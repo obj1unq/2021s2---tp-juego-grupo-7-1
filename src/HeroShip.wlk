@@ -31,8 +31,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   method move(){ direction.nextPositionLimited(self) }
 
   method shoot() {
-  	const bulletPosition = self.position().translatedNew(1, 2)
-    self.bulletsPool().shootHeroBullet(bulletPosition)
+  	self.bulletsPool().shootHeroBullet(self)
   }
 
   /** -------------------------------------------------------------------------

@@ -16,8 +16,7 @@ object bulletsMover inherits WithBulletsPool{
     }
   }
   method moveBullets(){
-//    console.println("cantidad de balas: " + bulletsPool.bullets().size())
-    self.bulletsPool().bullets().forEach({
+    self.bulletsPool().shootedBullets().forEach({
       bullet => bullet.move()
     })
   }
