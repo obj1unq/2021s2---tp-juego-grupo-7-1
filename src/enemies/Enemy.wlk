@@ -1,13 +1,18 @@
 import wollok.game.game
 import config.settings.settings
 import visuals.Visual
-import bullets.bulletsPool.bulletsPool
+import bullets.BulletsPool.WithBulletsPool
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
 import extras.calc
 import HeroShip.WithCollideWithHeroShip
 
-class Enemy inherits WithCollideWithHeroShip and WithGetHeroBullet and Visual {
+class Enemy inherits
+  WithBulletsPool
+  and WithCollideWithHeroShip
+  and WithGetHeroBullet
+  and Visual
+ {
   const property award = 1
   var property life = 2
   var property anchor = null
@@ -35,7 +40,7 @@ class Enemy inherits WithCollideWithHeroShip and WithGetHeroBullet and Visual {
 
   method shoot() {
   	if(game.hasVisual(self)) {
-  	  bulletsPool.shootEnemyBullet(self)
+  	  self.bulletsPool().shootEnemyBullet(self)
     }
   }
 

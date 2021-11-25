@@ -1,14 +1,15 @@
 import wollok.game.game
+import gameManager.gameManager
 import visuals.Visual
-import bullets.bulletsPool.bulletsPool
+import bullets.BulletsPool.WithBulletsPool
 
-class Bullet inherits Visual {
+class Bullet inherits WithBulletsPool and Visual {
   const direction
   method image() = "bullet.png"
 
   override method remove() {
     super()
-    bulletsPool.remove(self)
+    self.bulletsPool().remove(self)
   }
 
   method move() {

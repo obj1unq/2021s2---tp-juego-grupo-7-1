@@ -1,9 +1,9 @@
 import wollok.game.game
 import config.settings.settings
-import bullets.bulletsPool.bulletsPool
+import bullets.BulletsPool.WithBulletsPool
 import extras.calc
 
-object bulletsMover{
+object bulletsMover inherits WithBulletsPool{
   const speed = 20.0
   
   method activate(){
@@ -17,7 +17,7 @@ object bulletsMover{
   }
   method moveBullets(){
 //    console.println("cantidad de balas: " + bulletsPool.bullets().size())
-    bulletsPool.bullets().forEach({
+    self.bulletsPool().bullets().forEach({
       bullet => bullet.move()
     })
   }

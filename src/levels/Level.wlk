@@ -4,6 +4,7 @@ import positions.*
 import extras.Anchor
 import Coreographer.Coreographer
 import bullets.bulletsMover.bulletsMover
+import bullets.BulletsPool.BulletsPool
 import enemies.kamikazeMover.kamikazeMover
 
 class Level{
@@ -13,6 +14,7 @@ class Level{
   ) 
   
   const property anchor = new Anchor(position=formationOrigin)
+  const property bulletsPool = new BulletsPool()
   const property enemiesFormation
   const coreographer = new Coreographer()
   
@@ -35,6 +37,7 @@ class Level{
    */
   method activateHelpers(_anchor){
     coreographer.activate(_anchor)
+    bulletsPool.load()
     bulletsMover.activate()
     kamikazeMover.activate()
   }

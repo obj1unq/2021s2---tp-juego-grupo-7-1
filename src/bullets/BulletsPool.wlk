@@ -1,12 +1,15 @@
+import gameManager.gameManager
 import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
 
-object bulletsPool{
+class BulletsPool{
   const property enemyBullets = #{}
   const property heroBullets = #{}
   
   method bullets() = enemyBullets + heroBullets
+  method load(){}
+  
   method createHeroBullet(_position){
     const newBullet = new HeroBullet(position=_position)
     heroBullets.add(newBullet)
@@ -41,4 +44,11 @@ object bulletsPool{
   method printBulletsCount(){
     console.println("enmyB: " + enemyBullets.size() + " | hroB: " + heroBullets.size() + " | ttl: " + self.bullets().size())
   }
+}
+
+
+
+
+mixin WithBulletsPool{
+  method bulletsPool() = gameManager.currentMoment().level().bulletsPool()
 }

@@ -5,10 +5,10 @@ import extras.Anchor
 import extras.calc
 import directions.*
 import positions.*
-import bullets.bulletsPool.bulletsPool
+import gameManager.gameManager
+import bullets.BulletsPool.WithBulletsPool
 
-
-class HeroShip inherits CompositeVisual(
+class HeroShip inherits WithBulletsPool and CompositeVisual(
   width=3, height=2,
   position=new DynamicPosition(x=3, y=3),
   limit=new Limit(right=game.width()-3, up=game.height()-2),
@@ -32,10 +32,12 @@ class HeroShip inherits CompositeVisual(
 
   method shoot() {
   	const bulletPosition = self.position().translatedNew(1, 2)
-    bulletsPool.shootHeroBullet(bulletPosition)
+    self.bulletsPool().shootHeroBullet(bulletPosition)
   }
-  /** PRIVATES -------------------------------------------------------------- */
-  
+
+  /** -------------------------------------------------------------------------
+   * Private Methods
+   */
   method activateMovement() {
     game.onTick(
       calc.speedBasedTick(speed),
@@ -51,15 +53,7 @@ class HeroShip inherits CompositeVisual(
       
     }
   }
-//  method collide(foreign){
-////    console.println("heroship colliding")
-//    if(foreign.toString() == "a EnemyBullet"){
-//      self.getShot()
-//      foreign.remove()
-//    }else if(foreign.toString() == "a Kamikaze"){
-//      self.die()
-//    }
-//  }
+
   method getShot() {
     energy = 0.max(energy - 10)
     console.println("HeroShip: receiveHit")
@@ -73,6 +67,17 @@ class HeroShip inherits CompositeVisual(
     game.stop()
   }
   
+}
+mixin WithCollideWithHeroShip {
+  /**
+   * Usar este mixin aunque se vaya a sobre escribir tiene una función similar
+   * al template method. Asegura que todos los objetos que puedan colisionar con
+   * la HeroShip estén enlazados y se implementen de la misma forma. 
+   */
+  method collideWithHeroShip(heroship){}
+}
+
+
 //  method itsDead() {
 //    return energy == 0
 //  }
@@ -91,13 +96,3 @@ class HeroShip inherits CompositeVisual(
 //  method endGame() {
 //    game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
 //  }  
-}
-mixin WithCollideWithHeroShip {
-  /**
-   * Usar este mixin aunque se vaya a sobre escribir tiene una función similar
-   * al template method. Asegura que todos los objetos que puedan colisionar con
-   * la HeroShip estén enlazados y se implementen de la misma forma. 
-   */
-  method collideWithHeroShip(heroship){}
-}
-
