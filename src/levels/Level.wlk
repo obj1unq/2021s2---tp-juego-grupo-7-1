@@ -25,7 +25,9 @@ class Level{
   }
   
   method visuals() = self.enemiesFormation().visuals()
-  
+  method enemiesQuantity(){
+    
+  }
   
   
   /** -----------------------------------------------------

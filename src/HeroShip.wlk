@@ -5,7 +5,7 @@ import extras.Anchor
 import extras.calc
 import directions.*
 import positions.*
-import bullets.bulletsFactory.bulletsFactory
+import bullets.bulletsPool.bulletsPool
 
 
 class HeroShip inherits CompositeVisual(
@@ -32,7 +32,7 @@ class HeroShip inherits CompositeVisual(
 
   method shoot() {
   	const bulletPosition = self.position().translatedNew(1, 2)
-    bulletsFactory.shootHeroBullet(bulletPosition)
+    bulletsPool.shootHeroBullet(bulletPosition)
   }
   /** PRIVATES -------------------------------------------------------------- */
   

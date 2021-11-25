@@ -2,7 +2,7 @@ import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
 
-object bulletsFactory{
+object bulletsPool{
   const property enemyBullets = #{}
   const property heroBullets = #{}
   

@@ -25,6 +25,7 @@ class HeroBullet inherits Bullet(direction=up) {
   	target.receiveHit()
   }
 }
+
 mixin WithGetHeroBullet{
   method getHeroBullet(){}
 }

@@ -9,6 +9,7 @@ class FormationItemReference{
   
 //  method anchor() = gameManager.levelObject().anchor()
   method newInstance(rowIndex, itemIndex)
+  method itemCount() = 1
 }
 
 object p inherits FormationItemReference{
@@ -41,6 +42,7 @@ object _ inherits FormationItemReference{
   override method newInstance(rowIndex, itemIndex){
     return new VoidEnemy()
   }
+  override method itemCount() = 0
 }
 
 class FormationRow{

@@ -1,7 +1,7 @@
 import wollok.game.game
 import config.settings.settings
 import visuals.Visual
-import bullets.bulletsFactory.bulletsFactory
+import bullets.bulletsPool.bulletsPool
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
 import extras.calc
@@ -35,7 +35,7 @@ class Enemy inherits WithCollideWithHeroShip and WithGetHeroBullet and Visual {
 
   method shoot() {
   	if(game.hasVisual(self)) {
-  	  bulletsFactory.shootEnemyBullet(self)
+  	  bulletsPool.shootEnemyBullet(self)
     }
   }
 

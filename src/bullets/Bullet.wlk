@@ -1,6 +1,6 @@
 import wollok.game.game
 import visuals.Visual
-import bullets.bulletsFactory.bulletsFactory
+import bullets.bulletsPool.bulletsPool
 
 class Bullet inherits Visual {
   const direction
@@ -8,7 +8,7 @@ class Bullet inherits Visual {
 
   override method remove() {
     super()
-    bulletsFactory.remove(self)
+    bulletsPool.remove(self)
   }
 
   method move() {

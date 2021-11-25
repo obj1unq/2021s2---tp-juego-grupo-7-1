@@ -5,7 +5,7 @@ import HeroShip.HeroShip
 import levels.levels.*
 import moments.Moment.*
 import directions.*
-import bullets.bulletsFactory.bulletsFactory
+import bullets.bulletsPool.bulletsPool
 
 
 class GamePlay inherits Moment(
@@ -19,7 +19,7 @@ class GamePlay inherits Moment(
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     super()
-    game.onTick(250, "check bullets", {bulletsFactory.printBulletsCount()})
+    game.onTick(250, "check bullets", {bulletsPool.printBulletsCount()})
   }
   
   method loadLevel(levelNumber){

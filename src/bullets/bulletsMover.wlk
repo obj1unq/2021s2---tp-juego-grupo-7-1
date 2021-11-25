@@ -1,6 +1,6 @@
 import wollok.game.game
 import config.settings.settings
-import bullets.bulletsFactory.bulletsFactory
+import bullets.bulletsPool.bulletsPool
 import extras.calc
 
 object bulletsMover{
@@ -16,8 +16,8 @@ object bulletsMover{
     }
   }
   method moveBullets(){
-//    console.println("cantidad de balas: " + bulletsFactory.bullets().size())
-    bulletsFactory.bullets().forEach({
+//    console.println("cantidad de balas: " + bulletsPool.bullets().size())
+    bulletsPool.bullets().forEach({
       bullet => bullet.move()
     })
   }
