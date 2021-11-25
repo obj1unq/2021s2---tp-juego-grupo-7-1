@@ -13,7 +13,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   position=new DynamicPosition(x=3, y=3),
   limit=new Limit(right=game.width()-3, up=game.height()-2),
   anchorImage="heroShip.png",
-  assetPrefix = "px-green"
+  assetPrefix = "px-void"
 ){
   var property life = 3
   var property speed = 50.0
