@@ -2,7 +2,6 @@ import wollok.game.game
 import enemies.Enemy.Enemy
 import directions.down
 import extras.calc
-import HeroShip.WithCollideWithHeroShip
 import kamikazeMover.kamikazeMover
 import HeroShip.WithCollideWithHeroShip
 import formations.k
