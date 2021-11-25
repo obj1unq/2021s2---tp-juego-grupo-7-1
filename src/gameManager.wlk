@@ -14,9 +14,9 @@ object gameManager {
   > Carga los diferentes niveles.
   */
   const genesis = gameTitle
-  
-  
+
   var property score = 0
+  var property bulletsLeft = 10
   var property levelNumber = 1
   var property currentMoment
   
@@ -28,7 +28,9 @@ object gameManager {
   	text = "LIFES: ",
   	position = game.at(game.width()-10,0)
   )
-  
+  const property bulletsText = new RawMessage(
+  	position = game.at(16,0)
+  )
   
   const leftMargin = lifeDisplayText.position().x() + 3
   const heart3 = new Life(position=game.at(leftMargin+4,1))
@@ -52,8 +54,9 @@ object gameManager {
     
     self.clearPreviousMoment()
     title.setup()
-    self.setupScoreText()
     self.setuplifeDisplay()
+    self.setupNumberDisplay(scoreText,score)
+    self.setupNumberDisplay(bulletsText,bulletsLeft)
     moment.load()
     self.currentMoment(moment)
   }
@@ -68,16 +71,16 @@ object gameManager {
   
   method increaseScore(amount){ 
   	score += amount
-  	self.updateScoreText()
+  	self.updateDisplay(scoreText,score)
   }
   
-  method updateScoreText() {
-  	scoreText.text("SCORE: " + score.toString())
+  method updateDisplay(text,value) {
+  	text.text("SCORE: " + value.toString())
   }
   
-  method setupScoreText() {
-  	scoreText.setup()
-  	self.updateScoreText()
+  method setupNumberDisplay(text,value) {
+  	text.setup()
+  	self.updateDisplay(text,value)
   }
   
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
