@@ -39,3 +39,14 @@ object rawMessage inherits WithGetHeroBullet {
     game.addVisual(self)
   }
 }
+
+object listHandler{
+  method pop(list){
+    /**
+     * Deletes last item from list and returns it.
+     */
+    const popped = list.last()
+    list.remove(popped)
+    return popped
+  }
+}
