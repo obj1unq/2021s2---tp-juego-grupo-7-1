@@ -13,7 +13,7 @@ object calc{
 class Anchor inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual{
   const image = "px-anchor.png"
   method image() { return image }
-  method receiveHit() {}
+  // method receiveHit() {}
 }
 
 class Pixel inherits Visual{

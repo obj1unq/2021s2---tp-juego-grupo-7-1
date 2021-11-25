@@ -18,7 +18,6 @@ class GamePlay inherits Moment(
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     super()
-//    game.onTick(250, "check bullets", {bulletsPool.printBulletsCount()})
   }
   
   method loadLevel(levelNumber){

@@ -1,7 +1,7 @@
 import wollok.game.game
 import bullets.Bullet.Bullet
 import directions.up
-
+import config.settings.settings
 
 class HeroBullet inherits Bullet(direction=up) {
   override method image() = "heroBullet.png"
@@ -15,10 +15,12 @@ class HeroBullet inherits Bullet(direction=up) {
     console.println(self.identity().toString())
   }
   method setupCollisions() {
-  	game.onCollideDo(self, {target =>
-  	  target.getHeroBullet()
-		  self.remove()
-  	})
+    if(settings.ACTIVATE_COLLISIONS()){
+    	game.onCollideDo(self, {target =>
+    	  target.getHeroBullet()
+  		  self.remove()
+    	})      
+    }
   }
   
   method hit(target) {
