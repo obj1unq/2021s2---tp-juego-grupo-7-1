@@ -3,7 +3,7 @@ import moments.moments.*
 import moments.GamePlay.*
 import levels.levels.levels
 import extras.RawMessage
-import extras.Life
+import Display.*
 
 
 
@@ -16,29 +16,39 @@ object gameManager {
   const genesis = gameTitle
 
   var property score = 0
-  var property bulletsLeft = 10
-  var property levelNumber = 1
-  var property currentMoment
+  var property bullets = 10
+  var property time = 20
+  var property life = 3
   
   const property title = new RawMessage()
-  const property scoreText = new RawMessage(
-  	position = game.at(2,0)
+  const property scoreText = new RawMessage(position = game.at(2,0))
+  const property bulletsText = new RawMessage(position = game.at(16,0))
+  const property timeText = new RawMessage(position = game.at(30,0))
+  const property lifeText = new RawMessage(position = game.at(40,0))
+  
+  const property scoreDisplay = new NumberDisplay(
+  	label = "SCORE: ",
+  	rawMessage = scoreText,
+  	number = score
   )
-  const property lifeDisplayText = new RawMessage(
-  	text = "LIFES: ",
-  	position = game.at(game.width()-10,0)
+  const property bulletsDisplay = new NumberDisplay(
+  	label = "BULLETS: ",
+  	rawMessage = bulletsText,
+  	number = bullets
   )
-  const property bulletsText = new RawMessage(
-  	position = game.at(16,0)
+  const property timeDisplay = new NumberDisplay(
+  	label = "TIME: ",
+  	rawMessage = timeText,
+  	number = time
+  )
+  const property lifeDisplay = new LifeDisplay(
+  	label = "LIFE: ",
+  	rawMessage = lifeText,
+  	number = life
   )
   
-  const leftMargin = lifeDisplayText.position().x() + 3
-  const heart3 = new Life(position=game.at(leftMargin+4,1))
-  const heart2 = new Life(position=game.at(leftMargin+2,1))
-  const heart1 = new Life(position=game.at(leftMargin,1))
-  const property lifesLeft = [heart1, heart2, heart3]
-  const property lifesUsed = []
-  
+  var property levelNumber = 1
+  var property currentMoment
    
   // ---------------------------------------------
   method load(){
@@ -54,51 +64,55 @@ object gameManager {
     
     self.clearPreviousMoment()
     title.setup()
-    self.setuplifeDisplay()
-    self.setupNumberDisplay(scoreText,score)
-    self.setupNumberDisplay(bulletsText,bulletsLeft)
+    self.setupDisplays()
     moment.load()
+    self.startTheClock()
     self.currentMoment(moment)
   }
+  
   method clearPreviousMoment(){
     game.clear()
   }
   
-  method setuplifeDisplay() {
-  	lifeDisplayText.setup()
-  	lifesLeft.forEach( { heart => game.addVisual(heart)})
+  method setupDisplays() {
+  	scoreDisplay.setup()
+  	bulletsDisplay.setup()
+  	timeDisplay.setup()
+  	lifeDisplay.setup()
   }
   
   method increaseScore(amount){ 
   	score += amount
-  	self.updateDisplay(scoreText,score)
+  	scoreDisplay.number(score)
+  	scoreDisplay.update()
   }
   
-  method updateDisplay(text,value) {
-  	text.text("SCORE: " + value.toString())
+  method bulletShooted(){
+  	bullets -= 1
+  	bulletsDisplay.number(bullets)
+  	bulletsDisplay.update()
   }
   
-  method setupNumberDisplay(text,value) {
-  	text.setup()
-  	self.updateDisplay(text,value)
+  method startTheClock() {
+  	game.onTick(1000,"CLOCK",{
+  		time -= 1
+  		timeDisplay.number(time)
+  		timeDisplay.update()
+  	})
   }
   
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
   method heroGotHit() { 
-  	if(lifesLeft.size() > 1) {
-  	  self.removeLife() 
-  	} else {
-  	  self.removeLife()  
+  	lifeDisplay.heartLoss()
+  	life -= 1
+  	lifeDisplay.number(life)
+  	lifeDisplay.update()
+    if (life == 0) { 
   	  game.schedule(1, {self.switchTo(gameOver)})
   	}
   }
   
-  method removeLife() {
-  	const lost = lifesLeft.last()
-  	lifesUsed.add(lost)
-  	game.removeVisual(lost)
-  	lifesLeft.remove(lost)
-  }
+
 }

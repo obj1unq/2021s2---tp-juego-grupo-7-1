@@ -44,12 +44,6 @@ class RawMessage inherits WithGetHeroBullet {
   }
 }
 
-class Life inherits Visual {
-  const image = "life.png"
-  
-  method image() { return image }
-}
-
 object listHandler{
   method pop(list){
     /**

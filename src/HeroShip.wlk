@@ -32,6 +32,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
 
   method shoot() {
   	self.bulletsPool().shootHeroBullet(self)
+  	gameManager.bulletShooted()
   }
 
   /** -------------------------------------------------------------------------
