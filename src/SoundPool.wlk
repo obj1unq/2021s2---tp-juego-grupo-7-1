@@ -5,7 +5,7 @@ object soundPool {
 	// CONFIG
 
 	method play(sound, time) {
-		sound.volume(0.2)
+		sound.volume(0.5)
 		sound.play()
 		game.schedule(time,{sound.stop()})
 	}
@@ -47,7 +47,7 @@ object soundPool {
 	
 	method playCoalitionEnemy() {
 		const coalitionEnemy = game.sound("EnemyDestroy.mp3")
-		self.play(coalitionEnemy, 3000)
+		self.play(coalitionEnemy, 1000)
 	}	
 	
 	// WIN OR LOSE
