@@ -1,4 +1,5 @@
 import wollok.game.*
+import positions.dynamicPositionFactory
 import moments.moments.*
 import moments.GamePlay.*
 import levels.levels.levels
@@ -21,10 +22,10 @@ object gameManager {
   var property life = 3
   
   const property title = new RawMessage()
-  const property scoreText = new RawMessage(position = game.at(2,0))
-  const property bulletsText = new RawMessage(position = game.at(16,0))
-  const property timeText = new RawMessage(position = game.at(30,0))
-  const property lifeText = new RawMessage(position = game.at(40,0))
+  const property scoreText = new RawMessage(position = dynamicPositionFactory.create(2,0))
+  const property bulletsText = new RawMessage(position = dynamicPositionFactory.create(16,0))
+  const property timeText = new RawMessage(position = dynamicPositionFactory.create(30,0))
+  const property lifeText = new RawMessage(position = dynamicPositionFactory.create(40,0))
   
   const property scoreDisplay = new NumberDisplay(
   	label = "SCORE: ",
