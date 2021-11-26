@@ -31,7 +31,7 @@ class Pixel inherits Visual{
 }
 
 class RawMessage inherits WithGetHeroBullet {
-  var property position = game.at(game.width()/2, game.height()-2)
+  var property position = dynamicPositionFactory.create(25,28)
   var property text = "HOLA"
   var property textColor = "FFFFFFFF"
   

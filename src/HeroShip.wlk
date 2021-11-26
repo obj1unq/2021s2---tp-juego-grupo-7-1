@@ -32,7 +32,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
 
   method shoot() {
   	self.bulletsPool().shootHeroBullet(self)
-  	gameManager.bulletShooted()
+  	gameManager.currentMoment().bulletShooted()
   }
 
   /** -------------------------------------------------------------------------
@@ -73,22 +73,6 @@ mixin WithCollideWithHeroShip {
    */
   method collideWithHeroShip(heroship){}
 }
-
-
-//  method itsDead() {
-//    return energy == 0
-//  }
-
-//  method lose() {
-//    if (life > 1) {
-//      game.say(self, "Perdiste una vida")
-//      life -= 1
-//    } else {
-//      game.say(self, "Perdiste una vida")
-//      self.endGame()
-//    // self.die()
-//    }
-//  }
 
 //  method endGame() {
 //    game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
