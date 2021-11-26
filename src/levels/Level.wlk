@@ -17,9 +17,12 @@ class Level{
   const property bulletsPool = new BulletsPool()
   const property enemiesFormation
   const coreographer = new Coreographer()
+  const property bulletsLimit
+  const property timeLimit
   
   method load(_gamePlay){
-    self.storeLevelObject(_gamePlay)
+    self.storeLevelObjects(_gamePlay)
+    self.setupDisplays(_gamePlay)
     self.enemiesFormation().assignAnchor(anchor)
     self.activateHelpers(anchor)
  
@@ -39,7 +42,14 @@ class Level{
     bulletsMover.activate()
     kamikazeMover.activate()
   }
-  method storeLevelObject(_gamePlay){ _gamePlay.level(self) }
+  method storeLevelObjects(_gamePlay){ 
+  	_gamePlay.level(self)
+  	_gamePlay.bulletsLimit(self.bulletsLimit())
+  	_gamePlay.timeLimit(self.timeLimit())
+  }
+  method setupDisplays(_gamePlay) {
+  	_gamePlay.setupDisplays()
+  }
   method DEV_loadAnchor(){
     /**
      * DEV ONLY METHOD: Loads into screen the 

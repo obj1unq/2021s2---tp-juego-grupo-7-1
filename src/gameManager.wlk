@@ -17,14 +17,10 @@ object gameManager {
   const genesis = gameTitle
 
   var property score = 0
-  var property bullets = 10
-  var property time = 20
   var property life = 3
   
   const property title = new RawMessage()
   const property scoreText = new RawMessage(position = dynamicPositionFactory.create(2,0))
-  const property bulletsText = new RawMessage(position = dynamicPositionFactory.create(16,0))
-  const property timeText = new RawMessage(position = dynamicPositionFactory.create(30,0))
   const property lifeText = new RawMessage(position = dynamicPositionFactory.create(40,0))
   
   const property scoreDisplay = new NumberDisplay(
@@ -32,16 +28,7 @@ object gameManager {
   	rawMessage = scoreText,
   	number = score
   )
-  const property bulletsDisplay = new NumberDisplay(
-  	label = "BULLETS: ",
-  	rawMessage = bulletsText,
-  	number = bullets
-  )
-  const property timeDisplay = new NumberDisplay(
-  	label = "TIME: ",
-  	rawMessage = timeText,
-  	number = time
-  )
+  
   const property lifeDisplay = new LifeDisplay(
   	label = "LIFE: ",
   	rawMessage = lifeText,
@@ -67,7 +54,6 @@ object gameManager {
     title.setup()
     self.setupDisplays()
     moment.load()
-    self.startTheClock()
     self.currentMoment(moment)
   }
   
@@ -77,8 +63,6 @@ object gameManager {
   
   method setupDisplays() {
   	scoreDisplay.setup()
-  	bulletsDisplay.setup()
-  	timeDisplay.setup()
   	lifeDisplay.setup()
   }
   
@@ -86,20 +70,6 @@ object gameManager {
   	score += amount
   	scoreDisplay.number(score)
   	scoreDisplay.update()
-  }
-  
-  method bulletShooted(){
-  	bullets -= 1
-  	bulletsDisplay.number(bullets)
-  	bulletsDisplay.update()
-  }
-  
-  method startTheClock() {
-  	game.onTick(1000,"CLOCK",{
-  		time -= 1
-  		timeDisplay.number(time)
-  		timeDisplay.update()
-  	})
   }
   
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
