@@ -65,6 +65,11 @@ class Enemy inherits
   method randomAttackDelay() = calc.randomInRange(3000, 15000)
   method attackType()
   
+  override method collideWithHeroShip(heroship){
+  	console.println(heroship.toString())
+  	gameManager.fatalHit()
+  }
+  
   /**
    * Private Methods -----------------------------------------------------------
    */

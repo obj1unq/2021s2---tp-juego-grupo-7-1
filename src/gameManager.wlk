@@ -110,9 +110,11 @@ object gameManager {
   	lifeDisplay.number(life)
   	lifeDisplay.update()
     if (life == 0) { 
-  	  game.schedule(1, {self.switchTo(gameOver)})
+  	  game.schedule(1, {self.switchTo(gameOver)}) // gameover --> pase vida a cero, switch gameover
   	}
   }
   
-
+  method fatalHit() {
+  	life.times( { i => self.looseLife() } )
+  }
 }
