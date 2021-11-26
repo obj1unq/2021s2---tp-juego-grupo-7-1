@@ -81,8 +81,12 @@ object gameManager {
   	lifeDisplay.number(life)
   	lifeDisplay.update()
     if (life == 0) { 
-  	  game.schedule(1, {self.switchTo(gameOver)}) // gameover --> pase vida a cero, switch gameover
+  	  self.switchToGameOver()
   	}
+  }
+  
+  method switchToGameOver() {
+  	game.schedule(1, {self.switchTo(gameOver)})
   }
   
   method fatalHit() {
