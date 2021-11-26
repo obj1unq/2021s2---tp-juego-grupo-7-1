@@ -62,7 +62,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
 
   method getShot() {
     console.println("HeroShip: receiveHit")
-    gameManager.heroGotHit()  
+    gameManager.looseLife()  
   }  
 }
 mixin WithCollideWithHeroShip {

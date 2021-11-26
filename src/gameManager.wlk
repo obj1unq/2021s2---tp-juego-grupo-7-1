@@ -104,7 +104,7 @@ object gameManager {
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
-  method heroGotHit() { 
+  method looseLife() { 
   	lifeDisplay.heartLoss()
   	life -= 1
   	lifeDisplay.number(life)
