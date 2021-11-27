@@ -2,53 +2,47 @@ import wollok.game.*
 
 object soundPool {
 
-	// CONFIG
+const property volume = 0.5
 
-	method play(sound, time) {
-		sound.volume(0.5)
-		sound.play()
-		game.schedule(time,{sound.stop()})
-	}
-		
-	method playMenuMusic() {
-		const track = game.sound("Menu.wav") 
-		self.mixVolumeAndLoop(track)
-		game.schedule(100,{track.play()})
-		keyboard.o().onPressDo({track.stop()})
-	}
-	method mixVolumeAndLoop(sound) {//
-		sound.volume(0.5)
-		sound.shouldLoop(true)
-	}
-	
-	method controlVolume(sound){ //Deberia guardar el sound en una variable y evitar parametro?
- 		keyboard.k().onPressDo({ 0.max(sound.volume() - 0.2) })
-   		keyboard.l().onPressDo({ 1.min(sound.volume() + 0.2)})  
-	} // PARA CONTROLAR EL VOLUMEN EN EL JUEGO , DEBERIA IR EN EL CONFIG? 
-	
+const property heroShoot = game.sound("Sounds/HeroShoot.wav")
+const property enemyShoot = game.sound("Sounds/EnemyShoot.wav")
+
+var property shoot 
+
+const property coalitionHero = game.sound("Sounds/HeroDestroy.wav")
+const property coalitionEnemy = game.sound("Sounds/EnemyDestroy.mp3")
+
 	// SHOOT 
 	
-	method playShootHero() { 
-		const shootHero = game.sound("HeroShoot.wav")
-		self.play(shootHero, 1000)
+	method playShoot(shootSound) {		
+		self.play(shootSound, 1000)
+	}
+	method playShot(){
+		self.play(shoot, 1000)
 	}
 	
-	method playEnemyShoot() {
-		const shootEnemy = game.sound("EnemyShoot.wav")
-		self.play(shootEnemy, 1000)
+	method heroShot() { 
+		 shoot = heroShoot
+	}
+	
+	method enemyShot() {
+		 shoot = enemyShoot
 	}
 	
 	// COALITION
-	
-	method playCoalitionHero() {
-		const coalitionHero = game.sound("HeroDestroy.wav")
-		self.play(coalitionHero, 1000)
+	method playCoalition(coalition){
+		self.play(coalition, 1000)
 	}
 	
-	method playCoalitionEnemy() {
-		const coalitionEnemy = game.sound("EnemyDestroy.mp3")
-		self.play(coalitionEnemy, 1000)
-	}	
+//	method playCoalitionHero() {
+//		const coalitionHero = game.sound("HeroDestroy.wav")
+//		self.play(coalitionHero, 1000)
+//	}
+//	
+//	method playCoalitionEnemy() {
+//		const coalitionEnemy = game.sound("EnemyDestroy.mp3")
+//		self.play(coalitionEnemy, 1000)
+//	}	
 	
 	// WIN OR LOSE
 	
@@ -86,18 +80,38 @@ object soundPool {
 	}
 	
 	// LEVELS
-	
-	method playBossLevel() {
-		const bossLevel = game.sound("BossMenu.wav")
-		self.mixVolumeAndLoop(bossLevel)
-		game.schedule(100,{bossLevel.play()})
-		keyboard.o().onPressDo({bossLevel.stop()})
-		
-	}
 	method playLevel() {
 		const level = game.sound("level.wav")
 		self.mixVolumeAndLoop(level)
 		game.schedule(100,{level.play()})
 		keyboard.o().onPressDo({level.stop()})
 	}
+	
+	// CONFIG
+	
+	method play(sound, time) {
+		sound.volume(volume)
+		sound.play()
+		game.schedule(time,{sound.stop()})
+	}
+		
+	method playMenuMusic() {
+		const track = game.sound("Menu.wav") 
+		self.mixVolumeAndLoop(track)
+		game.schedule(100,{track.play()})
+		keyboard.o().onPressDo({track.stop()})
+	}
+	method mixVolumeAndLoop(sound) {//
+		sound.volume(volume)
+		sound.shouldLoop(true)
+	}
+	
+	method volumeUp(){
+		 return 1.min(volume +  0.2)
+	}
+	method volumeDown(){
+		 return 0.max(volume -  0.2)
+	}
+	
+	
 }

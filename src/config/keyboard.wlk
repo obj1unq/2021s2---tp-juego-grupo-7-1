@@ -2,6 +2,7 @@ import wollok.game.*
 import gameManager.gameManager
 import moments.moments.*
 import directions.*
+import SoundPool.*
 
 class MomentConfiguration{  
   method configMoment(moment){ self.configGlobal() }
@@ -49,7 +50,12 @@ object configPDCObjetoCompuesto inherits MomentConfiguration{
     keyboard.n().onPressDo({  heroShip.turn(neutral) })
   }
 }
-
+object controlVolume{
+	method configVolume(){
+		keyboard.l().onPressDo({ soundPool.volumeUp()   })  
+		keyboard.k().onPressDo({ soundPool.volumeDown() })  
+	}
+}
 
 
 //OPCIONES 
