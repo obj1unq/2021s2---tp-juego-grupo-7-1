@@ -111,7 +111,5 @@ const property coalitionEnemy = game.sound("Sounds/EnemyDestroy.mp3")
 	}
 	method volumeDown(){
 		 return 0.max(volume -  0.2)
-	}
-	
+	}		
 }
-
