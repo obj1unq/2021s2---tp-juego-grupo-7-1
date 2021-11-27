@@ -15,8 +15,9 @@ class GamePlay inherits Moment(
   configuration=configGamePlay
 ){
   var property level = null
-  var property bulletsLimit = 2
-  var property timeLimit = 1
+  var property bulletsLimit = null
+  var property timeLimit = null
+  var property totalEnemies = null
   
   const property bulletsText = new RawMessage(position = dynamicPositionFactory.create(16,0))
   const property timeText = new RawMessage(position = dynamicPositionFactory.create(30,0))
@@ -34,6 +35,7 @@ class GamePlay inherits Moment(
   
   var property timePassed = 0
   var property bulletsShooted = 0
+  var property enemiesDown = 0
   
   const property heroShip = new HeroShip()
   
@@ -74,9 +76,13 @@ class GamePlay inherits Moment(
   
   method updateTimeDisplay() {
   	timeDisplay.update()
-  	if (self.limitReached(self.remainingTime())) {
+  	if (self.timesUp()) {
   	  gameManager.switchToGameOver()
   	}
+  }
+  
+  method timesUp() {
+  	return self.limitReached(self.remainingTime())
   }
   
   method limitReached(value) {
