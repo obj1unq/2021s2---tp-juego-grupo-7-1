@@ -66,16 +66,16 @@ class GamePlay inherits Moment(
   
   method startTheClock() {
   	game.onTick(1000,"CLOCK",{
-  		timePassed += 1
-  		timeDisplay.number(self.remainingTime())
-  		self.updateTimeDisplay()
+  	  timePassed += 1
+  	  timeDisplay.number(self.remainingTime())
+  	  self.updateTimeDisplay()
   	})
   }
   
   method updateTimeDisplay() {
   	timeDisplay.update()
   	if (self.limitReached(self.remainingTime())) {
-  		gameManager.switchToGameOver()
+  	  gameManager.switchToGameOver()
   	}
   }
   
