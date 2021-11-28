@@ -47,7 +47,7 @@ object level2 inherits Level(
 object levels{
   const list = [level0, level1, level2]
   method quantity() = list.size()
-  method level(levelNumber) = list.get(levelNumber-1)
+  method level(levelNumber) = list.get(levelNumber.value()-1)
   method loadLevel(levelNumber, gamePlay){
     const currentLevel = self.level(levelNumber)
     currentLevel.load(gamePlay)

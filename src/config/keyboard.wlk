@@ -13,7 +13,6 @@ class MomentConfiguration{
      */
     keyboard.num1().onPressDo({ gameManager.introduceGame() })
     keyboard.num2().onPressDo({ gameManager.beginGame() })
-    keyboard.num4().onPressDo({gameManager.switchTo(gameOver)})
     keyboard.num5().onPressDo({gameManager.switchTo(credits)})
     keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
     
@@ -21,10 +20,10 @@ class MomentConfiguration{
     keyboard.p().onPressDo({gameManager.increaseLevel()}) 
   }
 }
-object configGameCover inherits MomentConfiguration{
+object configGameTitle inherits MomentConfiguration{
   override method configMoment(moment){
     self.configGlobal()
-    keyboard.enter().onPressDo({ gameManager.beginGame() })
+    keyboard.any().onPressDo({ gameManager.beginGame() })
   }
 }
 object configVoid inherits MomentConfiguration{}

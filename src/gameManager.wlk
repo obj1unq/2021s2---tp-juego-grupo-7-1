@@ -1,11 +1,13 @@
 import wollok.game.*
 import positions.dynamicPositionFactory
-import moments.moments.*
-import moments.GamePlay.*
+import moments.gameTitle.gameTitle
+import moments.gameOver.gameOver
+import moments.LevelCover.LevelCover
+import moments.GamePlay.GamePlay
 import levels.levels.levels
+import extras.NumberValue
 import extras.RawMessage
 import Display.*
-
 
 
 object gameManager {
@@ -15,26 +17,22 @@ object gameManager {
   > Carga los diferentes niveles.
   */
 
-  var property score
-  var property life
-  var property levelNumber
   var property currentMoment
-  
-  const property title = new RawMessage()
-  const property scoreText = new RawMessage(position = dynamicPositionFactory.create(2,0))
-  const property lifeText = new RawMessage(position = dynamicPositionFactory.create(40,0))
+  var property score = new NumberValue(value=0)
+  var property life = new NumberValue(value=0)
+  var property levelNumber = new NumberValue(value=1)
   
   const property scoreDisplay = new NumberDisplay(
-  	label = "SCORE: ",
-  	rawMessage = scoreText,
-  	number = score
-  )
-  
+  	label="SCORE: ",
+  	position=dynamicPositionFactory.create(2,0),
+  	numberValue=score
+  )  
   const property lifeDisplay = new LifeDisplay(
-  	label = "LIFE: ",
-  	rawMessage = lifeText,
-  	number = life
+  	label="LIFE: ",
+  	position=dynamicPositionFactory.create(40,0),
+  	numberValue=life
   )
+  const property title = new RawMessage()  
   
    
   // ---------------------------------------------
@@ -47,18 +45,9 @@ object gameManager {
     self.switchTo(gameTitle)
   }
   method beginGame(){
-    self.loadBeginingStatus()
-    self.switchTo(new GamePlay())
+    self.setBeginingStatus()
+    self.beginCurrentLevel()
   }
-  
-//  method switchToGamePlay(){
-//  	const currentLevel = levels.level(levelNumber)
-//  	
-//    self.switchTo(new GamePlay(
-//    	bulletsLimit=currentLevel.bulletsLimit(), 
-//    	timeLimit=currentLevel.timeLimit()
-//    ))
-//  }
   
   method switchTo(moment){
     console.println("switchTo: " + moment.toString())
@@ -81,7 +70,6 @@ object gameManager {
   
   method increaseScore(amount){ 
   	score += amount
-  	scoreDisplay.number(score)
   	scoreDisplay.update()
   }
   
@@ -91,7 +79,6 @@ object gameManager {
   method looseLife() { 
   	lifeDisplay.heartLoss()
   	life -= 1
-  	lifeDisplay.number(life)
   	lifeDisplay.update()
     if (life == 0) { 
   	  self.switchToGameOver()
@@ -101,15 +88,32 @@ object gameManager {
   method switchToGameOver() {
   	game.schedule(1, {self.switchTo(gameOver)})
   }
+  method switchToGamePlay() {
+  	game.schedule(1, {self.switchTo(new GamePlay())})
+  }
   
   method fatalHit() {
   	life.times( { i => self.looseLife() } )
   }
   
+  method refreshDisplays(){
+    lifeDisplay.update()
+    scoreDisplay.update()
+  }
+  
   /** Private Methods ------------------------------------------------------- */
-  method loadBeginingStatus(){
-    score = 0
-    life = 3
-    levelNumber = 1
+  method setBeginingStatus(){
+    score.value(0)
+    life.value(3)
+    levelNumber.value(1)
+  }
+  method beginCurrentLevel(){
+    self.switchTo(new LevelCover())
+//    const currentLevel = levels.level(levelNumber)
+//    
+//    self.switchTo(new GamePlay(
+//      bulletsLimit=currentLevel.bulletsLimit(), 
+//      timeLimit=currentLevel.timeLimit()
+//    ))   
   }
 }

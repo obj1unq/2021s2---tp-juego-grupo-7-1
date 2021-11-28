@@ -11,7 +11,7 @@ import Display.NumberDisplay
 
 
 class GamePlay inherits Moment(
-  titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
+  title=["JUEGO", "Nivel " + gameManager.levelNumber().strValue()],
   configuration=configGamePlay
 ){
   // State - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -20,14 +20,11 @@ class GamePlay inherits Moment(
   var property timeLimit = null
   var property totalEnemies = null
   
-  const property bulletsText = new RawMessage(position=dynamicPositionFactory.create(16,0))
-  const property timeText = new RawMessage(position=dynamicPositionFactory.create(30,0))
-  
   const property bulletsDisplay = new NumberDisplay(
-  	label="BULLETS: ", rawMessage=bulletsText, number=bulletsLimit
+  	label="BULLETS: ", position=dynamicPositionFactory.create(16,0), numberValue=bulletsLimit
   )
   const property timeDisplay = new NumberDisplay(
-    label="TIME: ", rawMessage=timeText, number=timeLimit
+    label="TIME: ", position=dynamicPositionFactory.create(30,0), numberValue=timeLimit
   )
   
   var property timePassed = 0
