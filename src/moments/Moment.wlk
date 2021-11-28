@@ -2,18 +2,22 @@ import wollok.game.*
 import config.keyboard.configVoid
 import extras.RawMessage
 import gameManager.*
+import SoundPool.*
+
 
 class Moment {
   const titulo
   const background = "background.jpg"
   const property visuals = #{}
   const configuration = configVoid
+
   
   method load(){
     self.setBackground()
     self.addVisuals()
     self.addTitle()
     self.configure()
+
   }
   
   /** -----------------------------------------------------
@@ -27,4 +31,5 @@ class Moment {
     titulo.forEach({line=>titleString=titleString+line+"\n"})
     gameManager.title().text(titleString)
   }
+ 
 }

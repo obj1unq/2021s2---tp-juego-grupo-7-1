@@ -3,14 +3,18 @@ import gameManager.gameManager
 
 
 program spaceInvaders{
+	
+  const s = game.sound("levelBLA.mp3") 	
   // GLOBAL CONFIG
   
   game.title("Space Invaders")
   game.cellSize(20)
   game.width(50)
   game.height(30)
+
   
   // BOOTING TASKS
   gameManager.load()  
 	game.start()
+	s.play()
 }

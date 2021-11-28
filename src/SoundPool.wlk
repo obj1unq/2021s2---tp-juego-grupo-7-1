@@ -2,86 +2,55 @@ import wollok.game.*
 
 object soundPool {
 
-const property volume = 0.5
-
-const property heroShoot = game.sound("Sounds/HeroShoot.wav")
-const property enemyShoot = game.sound("Sounds/EnemyShoot.wav")
-
-var property shoot 
-
-const property coalitionHero = game.sound("Sounds/HeroDestroy.wav")
-const property coalitionEnemy = game.sound("Sounds/EnemyDestroy.mp3")
-
-	// SHOOT 
-	
-	method playShoot(shootSound) {		
-		self.play(shootSound, 1000)
-	}
-	method playShot(){
-		self.play(shoot, 1000)
-	}
-	
-	method heroShot() { 
-		 shoot = heroShoot
-	}
-	
-	method enemyShot() {
-		 shoot = enemyShoot
-	}
-	
-	// COALITION
-	method playCoalition(coalition){
-		self.play(coalition, 1000)
-	}
-	
-//	method playCoalitionHero() {
-//		const coalitionHero = game.sound("HeroDestroy.wav")
-//		self.play(coalitionHero, 1000)
-//	}
-//	
-//	method playCoalitionEnemy() {
-//		const coalitionEnemy = game.sound("EnemyDestroy.mp3")
-//		self.play(coalitionEnemy, 1000)
-//	}	
+var property volume = 0.5
+var property music = game.sound("sounds/menu.mp3") 
 	
 	// WIN OR LOSE
 	
 	method playLevelWin() {
-		const win = game.sound("LevelComplete.wav")
-		self.play(win, 3000)
+		const win = game.sound("sounds/levelComplete.mp3")
+		music = win 
+		self.play(win, 1000)
 	}
 			
 	method playGameOver() {
-		const gameOver = game.sound("GameOver.wav")
-		self.play(gameOver, 1100)	
+		const gameOver = game.sound("sounds/gameOver.mp3")
+		music = gameOver
+		self.play(gameOver, 1000)	
 	}
 	method playLoseLife() {
-		const loseLife = game.sound("EnemyDestroy.wav")
+		const loseLife = game.sound("sounds/enemyDestroy.mp3")
+		music = loseLife
 		self.play(loseLife, 3000)
 	}
 	
 	// MENU SELECTOR 
 	
 	method playMenuSelect() {// CUANDO ESTAS EN EL MENU INICIAL
-		const menuSelect = game.sound("MenuSelect.wav")
+		const menuSelect = game.sound("sounds/menuSelect.mp3")
+		music =  menuSelect
 		self.play(menuSelect, 3000)
 	}
 	method playMenuSelect2() {// CUANDO ESTAS EN EL MENU PARA REINTENTAR
-		const menuSelect2 = game.sound("MenuSelect2.wav")
+		const menuSelect2 = game.sound("sounds/menuSelect2.mp3")
+		music =  menuSelect2
 		self.play(menuSelect2, 3000)
 	}
 	method playIntroLevel() {//
-		const menuSelect2 = game.sound("MenuSelect2.wav")
+		const menuSelect2 = game.sound("sounds/menuSelect2.mp3")
+		music =  menuSelect2 
 		self.play(menuSelect2, 3000)
 	}
 	method playMenuSelected() {
-		const selected = game.sound("Selected.mp3")
+		const selected = game.sound("sounds/selected.mp3")
+		music =  selected
 		self.play(selected, 3000)
 	}
 	
-	// LEVELS
+	// LEVELS 
 	method playLevel() {
-		const level = game.sound("level.wav")
+		const level = game.sound("sounds/level.mp3")
+		music =  level
 		self.mixVolumeAndLoop(level)
 		game.schedule(100,{level.play()})
 		keyboard.o().onPressDo({level.stop()})
@@ -89,14 +58,19 @@ const property coalitionEnemy = game.sound("Sounds/EnemyDestroy.mp3")
 	
 	// CONFIG
 	
+	method stop(){
+		music.stop()
+	}
+	
 	method play(sound, time) {
 		sound.volume(volume)
 		sound.play()
-		game.schedule(time,{sound.stop()})
+		//game.schedule(time,{sound.stop()})
 	}
 		
 	method playMenuMusic() {
-		const track = game.sound("Menu.wav") 
+		const track = game.sound("sounds/menu.mp3") 
+		music =  track
 		self.mixVolumeAndLoop(track)
 		game.schedule(100,{track.play()})
 		keyboard.o().onPressDo({track.stop()})
@@ -107,9 +81,43 @@ const property coalitionEnemy = game.sound("Sounds/EnemyDestroy.mp3")
 	}
 	
 	method volumeUp(){
-		 return 1.min(volume +  0.2)
+		  volume = 1.min(volume + 0.2)
+		  music.volume(volume)
 	}
 	method volumeDown(){
-		 return 0.max(volume -  0.2)
+		  volume = 0.max(volume - 0.2)
+		  music.volume(volume)
 	}		
 }
+
+class CharacterSound{
+	method shoot()
+	method coalition()
+}
+object enemySounds inherits CharacterSound{
+
+const property enemyShoot = game.sound("sounds/enemyShoot.mp3")
+const property coalitionEnemy = game.sound("sounds/enemyDestroy.mp3")
+
+	override method shoot(){
+		soundPool.play(enemyShoot,1000)
+	}
+	override method coalition(){
+		soundPool.play(coalitionEnemy,1000)
+	}
+}
+
+object heroSounds inherits CharacterSound{
+	const property heroShoot = game.sound("sounds/heroShoot.mp3")
+	const property coalitionHero = game.sound("sounds/heroDestroy.mp3")
+	
+	override method shoot(){
+				soundPool.play(heroShoot,1000)
+	}
+	override method coalition(){
+				soundPool.play(coalitionHero,1000)
+	}
+}
+
+
+

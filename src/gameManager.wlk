@@ -5,6 +5,7 @@ import moments.GamePlay.*
 import levels.levels.levels
 import extras.RawMessage
 import Display.*
+import SoundPool.*
 
 
 
@@ -38,27 +39,30 @@ object gameManager {
   var property levelNumber = 1
   var property currentMoment
    
+   
   // ---------------------------------------------
   method load(){
     self.switchTo(genesis)
+   
   }
   
   method switchToGamePlay(){
     self.switchTo(new GamePlay())
+    
   }
   
   method switchTo(moment){
-    console.println("switchTo: " + moment.toString())
-    
-    self.clearPreviousMoment()
-    title.setup()
+    console.println("switchTo: " + moment.toString())   
+    self.clearPreviousMoment()   
+    title.setup()   
     self.setupDisplays()
     moment.load()
     self.currentMoment(moment)
   }
-  
+
   method clearPreviousMoment(){
     game.clear()
+
   }
   
   method setupDisplays() {
@@ -92,4 +96,5 @@ object gameManager {
   method fatalHit() {
   	life.times( { i => self.looseLife() } )
   }
+
 }

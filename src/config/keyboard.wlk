@@ -19,8 +19,13 @@ class MomentConfiguration{
     keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
     
     keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
-    keyboard.p().onPressDo({gameManager.increaseLevel()}) 
+    keyboard.p().onPressDo({gameManager.increaseLevel()})
+    
+    keyboard.l().onPressDo({ soundPool.volumeUp()   })  
+	keyboard.k().onPressDo({ soundPool.volumeDown() })
+    
   }
+  
 }
 object configVoid inherits MomentConfiguration{}
 object configGamePlay inherits MomentConfiguration{
@@ -51,10 +56,4 @@ object configPDCObjetoCompuesto inherits MomentConfiguration{
     keyboard.space().onPressDo({  heroShip.shoot() })
     keyboard.n().onPressDo({  heroShip.turn(neutral) })
   }
-}
-object controlVolume{
-	method configVolume(){
-		keyboard.l().onPressDo({ soundPool.volumeUp()   })  
-		keyboard.k().onPressDo({ soundPool.volumeDown() })  
-	}
 }
