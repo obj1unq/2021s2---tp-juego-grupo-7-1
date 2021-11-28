@@ -1,4 +1,4 @@
-import visuals.Visual
+import visuals.Visual.Visual
 import wollok.game.*
 
 class Display {

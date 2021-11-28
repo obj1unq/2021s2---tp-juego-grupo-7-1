@@ -1,5 +1,5 @@
 import wollok.game.game
-import visuals.Visual
+import visuals.Visual.Visual
 import positions.dynamicPositionFactory
 import config.settings.settings
 import HeroShip.WithCollideWithHeroShip
@@ -66,4 +66,14 @@ object collisioner{
       closure.apply(collider)
     })
   }
+}
+
+mixin ItemCount{
+  method itemCount()
+}
+mixin ItemCount0 inherits ItemCount{
+  override method itemCount() = 0
+}
+mixin ItemCount1 inherits ItemCount{
+  override method itemCount() = 1
 }

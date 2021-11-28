@@ -1,6 +1,6 @@
 import wollok.game.*
 import config.settings.*
-import visuals.CompositeVisual
+import visuals.CompositeVisual.CompositeVisual
 import extras.Anchor
 import extras.calc
 import directions.*
