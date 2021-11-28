@@ -67,3 +67,13 @@ object collisioner{
     })
   }
 }
+
+mixin ItemCount{
+  method itemCount()
+}
+mixin ItemCount0 inherits ItemCount{
+  override method itemCount() = 0
+}
+mixin ItemCount1 inherits ItemCount{
+  override method itemCount() = 1
+}

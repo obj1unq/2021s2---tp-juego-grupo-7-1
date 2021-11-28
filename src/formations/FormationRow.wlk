@@ -1,11 +1,11 @@
 class FormationRow{
-  const property refs = []
-  const items = []
+  const property aliases = []
+  const property items = []
 
   method instantiateItems(rowIndex){
     var itemIndex = 0
-    refs.forEach({ref =>
-      const newInstance = ref.newInstance(rowIndex, itemIndex)
+    aliases.forEach({alias =>
+      const newInstance = alias.newInstance(rowIndex, itemIndex)
       items.add(newInstance)
       itemIndex += 1
     })

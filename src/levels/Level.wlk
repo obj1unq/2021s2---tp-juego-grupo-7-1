@@ -24,6 +24,7 @@ class Level{
   method load(_gamePlay){
     self.storeLevelObject(_gamePlay)
     self.setupDisplays(_gamePlay)
+    self.enemiesFormation().instantiateItems()
     self.enemiesFormation().assignAnchor(anchor)
     self.activateHelpers(anchor)
  
@@ -32,6 +33,7 @@ class Level{
   
   method visuals() = self.enemiesFormation().visuals()
   method enemiesTotal() = self.enemiesFormation().enemiesTotal()
+  method enemiesLeft() = self.enemiesFormation().enemiesLeft()
   method removeEnemy(enemy){ self.enemiesFormation().removeEnemy(enemy) }
   
   /** -----------------------------------------------------

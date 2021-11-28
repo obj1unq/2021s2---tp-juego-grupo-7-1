@@ -5,14 +5,16 @@ import bullets.BulletsPool.WithBulletsPool
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
 import extras.calc
+import extras.ItemCount1
 import HeroShip.WithCollideWithHeroShip
 
 class Enemy inherits
   WithBulletsPool
+  and ItemCount1
   and WithCollideWithHeroShip
   and WithGetHeroBullet
   and Visual
- {
+{
   var property award = null
   var property life = null
   var property anchor = null
@@ -34,7 +36,7 @@ class Enemy inherits
 
   override method getHeroBullet() {
   	gameManager.increaseScore(10)
-  	console.println( "puntaje :" + gameManager.score().toString())
+  	console.println( "puntaje: " + gameManager.score().toString())
     self.lifeDecrease()
   }
 
@@ -50,7 +52,8 @@ class Enemy inherits
     self.remove()
     self.level().removeEnemy(self)
     gameManager.increaseScore(award)
-    console.println( "puntaje :" + gameManager.score().toString())
+    console.println("enemies left: " + gameManager.currentMoment().enemiesLeft())
+    console.println("puntaje: " + gameManager.score().toString())
   }
   
   method activateRecursiveAttack() {

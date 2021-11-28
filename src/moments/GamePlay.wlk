@@ -44,7 +44,8 @@ class GamePlay inherits Moment(
       + level.visuals()  
     ) 
   }
-  method enemiesLeft()
+  method enemiesLeft() = self.level().enemiesLeft()
+  
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     super()
