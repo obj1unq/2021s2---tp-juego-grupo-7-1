@@ -16,7 +16,7 @@ class Anchor inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual{
   // method receiveHit() {}
 }
 
-class Pixel inherits Visual{
+class Pixel inherits WithGetHeroBullet and Visual{
   var property anchor
   var property image
   var property xDelta

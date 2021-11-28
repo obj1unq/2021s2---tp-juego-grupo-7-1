@@ -3,8 +3,10 @@ import bullets.Bullet.Bullet
 import directions.up
 import config.settings.settings
 import gameManager.gameManager
+import HeroShip.WithCollideWithHeroShip
 
-class HeroBullet inherits Bullet(direction=up) {
+class HeroBullet inherits WithGetHeroBullet and WithCollideWithHeroShip and Bullet(direction=up) {
+				 	
   override method image() = "heroBullet.png"
   
   override method add(){
