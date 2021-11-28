@@ -10,6 +10,7 @@ import positions.dynamicPositionFactory
 import Display.NumberDisplay
 
 
+
 class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
