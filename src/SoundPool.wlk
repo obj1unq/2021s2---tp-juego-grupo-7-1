@@ -2,7 +2,7 @@ import wollok.game.*
 
 object soundPool {
 
-const property volume = 0.5
+var property volume = 0.5
 var property music = game.sound("sounds/menu.mp3") 
 	
 	// WIN OR LOSE
@@ -81,10 +81,12 @@ var property music = game.sound("sounds/menu.mp3")
 	}
 	
 	method volumeUp(){
-		 return 1.min(volume +  0.2)
+		  volume = 1.min(volume + 0.2)
+		  music.volume(volume)
 	}
 	method volumeDown(){
-		 return 0.max(volume -  0.2)
+		  volume = 0.max(volume - 0.2)
+		  music.volume(volume)
 	}		
 }
 
