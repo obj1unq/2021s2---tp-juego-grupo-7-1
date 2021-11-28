@@ -1,5 +1,5 @@
 import wollok.game.game
-import visuals.Visual
+import visuals.Visual.Visual
 import positions.dynamicPositionFactory
 import config.settings.settings
 import HeroShip.WithCollideWithHeroShip

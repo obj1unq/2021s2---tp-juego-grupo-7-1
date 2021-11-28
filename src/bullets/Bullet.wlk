@@ -1,6 +1,6 @@
 import wollok.game.game
 import gameManager.gameManager
-import visuals.Visual
+import visuals.Visual.Visual
 import bullets.BulletsPool.WithBulletsPool
 
 class Bullet inherits WithBulletsPool and Visual {

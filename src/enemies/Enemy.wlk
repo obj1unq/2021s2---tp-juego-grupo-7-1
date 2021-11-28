@@ -1,6 +1,6 @@
 import wollok.game.game
 import config.settings.settings
-import visuals.Visual
+import visuals.Visual.Visual
 import bullets.BulletsPool.WithBulletsPool
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
