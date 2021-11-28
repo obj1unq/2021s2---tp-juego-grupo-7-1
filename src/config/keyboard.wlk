@@ -11,15 +11,20 @@ class MomentConfiguration{
      * TODO: Ver como pasar la clase por parámetro
      * o abstraer la instanciación de los momentos en una Factory
      */
-    keyboard.num1().onPressDo({gameManager.switchTo(gameTitle)})
-    keyboard.num2().onPressDo({gameManager.switchTo(new GameCover())})
-    keyboard.num3().onPressDo({gameManager.switchToGamePlay()})
+    keyboard.num1().onPressDo({ gameManager.introduceGame() })
+    keyboard.num2().onPressDo({ gameManager.beginGame() })
     keyboard.num4().onPressDo({gameManager.switchTo(gameOver)})
     keyboard.num5().onPressDo({gameManager.switchTo(credits)})
     keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
     
     keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
     keyboard.p().onPressDo({gameManager.increaseLevel()}) 
+  }
+}
+object configGameCover inherits MomentConfiguration{
+  override method configMoment(moment){
+    self.configGlobal()
+    keyboard.enter().onPressDo({ gameManager.beginGame() })
   }
 }
 object configVoid inherits MomentConfiguration{}

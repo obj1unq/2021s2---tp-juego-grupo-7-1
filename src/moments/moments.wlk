@@ -24,7 +24,7 @@ class PDC_CompositeVisual inherits Moment(
 object gameTitle inherits Moment(
   titulo=["TITULO_JUEGO", "¡¡SPACE INVADERS!!"]
 ){}
-class GameCover inherits Moment(
+class LevelCover inherits Moment(
   titulo=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.levelNumber().toString()]
 ){}
 object gameOver inherits Moment(

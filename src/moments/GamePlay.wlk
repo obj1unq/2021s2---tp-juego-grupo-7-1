@@ -14,7 +14,7 @@ class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
 ){
-  // State
+  // State - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   var property level = null
   var property bulletsLimit = null
   var property timeLimit = null
@@ -37,7 +37,11 @@ class GamePlay inherits Moment(
   const property heroShip = new HeroShip()
   
   
-  // Methods
+  // Methods - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  override method load(){
+    self.loadLevel(gameManager.levelNumber())
+    super()
+  }
   override method visuals(){
     return (
         #{heroShip}
@@ -46,10 +50,7 @@ class GamePlay inherits Moment(
   }
   method enemiesLeft() = self.level().enemiesLeft()
   
-  override method load(){
-    self.loadLevel(gameManager.levelNumber())
-    super()
-  }
+  
   method loadLevel(levelNumber){
     levels.loadLevel(levelNumber, self)
   }

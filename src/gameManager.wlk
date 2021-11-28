@@ -14,10 +14,11 @@ object gameManager {
   > Se encargar de switchear de entre los momentos/modos
   > Carga los diferentes niveles.
   */
-  const genesis = gameTitle
 
-  var property score = 0
-  var property life = 3
+  var property score
+  var property life
+  var property levelNumber
+  var property currentMoment
   
   const property title = new RawMessage()
   const property scoreText = new RawMessage(position = dynamicPositionFactory.create(2,0))
@@ -35,22 +36,29 @@ object gameManager {
   	number = life
   )
   
-  var property levelNumber = 1
-  var property currentMoment
    
   // ---------------------------------------------
   method load(){
-    self.switchTo(genesis)
+    self.introduceGame()
   }
   
-  method switchToGamePlay(){
-  	const currentLevel = levels.level(levelNumber)
-  	
-    self.switchTo(new GamePlay(
-    	bulletsLimit=currentLevel.bulletsLimit(), 
-    	timeLimit=currentLevel.timeLimit()
-    ))
+  // Semantic moments
+  method introduceGame(){
+    self.switchTo(gameTitle)
   }
+  method beginGame(){
+    self.loadBeginingStatus()
+    self.switchTo(new GamePlay())
+  }
+  
+//  method switchToGamePlay(){
+//  	const currentLevel = levels.level(levelNumber)
+//  	
+//    self.switchTo(new GamePlay(
+//    	bulletsLimit=currentLevel.bulletsLimit(), 
+//    	timeLimit=currentLevel.timeLimit()
+//    ))
+//  }
   
   method switchTo(moment){
     console.println("switchTo: " + moment.toString())
@@ -96,5 +104,12 @@ object gameManager {
   
   method fatalHit() {
   	life.times( { i => self.looseLife() } )
+  }
+  
+  /** Private Methods ------------------------------------------------------- */
+  method loadBeginingStatus(){
+    score = 0
+    life = 3
+    levelNumber = 1
   }
 }
