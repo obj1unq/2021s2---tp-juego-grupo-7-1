@@ -2,7 +2,8 @@ import wollok.game.game
 import gameManager.gameManager
 import levels.Level.Level
 import positions.*
-import formations.*
+import formations.Formation
+import formations.FormationRow
 import Coreographer.Coreographer
 import enemies.Private.p
 import enemies.Kamikaze.k
