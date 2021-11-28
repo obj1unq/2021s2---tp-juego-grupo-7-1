@@ -14,23 +14,20 @@ class GamePlay inherits Moment(
   titulo=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
 ){
+  // State
   var property level = null
   var property bulletsLimit = null
   var property timeLimit = null
   var property totalEnemies = null
   
-  const property bulletsText = new RawMessage(position = dynamicPositionFactory.create(16,0))
-  const property timeText = new RawMessage(position = dynamicPositionFactory.create(30,0))
+  const property bulletsText = new RawMessage(position=dynamicPositionFactory.create(16,0))
+  const property timeText = new RawMessage(position=dynamicPositionFactory.create(30,0))
   
   const property bulletsDisplay = new NumberDisplay(
-  	label = "BULLETS: ",
-  	rawMessage = bulletsText,
-  	number = bulletsLimit
+  	label="BULLETS: ", rawMessage=bulletsText, number=bulletsLimit
   )
   const property timeDisplay = new NumberDisplay(
-  	label = "TIME: ",
-  	rawMessage = timeText,
-  	number = timeLimit
+    label="TIME: ", rawMessage=timeText, number=timeLimit
   )
   
   var property timePassed = 0
@@ -39,28 +36,28 @@ class GamePlay inherits Moment(
   
   const property heroShip = new HeroShip()
   
-  override method load(){
-    self.loadLevel(gameManager.levelNumber())
-    super()
-  }
- 
   
-  method loadLevel(levelNumber){
-    levels.loadLevel(levelNumber, self)
-  }
+  // Methods
   override method visuals(){
     return (
         #{heroShip}
       + level.visuals()  
     ) 
   }
-  
+  method enemiesLeft()
+  override method load(){
+    self.loadLevel(gameManager.levelNumber())
+    super()
+  }
+  method loadLevel(levelNumber){
+    levels.loadLevel(levelNumber, self)
+  }
+ 
   method setupDisplays() {
   	bulletsDisplay.setup()
   	timeDisplay.setup()
   	self.startTheClock()
-  }
-  
+  } 
   method updateDisplays() {
   	bulletsDisplay.update()
   	self.updateTimeDisplay()
@@ -73,7 +70,6 @@ class GamePlay inherits Moment(
   	  self.updateTimeDisplay()
   	})
   }
-  
   method updateTimeDisplay() {
   	timeDisplay.update()
   	if (self.timesUp()) {
@@ -81,30 +77,16 @@ class GamePlay inherits Moment(
   	}
   }
   
-  method timesUp() {
-  	return self.limitReached(self.remainingTime())
-  }
-  
-  method limitReached(value) {
-  	return value==0
-  }
-  
-  method remainingTime() {
-  	return self.remainingItem(timeLimit,timePassed)
-  }
-  
-  method remainingItem(total,used) {
-  	return total - used
-  }
+  method timesUp() = self.limitReached(self.remainingTime())
+  method limitReached(value) = value==0
+  method remainingTime() = self.remainingItem(timeLimit,timePassed)
   
   method bulletShooted(){
   	bulletsShooted += 1
   	bulletsDisplay.number(self.remainingBullets())
   	bulletsDisplay.update()
   }
-  
-  method remainingBullets() {
-  	return self.remainingItem(bulletsLimit,bulletsShooted)
-  }
+  method remainingBullets() = self.remainingItem(bulletsLimit,bulletsShooted)
+  method remainingItem(total, used) = total-used
 }
 
