@@ -30,10 +30,12 @@ object configGamePlay inherits MomentConfiguration{
 //    super(moment)
   }
   method configHeroShip(heroShip){
-    keyboard.left().onPressDo({   heroShip.turn(left) })
-    keyboard.right().onPressDo({  heroShip.turn(right) })
-    keyboard.down().onPressDo({  heroShip.turn(neutral) })
+    keyboard.left().onPressDo({  heroShip.turn(left) })
+    keyboard.right().onPressDo({ heroShip.turn(right) })
+    keyboard.up().onPressDo({    heroShip.turn(up) })
+    keyboard.down().onPressDo({  heroShip.turn(down) })
     keyboard.space().onPressDo({  heroShip.shoot() })
+    keyboard.n().onPressDo({  heroShip.turn(neutral) })
   }
 }
 object configPDCObjetoCompuesto inherits MomentConfiguration{
@@ -56,36 +58,3 @@ object controlVolume{
 		keyboard.k().onPressDo({ soundPool.volumeDown() })  
 	}
 }
-
-
-//OPCIONES 
-
-// object gameTitle inherits MomentConfiguration {
-//  
-//  override method image() { return ".png"}
-//  
-//
-//  Tipico de juego el Pulse cualquier tecla para empezar  -------------
-
-//  override method configTeclas() {    
-//    keyboard.any().onPressDo({ GamePlay.iniciar() })
-//  }
-//}
-
-// Se puede usar al finalizar el juego para volver al menu ----------
-
-//object credits inherits MomentConfiguration { 
-//  
-//  override method image() { return ".png"}
-
-// PODRIA SER  PARA VOLVER AL MENU
-
-//  override method configGlobal() {
-//    keyboard.any().onPressDo({ gameTitle.iniciar() })
-  
-//  O PODRIA SER PARA SALIR DEL JUEGO 
-
-//  override method configGlobal() {
-//    keyboard.any().onPressDo({ game.stop() })
-//  }
-//}
