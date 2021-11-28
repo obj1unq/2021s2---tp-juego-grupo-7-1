@@ -63,36 +63,64 @@ class GamePlay inherits Moment(
   	timeDisplay.number(self.timeLimit())
   	timeDisplay.setup()
   	self.startTheClock()
-  } /*
-  method updateDisplays() {
-  	bulletsDisplay.update()
-  	self.updateTimeDisplay()
-  }
-  */
+  } 
+  
   method startTheClock() {
   	game.onTick(1000,"CLOCK",{
   	  timePassed += 1
   	  timeDisplay.number(self.remainingTime())
-  	  self.updateTimeDisplay()
+  	  self.refreshTimeDisplay()
   	})
   }
-  method updateTimeDisplay() {
+  method refreshTimeDisplay() {
   	timeDisplay.update()
   	if (self.timesUp()) {
-  	  gameManager.switchToGameOver()
+  	  self.gameOver()
   	}
   }
-  
-  method timesUp() = self.limitReached(self.remainingTime())
-  method limitReached(value) = value==0
-  method remainingTime() = self.remainingItem(self.timeLimit(),timePassed)
   
   method bulletShooted(){
   	bulletsShooted += 1
   	bulletsDisplay.number(self.remainingBullets())
-  	bulletsDisplay.update()
+  	self.refreshBulletsDisplay()
   }
-  method remainingBullets() = self.remainingItem(self.bulletsLimit(),bulletsShooted)
+  
+  method refreshBulletsDisplay() {
+  	bulletsDisplay.update()
+  	if (self.noMoreBullets()) {
+  	  self.gameOver()
+  	}
+  }
+  
+  method enemieDown() {
+  	enemiesDown +=1
+  	if (self.noMoreEnemies()) {
+  	  self.stageClear()
+  	}
+  }
+  
+  method stageClear() {
+  	console.println("Ganaste capo, pasas de nivel")
+  }
+  
+  
+  // Win & Lose Logic
+  
   method remainingItem(total, used) = total-used
+  
+  method remainingTime() = self.remainingItem(self.timeLimit(),timePassed)
+  method remainingBullets() = self.remainingItem(self.bulletsLimit(),bulletsShooted)
+  method remainingEnemies() = self.remainingItem(self.enemiesTotal(),self.enemiesDown())
+  
+  method limitReached(value) = value==0
+  
+  method gameOver() { gameManager.switchToGameOver() }
+  method timesUp() = self.limitReached(self.remainingTime())
+  method noMoreBullets() = self.limitReached(self.remainingBullets())
+  method noMoreEnemies() = self.limitReached(self.remainingEnemies())
+  
+  
+  
+  
 }
 
