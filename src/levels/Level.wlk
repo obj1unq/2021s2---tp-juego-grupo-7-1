@@ -19,11 +19,9 @@ class Level{
   const coreographer = new Coreographer()
   const property bulletsLimit
   const property timeLimit
-  const property totalEnemies
   
   method load(_gamePlay){
     self.storeLevelObject(_gamePlay)
-    self.setupDisplays(_gamePlay)
     self.enemiesFormation().instantiateItems()
     self.enemiesFormation().assignAnchor(anchor)
     self.activateHelpers(anchor)

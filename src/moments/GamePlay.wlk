@@ -16,18 +16,12 @@ class GamePlay inherits Moment(
 ){
   // State
   var property level = null
-  var property bulletsLimit = null
-  var property timeLimit = null
-  var property totalEnemies = null
-  
-  const property bulletsText = new RawMessage(position=dynamicPositionFactory.create(16,0))
-  const property timeText = new RawMessage(position=dynamicPositionFactory.create(30,0))
   
   const property bulletsDisplay = new NumberDisplay(
-  	label="BULLETS: ", rawMessage=bulletsText, number=bulletsLimit
+  	label="BULLETS: ", rawMessage=null, number=null
   )
   const property timeDisplay = new NumberDisplay(
-    label="TIME: ", rawMessage=timeText, number=timeLimit
+    label="TIME: ", rawMessage=null, number=null
   )
   
   var property timePassed = 0
@@ -44,26 +38,37 @@ class GamePlay inherits Moment(
       + level.visuals()  
     ) 
   }
+  method enemiesTotal() = self.level().enemiesTotal()
   method enemiesLeft() = self.level().enemiesLeft()
+  method bulletsLimit() = self.level().bulletsLimit()
+  method timeLimit() = self.level().timeLimit()
   
   override method load(){
     self.loadLevel(gameManager.levelNumber())
     super()
+    self.setupDisplays()
   }
   method loadLevel(levelNumber){
     levels.loadLevel(levelNumber, self)
   }
  
   method setupDisplays() {
+  	const bulletsText = new RawMessage(position=dynamicPositionFactory.create(16,0))
+    const timeText = new RawMessage(position=dynamicPositionFactory.create(30,0))
+  	
+  	bulletsDisplay.rawMessage(bulletsText)
+  	bulletsDisplay.number(self.bulletsLimit())
   	bulletsDisplay.setup()
+  	timeDisplay.rawMessage(timeText)
+  	timeDisplay.number(self.timeLimit())
   	timeDisplay.setup()
   	self.startTheClock()
-  } 
+  } /*
   method updateDisplays() {
   	bulletsDisplay.update()
   	self.updateTimeDisplay()
   }
-  
+  */
   method startTheClock() {
   	game.onTick(1000,"CLOCK",{
   	  timePassed += 1
@@ -80,14 +85,14 @@ class GamePlay inherits Moment(
   
   method timesUp() = self.limitReached(self.remainingTime())
   method limitReached(value) = value==0
-  method remainingTime() = self.remainingItem(timeLimit,timePassed)
+  method remainingTime() = self.remainingItem(self.timeLimit(),timePassed)
   
   method bulletShooted(){
   	bulletsShooted += 1
   	bulletsDisplay.number(self.remainingBullets())
   	bulletsDisplay.update()
   }
-  method remainingBullets() = self.remainingItem(bulletsLimit,bulletsShooted)
+  method remainingBullets() = self.remainingItem(self.bulletsLimit(),bulletsShooted)
   method remainingItem(total, used) = total-used
 }
 

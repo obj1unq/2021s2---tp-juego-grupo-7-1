@@ -16,7 +16,7 @@ object level0 inherits Level(
       new FormationRow(aliases=[_, _, _, p, p, _, _, _])
     ]
   ),
-  bulletsLimit=15, timeLimit=30, totalEnemies=2
+  bulletsLimit=15, timeLimit=30
 ){}
 object level1 inherits Level(
   enemiesFormation=new Formation(
@@ -28,7 +28,7 @@ object level1 inherits Level(
       new FormationRow(aliases=[_, _, _, p, p, _, _, _])
     ]
   ),
-  bulletsLimit=30, timeLimit=60, totalEnemies=22
+  bulletsLimit=30, timeLimit=60
 ){}
 
 object level2 inherits Level(
@@ -41,7 +41,7 @@ object level2 inherits Level(
       new FormationRow(aliases=[_, k, _, _, _, _, k, _])
     ]
   ),
-  bulletsLimit=60, timeLimit=90, totalEnemies=14
+  bulletsLimit=60, timeLimit=90
 ){}
 
 object levels{
