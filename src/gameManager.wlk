@@ -44,12 +44,7 @@ object gameManager {
   }
   
   method switchToGamePlay(){
-  	const currentLevel = levels.level(levelNumber)
-  	
-    self.switchTo(new GamePlay(
-    	bulletsLimit=currentLevel.bulletsLimit(), 
-    	timeLimit=currentLevel.timeLimit()
-    ))
+    self.switchTo(new GamePlay())
   }
   
   method switchTo(moment){
