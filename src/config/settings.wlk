@@ -6,4 +6,5 @@ object settings{
   const property MAX_ENEMY_BULLETS_ON_SCREEN = 3
   const property ENEMY_BULLETS = 5
   const property HERO_BULLETS = 10
+  const property LEVEL_COVER_TIME = 3
 }

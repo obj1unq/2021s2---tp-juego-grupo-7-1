@@ -6,7 +6,7 @@ import SoundPool.*
 
 
 class Moment {
-  const titulo
+  const title = ''
   const background = "background.jpg"
   const property visuals = #{}
   const configuration = configVoid
@@ -28,7 +28,7 @@ class Moment {
   method addVisuals(){ self.visuals().forEach({visual=>visual.add()}) }
   method addTitle(){
     var titleString = ""
-    titulo.forEach({line=>titleString=titleString+line+"\n"})
+    title.forEach({line=>titleString=titleString+line+"\n"})
     gameManager.title().text(titleString)
   }
  
