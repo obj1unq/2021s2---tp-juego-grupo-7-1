@@ -50,6 +50,10 @@ object gameManager {
     self.setBeginingStatus()
     self.beginCurrentLevel()
   }
+  method goToNextLevel(){
+    levelNumber += 1
+    self.beginCurrentLevel()
+  }
   
   method switchTo(moment){
     console.println("switchTo: " + moment.toString())   

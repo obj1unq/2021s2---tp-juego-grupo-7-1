@@ -24,9 +24,6 @@ object level1 inherits Level(
   enemiesFormation=new Formation(
     rows=[
       new FormationRow(aliases=[_, p, k, _, _, k, p, _]),
-      new FormationRow(aliases=[_, p, k, p, p, k, p, _]),
-      new FormationRow(aliases=[_, p, p, p, p, p, p, _]),
-      new FormationRow(aliases=[_, _, p, k, k, p, _, _]),
       new FormationRow(aliases=[_, _, _, p, p, _, _, _])
     ]
   ),

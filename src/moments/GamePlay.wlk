@@ -88,7 +88,7 @@ class GamePlay inherits Moment(
   }
   
   method stageClear() {
-  	console.println("Ganaste capo, pasas de nivel")
+  	gameManager.goToNextLevel()
   }
   
   
