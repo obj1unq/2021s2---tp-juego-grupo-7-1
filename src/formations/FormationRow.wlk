@@ -5,11 +5,12 @@ class FormationRow{
   method instantiateItems(rowIndex){
     var itemIndex = 0
     aliases.forEach({alias =>
-      const newInstance = alias.newInstance(rowIndex, itemIndex)
-      items.add(newInstance)
-      itemIndex += 1
+      if(alias.itemCount() > 0){
+        const newInstance = alias.newInstance(rowIndex, itemIndex)
+        items.add(newInstance)
+      }
+      itemIndex += 1        
     })
-//    refs.clear()
   }
   method assignAnchor(anchor){
     items.forEach({item=>

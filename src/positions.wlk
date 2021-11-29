@@ -21,7 +21,7 @@ object dynamicPositionFactory{
     return new DynamicPosition(x=x, y=y)
   }
   method createAtCenter(){
-    return self.create(gameDimensions.hCenter(), gameDimensions.vCenter())
+    return self.create(gameDimensions.hCenter(), gameDimensions.vCenter()-1)
   }
 }
 

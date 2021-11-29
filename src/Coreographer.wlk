@@ -18,9 +18,7 @@ class Coreographer {
   }
   method activateMovement(){
     game.onTick(
-      calc.speedBasedTick(speed),
-      movementTickID,
-      { self.performStep() }
+      calc.speedBasedTick(speed), movementTickID, { self.performStep() }
     )
   }
   method destroyMovement(){ game.removeTickEvent(movementTickID) }
@@ -28,11 +26,11 @@ class Coreographer {
     self.destroyMovement()
     self.activateMovement()
   }
-  method performStep(){
+  method performStep(){    
     direction.nextPosition(anchor)
     stepsDone += 1
     
-    if(self.completeStepsPerDirection()){
+    if(self.atLimit()){
       self.manageSwitchAndDescend()
       self.increaseSpeed(0.5)
     }
@@ -54,4 +52,10 @@ class Coreographer {
     self.resetMovement()
   }
   method stepsPerDirection() = 16
+  method atLimit(){
+    return (
+         gameManager.currentMoment().level().enemiesFormation().leftmostPosition() == 0
+      or gameManager.currentMoment().level().enemiesFormation().rightmostPosition() == game.width() - 1
+    )
+  }
 }
