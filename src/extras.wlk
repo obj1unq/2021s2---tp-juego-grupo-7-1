@@ -5,18 +5,19 @@ import config.settings.settings
 import HeroShip.WithCollideWithHeroShip
 import bullets.HeroBullet.WithGetHeroBullet
 
-object calc{
-  method speedBasedTick(speed) = (1.0 / speed * 1000).roundUp()    
-  method randomInRange(min, max) = min.randomUpTo(max)
-}
-
+//class NumberValue{
+//  var property value = 0
+//  method increment(){ value+=1 }
+//  method decrement(){ value-=1 }
+//  method strValue() = value.toString()
+//}
 class Anchor inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual{
   const image = "px-anchor.png"
   method image() { return image }
   // method receiveHit() {}
 }
 
-class Pixel inherits Visual{
+class Pixel inherits WithGetHeroBullet and Visual{
   var property anchor
   var property image
   var property xDelta
@@ -43,7 +44,10 @@ class RawMessage inherits WithGetHeroBullet {
   	game.removeVisual(self)
   }
 }
-
+object calc{
+  method speedBasedTick(speed) = (1.0 / speed * 1000).roundUp()    
+  method randomInRange(min, max) = min.randomUpTo(max)
+}
 object listHandler{
   method pop(list){
     /**

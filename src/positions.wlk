@@ -3,7 +3,7 @@ import wollok.game.*
 class Limit{
   var property left = 0
   var property right = game.width()-1
-  var property down = 0
+  var property down = 3
   var property up = game.height()-1
   
   method isInside(visual){

@@ -73,6 +73,11 @@ class Enemy inherits
   	gameManager.fatalHit()
   }
   
+  override method remove() {
+  	gameManager.currentMoment().enemieDown()
+  	super()
+  }
+  
   /**
    * Private Methods -----------------------------------------------------------
    */

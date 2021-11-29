@@ -5,5 +5,6 @@ object settings{
   const property DISPLACE_PIXELS_FROM_ANCHOR = false
   const property MAX_ENEMY_BULLETS_ON_SCREEN = 3
   const property ENEMY_BULLETS = 5
-  const property HERO_BULLETS = 10
+  const property HERO_BULLETS = 5
+  const property LEVEL_COVER_TIME = 3
 }

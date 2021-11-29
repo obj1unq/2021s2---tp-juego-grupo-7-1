@@ -1,55 +1,62 @@
 import visuals.Visual.Visual
 import wollok.game.*
+import extras.RawMessage
 
 class Display {
 	const property label
-	var property rawMessage
-	var property number
+	const position
+	var property rawMessage = null
 	
-	method setup() {
+	method setup(value) {
+	  rawMessage = new RawMessage(position=position)
 		rawMessage.text(label) 
 		rawMessage.setup()
-		self.update()
+		self.update(value)
 	}
-	method update()
-	
-	method getHeroBullet() {}
+	method update(value)
+	method getHeroBullet(){}
 }
 
 class NumberDisplay inherits Display {
-	
-	override method update() {
-	  rawMessage.text(label + number.toString())
+	override method update(value) {
+	  rawMessage.text(label + value.toString())
 	}	
 }
 
 class LifeDisplay inherits NumberDisplay {
+  const property hearts = []
   
-  const heart3 = new Life(position=self.HeartsPosition(3))
-  const heart2 = new Life(position=self.HeartsPosition(2))
-  const heart1 = new Life(position=self.HeartsPosition(1))
-  const property hearts = [heart1, heart2, heart3]
-  
-  method HeartsPosition(position) {
-  	return game.at(self.x_HeartsPosition(position),1)
+  override method setup(value){
+    super(value)
+    self.setupHearts()
+  }
+  method heartsSlice(value) {
+  	return hearts.take(value)
   }
   
-  method x_HeartsPosition(position) {
-  	return rawMessage.position().x() + 3 + ((position - 1) * 2)
-  }
-  
-  method lifesLeft() {
-  	return hearts.take(number)
-  }
-  
-  override method update() {
-  	self.lifesLeft().forEach(
+  override method update(value) {
+  	self.heartsSlice(value).forEach(
   		{heart => heart.add()}
   	)
   }
   
-  method heartLoss() {
-  	self.lifesLeft().last().remove()
+//  method heartLoss() {
+//  	self.lifesLeft().last().remove()
+//  }
+  /** Privates -------------------------------------------------------------- */
+  method setupHearts(){
+    const heart1 = new Life(position=self.heartsPosition(1))
+    const heart2 = new Life(position=self.heartsPosition(2))
+    const heart3 = new Life(position=self.heartsPosition(3))
+    hearts.add(heart1)
+    hearts.add(heart2)
+    hearts.add(heart3)
+  }
+  method heartsPosition(position) {
+    return game.at(self.x_HeartsPosition(position),1)
+  }
+  method x_HeartsPosition(position) {
+    return rawMessage.position().x() + 3 + ((position - 1) * 2)
   }
 }
 
