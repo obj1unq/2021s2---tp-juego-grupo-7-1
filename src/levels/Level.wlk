@@ -1,4 +1,5 @@
 import wollok.game.game
+import config.settings.settings
 import gameManager.gameManager
 import positions.*
 import extras.Anchor
@@ -53,6 +54,6 @@ class Level{
     /**
      * DEV ONLY METHOD: Loads into screen the 
      */
-    game.addVisual(anchor)
+    if(settings.SHOW_FORMATION_ANCHOR()) game.addVisual(anchor)
   }
 }
