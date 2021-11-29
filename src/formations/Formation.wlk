@@ -24,4 +24,12 @@ class Formation{
     })
   }
   
+  method leftmostPosition(){
+    const leftmostItem = self.items().min({item=> item.position().x()})
+    return leftmostItem.position().x()
+  }
+  method rightmostPosition(){
+    const rightmostItem = self.items().max({item=> item.position().x()})
+    return rightmostItem.position().x()
+  }
 }
