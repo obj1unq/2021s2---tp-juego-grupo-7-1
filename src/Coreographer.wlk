@@ -25,9 +25,7 @@ class Coreographer {
       { self.performStep() }
     )
   }
-  method destroyMovement(){
-    game.removeTickEvent(movementTickID)
-  }
+  method destroyMovement(){ game.removeTickEvent(movementTickID) }
   method resetMovement(){
     self.destroyMovement()
     self.activateMovement()
