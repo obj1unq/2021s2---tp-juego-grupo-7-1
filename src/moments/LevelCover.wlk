@@ -55,6 +55,5 @@ class LevelCover inherits Moment(
   method playSound(){
     soundPool.stop()
     soundPool.playMenuMusic()
-    
   }
 }

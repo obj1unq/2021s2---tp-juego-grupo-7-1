@@ -79,6 +79,7 @@ method coalition() = game.sound("sounds/heroDestroy.mp3")
   override method collideWithHeroShip(heroship){
   	console.println(heroship.toString())
   	gameManager.fatalHit()
+  	heroship.coalition().play()
   }
   
   override method remove() {
