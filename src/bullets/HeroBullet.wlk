@@ -8,11 +8,11 @@ import HeroShip.WithCollideWithHeroShip
 class HeroBullet inherits WithGetHeroBullet and WithCollideWithHeroShip and Bullet(direction=up) {
 				 	
   override method image() = "heroBullet.png"
-  
+  override method sound() = game.sound("sounds/heroShoot.mp3")
   override method add(){
     super()
     self.setupCollisions()
-    
+   	self.sound().play()
   }
   method decirNombre() {
     console.println(self.identity().toString())

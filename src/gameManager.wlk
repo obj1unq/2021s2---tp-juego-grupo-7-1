@@ -42,7 +42,7 @@ object gameManager {
     
   // Semantic moments
   method introduceGame(){
-    self.switchTo(gameTitle)
+    self.switchTo(gameTitle)  
   }
   method beginGame(){
     self.setBeginingStatus()
