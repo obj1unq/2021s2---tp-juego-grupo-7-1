@@ -42,9 +42,9 @@ class BulletsPool{
   
   method shootEnemyBullet(enemy){
   	if(enemyBullets.size() > 0) {
-  	  const toShootBullet = listHandler.pop(enemyBullets)
+  	  const toShootBullet = listHandler.pop(enemyBullets) 	  
   	  shootedEnemyBullets.add(toShootBullet)
-  	  
+  	  shootedEnemyBullets.forEach({bullet => bullet.sound().play()})
   	  self.shooter(toShootBullet, enemy, 0, -1)
   	}
   }
