@@ -34,7 +34,7 @@ object configVoid inherits MomentConfiguration{}
 object configGamePlay inherits MomentConfiguration{
   override method configMoment(moment){
     self.configHeroShip(moment.heroShip())
-    keyboard.c().onPressDo({self.configGlobal()}) 
+    keyboard.any().onPressDo({self.configGlobal()}) 
 //    super(moment)
   }
   method configHeroShip(heroShip){
