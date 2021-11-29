@@ -75,9 +75,6 @@ class GamePlay inherits Moment(
   method bulletShooted(){
   	bulletsShooted += 1
   	bulletsDisplay.update(self.remainingBullets())
-  	if (self.noMoreBullets()) {
-      self.gameOver()
-    }
   }
   
   method enemieDown() {

@@ -24,7 +24,20 @@ class BulletsPool{
     }else{
       shootedHeroBullets.remove(bullet)
       heroBullets.add(bullet)
+      self.shouldKeepShooting()
     }
+  }
+  
+  method shouldKeepShooting() {
+  	if (self.heroWontShootAnymore()) {
+  	  gameManager.switchToGameOver()
+  	}
+  }
+  
+  method heroWontShootAnymore() {
+  	const gamePlay = gameManager.currentMoment()
+  	
+  	return gamePlay.noMoreBullets() and self.heroBullets().size()==5
   }
   
   method shootEnemyBullet(enemy){
@@ -57,6 +70,9 @@ class BulletsPool{
   	self.shooter(bullet,ship,offset,2)
   }
   
+  method heroLimitReached() {
+  	return shootedHeroBullets.size() == 5
+  }
   /**
    * Private Methods -----------------------------------------------------------
    */
@@ -77,7 +93,7 @@ class BulletsPool{
     settings.ENEMY_BULLETS().times({i=> self.createEnemyBullet() })
   }
   method preloadHeroBullets(){
-    settings.ENEMY_BULLETS().times({i=> self.createHeroBullet() })
+    settings.HERO_BULLETS().times({i=> self.createHeroBullet() })
   }
 //  method printBulletsCount(){
 //    console.println(
