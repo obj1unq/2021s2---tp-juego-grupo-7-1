@@ -89,7 +89,7 @@ object gameManager {
   }
   
   method switchToGameOver() {
-  	game.schedule(1, {self.switchTo(gameOver)})
+  	game.schedule(10, {self.switchTo(gameOver)})
   }
   method switchToGamePlay() {
   	self.switchTo(new GamePlay())
@@ -112,7 +112,7 @@ object gameManager {
     self.refreshDisplays()
   }
   method beginCurrentLevel(){
-    self.switchTo(new LevelCover())
+    game.schedule(10, {self.switchTo(new LevelCover())})
 //    const currentLevel = levels.level(levelNumber)
 //    
 //    self.switchTo(new GamePlay(
