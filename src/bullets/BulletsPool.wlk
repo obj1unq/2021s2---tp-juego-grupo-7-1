@@ -32,7 +32,7 @@ class BulletsPool{
   	  const toShootBullet = listHandler.pop(enemyBullets)
   	  shootedEnemyBullets.add(toShootBullet)
   	  
-  	  self.shooter(toShootBullet, enemy, -1)
+  	  self.shooter(toShootBullet, enemy, 0, -1)
   	}
   }
   method shootHeroBullet(heroShip) {
@@ -40,14 +40,21 @@ class BulletsPool{
       const toShootBullet = listHandler.pop(heroBullets)
       shootedHeroBullets.add(toShootBullet)
       
-      self.shooter(toShootBullet, heroShip, 2)
+      self.heroShooter(toShootBullet, heroShip)
     }
   }
   
-  method shooter(bullet, ship, yOffset) {
-  	bullet.position().x(ship.position().x())
+  method shooter(bullet, ship, xOffset, yOffset) {
+  	bullet.position().x(ship.position().x() + xOffset)
   	bullet.position().y(ship.position().y() + yOffset)
   	bullet.shoot()
+  }
+  
+  method heroShooter(bullet,ship) {
+  	var offset
+  	ship.switchCannon()
+  	if(ship.cannon()) offset=0 else offset=2
+  	self.shooter(bullet,ship,offset,2)
   }
   
   /**

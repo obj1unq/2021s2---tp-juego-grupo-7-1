@@ -18,6 +18,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   var property life = 3
   var property speed = 50.0
   var property energy = 100
+  var property cannon = false
   var direction = neutral
 
   override method add() {
@@ -64,6 +65,10 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
     console.println("HeroShip: receiveHit")
     gameManager.looseLife()  
   }  
+  
+  method switchCannon() {
+  	cannon = not cannon
+  }
 }
 mixin WithCollideWithHeroShip {
   /**
