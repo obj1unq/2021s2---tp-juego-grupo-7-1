@@ -10,13 +10,13 @@ var property music = game.sound("sounds/menu.mp3")
 	method playLevelWin() {
 		const win = game.sound("sounds/levelComplete.mp3")
 		music = win 
-		self.play(win, 1000)
+		self.play(win, 10000)
 	}
 			
 	method playGameOver() {
 		const gameOver = game.sound("sounds/gameOver.mp3")
 		music = gameOver
-		self.play(gameOver, 1000)	
+		self.play(gameOver, 10000)	
 	}
 	method playLoseLife() {
 		const loseLife = game.sound("sounds/enemyDestroy.mp3")
@@ -65,7 +65,7 @@ var property music = game.sound("sounds/menu.mp3")
 	method play(sound, time) {
 		sound.volume(volume)
 		sound.play()
-		//game.schedule(time,{sound.stop()})
+		game.schedule(time,{sound.stop()})
 	}
 		
 	method playMenuMusic() {
@@ -101,6 +101,7 @@ const property coalitionEnemy = game.sound("sounds/enemyDestroy.mp3")
 
 	override method shoot(){
 		soundPool.play(enemyShoot,1000)
+		
 	}
 	override method coalition(){
 		soundPool.play(coalitionEnemy,1000)

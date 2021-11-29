@@ -3,6 +3,7 @@ import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
 import extras.listHandler
+import SoundPool.*
 
 class BulletsPool{
   const property enemyBullets = []
@@ -14,6 +15,7 @@ class BulletsPool{
   method load(){
     self.preloadEnemyBullets()
     self.preloadHeroBullets()
+    
   }
   
   
@@ -25,6 +27,7 @@ class BulletsPool{
       shootedHeroBullets.remove(bullet)
       heroBullets.add(bullet)
     }
+ 
   }
   
   // TODO: Eliminar código repetido en los 2 métodos siguientes
@@ -36,6 +39,7 @@ class BulletsPool{
   	  toShootBullet.position().x(enemy.position().x())
   	  toShootBullet.position().y(enemy.position().y() - 1)
       toShootBullet.shoot()
+      
   	}
   }
   method shootHeroBullet(heroShip) {
@@ -46,6 +50,7 @@ class BulletsPool{
       toShootBullet.position().x(heroShip.position().x())
       toShootBullet.position().y(heroShip.position().y() + 2)
       toShootBullet.shoot()
+   
     }
   }
   
@@ -71,6 +76,7 @@ class BulletsPool{
   }
   method preloadHeroBullets(){
     settings.ENEMY_BULLETS().times({i=> self.createHeroBullet() })
+    
   }
 //  method printBulletsCount(){
 //    console.println(

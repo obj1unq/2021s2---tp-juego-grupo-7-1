@@ -3,15 +3,18 @@ import bullets.Bullet.Bullet
 import directions.up
 import config.settings.settings
 import gameManager.gameManager
+import SoundPool.*
 
 class HeroBullet inherits Bullet(direction=up) {
   override method image() = "heroBullet.png"
+  override method sound() = game.sound("sounds/heroShoot.mp3")
   
   override method add(){
-    super()
+    super() 
     self.setupCollisions()
-    
+    self.sound().play()
   }
+
   method decirNombre() {
     console.println(self.identity().toString())
   }
