@@ -22,6 +22,8 @@ class Enemy inherits
   var property yOffset
 
   method image()
+	
+method coalition() = game.sound("sounds/heroDestroy.mp3")
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
@@ -38,6 +40,7 @@ class Enemy inherits
   	gameManager.increaseScore(10)
   	console.println( "puntaje: " + gameManager.score().toString())
     self.lifeDecrease()
+    self.coalition().play()
   }
 
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }

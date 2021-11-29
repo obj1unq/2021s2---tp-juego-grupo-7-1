@@ -7,6 +7,7 @@ import directions.*
 import positions.*
 import gameManager.gameManager
 import bullets.BulletsPool.WithBulletsPool
+import SoundPool.*
 
 class HeroShip inherits WithBulletsPool and CompositeVisual(
   width=3, height=2,
@@ -20,6 +21,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   var property energy = 100
   var property cannon = false
   var direction = neutral
+  method coalition() = game.sound("sounds/heroDestroy.mp3")
 
   override method add() {
     super()
@@ -56,7 +58,9 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   method setupCollisions() {
     if(settings.ACTIVATE_COLLISIONS()){
       self.composition().forEach({pixel=>
-        game.onCollideDo(pixel, { foreign => foreign.collideWithHeroShip(self)})
+        game.onCollideDo(pixel, { foreign => 
+        						  foreign.collideWithHeroShip(self) 							    						  
+        })
       })
     }
 //    game.onTick(50, "check_collisions", {
@@ -71,6 +75,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   method getShot() {
     console.println("HeroShip: receiveHit")
     gameManager.looseLife()  
+    self.coalition().play()
   }  
   
   method switchCannon() {
