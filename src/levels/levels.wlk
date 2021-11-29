@@ -53,4 +53,8 @@ object levels{
     const currentLevel = self.level(levelNumber)
     currentLevel.load(gamePlay)
   }
+  method levelGoals(levelNumber) {
+  	const level = self.level(levelNumber)
+  	return [ level.timeLimit(), level.bulletsLimit() ]
+  }
 }
