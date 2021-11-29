@@ -25,10 +25,12 @@ class NumberDisplay inherits Display {
 
 class LifeDisplay inherits NumberDisplay {
   const property hearts = []
+  var lastValue = null
   
   override method setup(value){
     super(value)
     self.setupHearts()
+    lastValue=value
   }
   method heartsSlice(value) {
   	return hearts.take(value)
@@ -38,11 +40,12 @@ class LifeDisplay inherits NumberDisplay {
   	self.heartsSlice(value).forEach(
   		{heart => heart.add()}
   	)
+  	lastValue=value
   }
   
-//  method heartLoss() {
-//  	self.lifesLeft().last().remove()
-//  }
+  method heartLoss() {
+  	self.heartsSlice(lastValue).last().remove()
+  }
   /** Privates -------------------------------------------------------------- */
   method setupHearts(){
     const heart1 = new Life(position=self.heartsPosition(1))

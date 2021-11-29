@@ -81,6 +81,7 @@ object gameManager {
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
   method looseLife() { 
+  	lifeDisplay.heartLoss()
   	life -= 1
   	lifeDisplay.update(life)
     if (life == 0) { 
