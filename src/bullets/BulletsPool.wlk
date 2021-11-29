@@ -27,15 +27,12 @@ class BulletsPool{
     }
   }
   
-  // TODO: Eliminar código repetido en los 2 métodos siguientes
   method shootEnemyBullet(enemy){
   	if(enemyBullets.size() > 0) {
   	  const toShootBullet = listHandler.pop(enemyBullets)
   	  shootedEnemyBullets.add(toShootBullet)
   	  
-  	  toShootBullet.position().x(enemy.position().x())
-  	  toShootBullet.position().y(enemy.position().y() - 1)
-      toShootBullet.shoot()
+  	  self.shooter(toShootBullet, enemy, -1)
   	}
   }
   method shootHeroBullet(heroShip) {
@@ -43,12 +40,15 @@ class BulletsPool{
       const toShootBullet = listHandler.pop(heroBullets)
       shootedHeroBullets.add(toShootBullet)
       
-      toShootBullet.position().x(heroShip.position().x())
-      toShootBullet.position().y(heroShip.position().y() + 2)
-      toShootBullet.shoot()
+      self.shooter(toShootBullet, heroShip, 2)
     }
   }
   
+  method shooter(bullet, ship, yOffset) {
+  	bullet.position().x(ship.position().x())
+  	bullet.position().y(ship.position().y() + yOffset)
+  	bullet.shoot()
+  }
   
   /**
    * Private Methods -----------------------------------------------------------
