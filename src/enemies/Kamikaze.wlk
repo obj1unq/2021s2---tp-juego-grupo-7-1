@@ -12,14 +12,41 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) 
   var property onBanzai = false
   var banzaiPosition = null
   var shootsDone = 0
+  var currentImage = "kamikaze.png"
+  var flickIter = true
 
-  override method image() = "kamikaze.png" // agregar imagen enemiga
+  override method image() = currentImage  
 
   override method position() = if (onBanzai) banzaiPosition else super()
   
   method scheduleBanzai(){
-    game.schedule(calc.randomInRange(5000, 30000), {self.banzai()})
+  	self.activateFlicker()
+    game.schedule(5000, {
+      self.banzai()
+      self.deactivateFlicker()
+    })
   }
+  
+  method activateFlicker() {
+  	game.onTick(200, "KAMIKAZE_FLICKER" + self.identity().toString(), {
+  		self.flick()
+  	})
+  }
+  
+  method flick() {
+  	flickIter = not flickIter
+  	if (flickIter) {
+  		currentImage = "kamikaze.png"
+  	} else {
+  		currentImage = "kamikazeOnBanzai.png"
+  	}
+  }
+  
+  method deactivateFlicker() {
+  	game.removeTickEvent("KAMIKAZE_FLICKER" + self.identity().toString())
+  	currentImage = "kamikazeOnBanzai.png"
+  }
+  
   method banzai() {
     banzaiPosition = self.position()
     onBanzai = true
