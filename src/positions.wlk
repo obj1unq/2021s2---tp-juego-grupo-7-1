@@ -37,6 +37,10 @@ class DynamicPosition{
   method moveRight(steps){  x = x+steps }
   method moveDown(steps){   y = y-steps }
   method moveLeft(steps){   x = x-steps }
+  
+  method translatedNew(xOffset, yOffset){
+    return new DynamicPosition(x=self.x()+xOffset, y=self.y()+yOffset)
+  }
 }
 
 object gameDimensions{
