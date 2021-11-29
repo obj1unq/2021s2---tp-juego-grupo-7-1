@@ -4,7 +4,6 @@ import extras.calc
 import directions.*
 
 class Coreographer {
-  const stepsPerDirection = 16
   var stepsDone = 0
   const switchsPerLine = 4
   var switchsDone = 0
@@ -17,7 +16,6 @@ class Coreographer {
     anchor = _anchor
     self.activateMovement()
   }
-  
   method activateMovement(){
     game.onTick(
       calc.speedBasedTick(speed),
@@ -40,12 +38,11 @@ class Coreographer {
     }
   }
   method completeStepsPerDirection(){
-    return stepsDone%stepsPerDirection == stepsPerDirection-1
+    return stepsDone%self.stepsPerDirection() == self.stepsPerDirection()-1
   }
   method completeSwitchsPerLine(){
     return switchsDone%switchsPerLine == switchsPerLine-1
   }
-  
   method manageSwitchAndDescend(){
     direction = direction.inverse()
     switchsDone += 1
@@ -56,4 +53,5 @@ class Coreographer {
     speed = speed + amount
     self.resetMovement()
   }
+  method stepsPerDirection() = 16
 }
