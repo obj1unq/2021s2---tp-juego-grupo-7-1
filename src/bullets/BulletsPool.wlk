@@ -3,7 +3,6 @@ import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
 import extras.listHandler
-import SoundPool.*
 
 class BulletsPool{
   const property enemyBullets = []
@@ -15,7 +14,6 @@ class BulletsPool{
   method load(){
     self.preloadEnemyBullets()
     self.preloadHeroBullets()
-    
   }
   
   
@@ -28,7 +26,6 @@ class BulletsPool{
       heroBullets.add(bullet)
       self.shouldKeepShooting()
     }
- 
   }
   
   method shouldKeepShooting() {
@@ -48,14 +45,7 @@ class BulletsPool{
   	  const toShootBullet = listHandler.pop(enemyBullets)
   	  shootedEnemyBullets.add(toShootBullet)
   	  
-<<<<<<< HEAD
-  	  toShootBullet.position().x(enemy.position().x())
-  	  toShootBullet.position().y(enemy.position().y() - 1)
-      toShootBullet.shoot()
-      
-=======
   	  self.shooter(toShootBullet, enemy, 0, -1)
->>>>>>> branch 'master' of git@github.com:obj1unq/2021s2---tp-juego-grupo-7-1.git
   	}
   }
   method shootHeroBullet(heroShip) {
@@ -63,14 +53,7 @@ class BulletsPool{
       const toShootBullet = listHandler.pop(heroBullets)
       shootedHeroBullets.add(toShootBullet)
       
-<<<<<<< HEAD
-      toShootBullet.position().x(heroShip.position().x())
-      toShootBullet.position().y(heroShip.position().y() + 2)
-      toShootBullet.shoot()
-   
-=======
       self.heroShooter(toShootBullet, heroShip)
->>>>>>> branch 'master' of git@github.com:obj1unq/2021s2---tp-juego-grupo-7-1.git
     }
   }
   
@@ -110,12 +93,7 @@ class BulletsPool{
     settings.ENEMY_BULLETS().times({i=> self.createEnemyBullet() })
   }
   method preloadHeroBullets(){
-<<<<<<< HEAD
-    settings.ENEMY_BULLETS().times({i=> self.createHeroBullet() })
-    
-=======
     settings.HERO_BULLETS().times({i=> self.createHeroBullet() })
->>>>>>> branch 'master' of git@github.com:obj1unq/2021s2---tp-juego-grupo-7-1.git
   }
 //  method printBulletsCount(){
 //    console.println(
