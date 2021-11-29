@@ -21,6 +21,7 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   var property energy = 100
   var property cannon = false
   var direction = neutral
+  
   method coalition() = game.sound("sounds/heroDestroy.mp3")
 
   override method add() {

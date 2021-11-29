@@ -67,7 +67,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) 
     k.removeInstance(self)
   }
   
-  override method collideWithHeroShip(heroship){ heroship.die() }
+  override method collideWithHeroShip(heroship){heroship.die()}
   
   override method activateRecursiveAttack() {
   	super()

@@ -13,6 +13,5 @@ object gameOver inherits Moment(
   }
   method playSound(){
     soundPool.playGameOver()
-
   }
 }
