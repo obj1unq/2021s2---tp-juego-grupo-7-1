@@ -25,13 +25,11 @@ object gameManager {
   
   const property scoreDisplay = new NumberDisplay(
   	label="SCORE: ",
-  	position=dynamicPositionFactory.create(2,0),
-  	numberValue=score
+  	position=dynamicPositionFactory.create(2,0)
   )  
   const property lifeDisplay = new LifeDisplay(
   	label="LIFE: ",
-  	position=dynamicPositionFactory.create(40,0),
-  	numberValue=life
+  	position=dynamicPositionFactory.create(40,0)
   )
   const property title = new RawMessage()  
   

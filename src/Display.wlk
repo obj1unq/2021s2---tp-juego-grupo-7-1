@@ -5,7 +5,6 @@ import extras.RawMessage
 class Display {
 	const property label
 	const position
-	var property numberValue = 0
 	var property rawMessage = null
 	
 	method setup(value) {
