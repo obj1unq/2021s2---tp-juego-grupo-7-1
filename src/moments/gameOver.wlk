@@ -1,3 +1,4 @@
+import wollok.game.*
 import moments.Moment.Moment
 import SoundPool.soundPool
 
@@ -12,5 +13,6 @@ object gameOver inherits Moment(
   }
   method playSound(){
     soundPool.playGameOver()
+
   }
 }

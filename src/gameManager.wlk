@@ -64,7 +64,6 @@ object gameManager {
 
   method clearPreviousMoment(){
     game.clear()
-
   }
   
   method setupDisplays() {
