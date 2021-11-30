@@ -41,7 +41,7 @@ object gameManager {
     self.introduceGame()
   }
     
-  // Semantic moments
+  // Moment/modes switching
   method introduceGame(){
     self.switchTo(gameTitle)  
   }
@@ -122,11 +122,5 @@ object gameManager {
   }
   method beginCurrentLevel(){
     game.schedule(10, {self.switchTo(new LevelCover())})
-//    const currentLevel = levels.level(levelNumber)
-//    
-//    self.switchTo(new GamePlay(
-//      bulletsLimit=currentLevel.bulletsLimit(), 
-//      timeLimit=currentLevel.timeLimit()
-//    ))   
   }
 }
