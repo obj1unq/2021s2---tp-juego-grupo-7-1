@@ -5,12 +5,6 @@ import config.settings.settings
 import HeroShip.WithCollideWithHeroShip
 import bullets.HeroBullet.WithGetHeroBullet
 
-//class NumberValue{
-//  var property value = 0
-//  method increment(){ value+=1 }
-//  method decrement(){ value-=1 }
-//  method strValue() = value.toString()
-//}
 class Anchor inherits WithGetHeroBullet and WithCollideWithHeroShip and Visual{
   const image = "px-anchor.png"
   method image() { return image }
@@ -51,9 +45,7 @@ object calc{
 }
 object listHandler{
   method pop(list){
-    /**
-     * Deletes last item from list and returns it.
-     */
+    /** Deletes last item from list and returns it. */
     const popped = list.last()
     list.remove(popped)
     return popped

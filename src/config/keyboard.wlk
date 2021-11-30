@@ -11,12 +11,12 @@ class MomentConfiguration{
      * TODO: Ver como pasar la clase por parámetro
      * o abstraer la instanciación de los momentos en una Factory
      */
-    keyboard.num1().onPressDo({ gameManager.introduceGame() })
-    keyboard.num2().onPressDo({ gameManager.beginGame() })
-    keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
-    
-    keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
-    keyboard.p().onPressDo({gameManager.increaseLevel()})
+//    keyboard.num1().onPressDo({ gameManager.introduceGame() })
+//    keyboard.num2().onPressDo({ gameManager.beginGame() })
+//    keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
+//    
+//    keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
+//    keyboard.p().onPressDo({gameManager.increaseLevel()})
     
     keyboard.l().onPressDo({ soundPool.volumeUp()   })  
     keyboard.k().onPressDo({ soundPool.volumeDown() })
@@ -54,6 +54,14 @@ object configGameOver inherits MomentConfiguration{
       gameManager.retryLevel()
     })
     keyboard.space().onPressDo({ gameManager.introduceGame() })
+  }
+}
+object configGameWin inherits MomentConfiguration{
+  override method configMoment(moment){
+    self.configGlobal()
+    keyboard.any().onPressDo({
+      gameManager.introduceGame() 
+    })
   }
 }
 object configPDCObjetoCompuesto inherits MomentConfiguration{

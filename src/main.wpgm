@@ -3,7 +3,7 @@ import gameManager.gameManager
 
 program spaceInvaders{ 	
   // GLOBAL CONFIG
-  game.title("Space Invaders")
+  game.title("Objects Invaders")
   game.cellSize(20)
   game.width(50)
   game.height(30)

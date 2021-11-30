@@ -3,6 +3,7 @@ import positions.dynamicPositionFactory
 import positions.gameDimensions
 import moments.gameTitle.gameTitle
 import moments.gameOver.gameOver
+import moments.gameWin.gameWin
 import moments.LevelCover.LevelCover
 import moments.GamePlay.GamePlay
 import levels.levels.levels
@@ -41,13 +42,23 @@ object gameManager {
     self.introduceGame()
   }
     
-  // Moment/modes switching
+  // Moments/modes switching
   method introduceGame(){
     self.switchTo(gameTitle)  
   }
   method beginGame(){
     self.setBeginingStatus()
     self.beginCurrentLevel()
+  }
+  method manageStageClear(){
+    if(levels.hasRemainingLevels(levelNumber)){
+      self.goToNextLevel()
+    }else{
+      self.winGame()
+    }
+  }
+  method winGame(){
+    self.switchTo(gameWin)
   }
   method goToNextLevel(){
     levelNumber += 1

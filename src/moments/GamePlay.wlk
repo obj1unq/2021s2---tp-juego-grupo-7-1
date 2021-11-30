@@ -87,7 +87,7 @@ class GamePlay inherits Moment(
   }
   
   method stageClear() {
-  	gameManager.goToNextLevel()
+  	gameManager.manageStageClear()
   }
   
   

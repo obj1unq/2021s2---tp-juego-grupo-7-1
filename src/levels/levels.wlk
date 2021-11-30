@@ -100,4 +100,7 @@ object levels{
   	const level = self.level(levelNumber)
   	return [ level.timeLimit(), level.bulletsLimit() ]
   }
+  method hasRemainingLevels(currentLevelNumber){
+    return list.size() > currentLevelNumber
+  }
 }
