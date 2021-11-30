@@ -26,7 +26,4 @@ object gameTitle inherits Moment(
 
 object gameTitleImage inherits Visual(position=dynamicPositionFactory.create(0, 0)){
   method image()="gameCoverOK.png"
-  override method add(){
-    super()
-  }
 }
