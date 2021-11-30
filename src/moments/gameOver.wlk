@@ -4,33 +4,28 @@ import SoundPool.soundPool
 import config.keyboard.configGameOver
 import extras.RawMessage
 import positions.dynamicPositionFactory
+import visuals.Visual.Visual
 
 object gameOver inherits Moment(
   title=[" ", "A tu casa rey"],
-  configuration=configGameOver
+  configuration=configGameOver,
+  visuals=#{
+    gameOverImage,
+    new RawMessage(
+      position= dynamicPositionFactory.createAtCenter(),
+      text="Pulsa 'Enter' para reintentar, o 'Espacio' para volver al inicio"
+    )
+  }
 ){
-
   override method load(){
     super()
-    soundPool.stop()
     self.playSound()
-    game.addVisual(gameOverIm)  
-    self.keysActionsMessage() 
   }
   method playSound(){
+    soundPool.stop()
     soundPool.playGameOver()
-  }
-  method keysActionsMessage() {
-  	const message = new RawMessage(
-  	  position= dynamicPositionFactory.createAtCenter(),
-  	  text="Pulsa 'Enter' para reintentar, o 'Espacio' para volver al inicio"
-  	)
-  	message.setup()
-  }
-  
+  }  
 }
-object gameOverIm {
-	const property position = dynamicPositionFactory.create(11, 18)
-	  method image()="gameOver.png"
-    							  
+object gameOverImage inherits Visual(position = dynamicPositionFactory.create(11, 18)) {
+  method image()="gameOver.png"
 }

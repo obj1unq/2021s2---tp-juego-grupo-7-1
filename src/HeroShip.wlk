@@ -8,8 +8,13 @@ import positions.*
 import gameManager.gameManager
 import bullets.BulletsPool.WithBulletsPool
 import SoundPool.*
+import Explosion.WithShowExplosion
 
-class HeroShip inherits WithBulletsPool and CompositeVisual(
+class HeroShip inherits
+  WithBulletsPool
+  and WithShowExplosion
+  and CompositeVisual
+(
   width=3, height=2,
   position=new DynamicPosition(x=3, y=3),
   limit=new Limit(right=game.width()-3, up=game.height()-2),
@@ -22,14 +27,13 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   var property cannon = false
   var direction = neutral
   
-  method coalition() = game.sound("sounds/heroDestroy.mp3")
+  method collision() = game.sound("sounds/heroDestroy.mp3")
 
   override method add() {
     super()
     self.activateMovement()
     self.setupCollisions()
   }
-  
 
   method turn(_direction){ direction = _direction }
   method move(){ direction.nextPositionLimited(self) }
@@ -42,8 +46,10 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   }
   
   method canShoot() {
-  	return 	not gameManager.currentMoment().noMoreBullets()
-  			and not self.bulletsPool().heroLimitReached()
+  	return(
+  	  not gameManager.currentMoment().noMoreBullets()
+  		and not self.bulletsPool().heroLimitReached()
+    )
   }
 
   /** -------------------------------------------------------------------------
@@ -59,34 +65,32 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
   method setupCollisions() {
     if(settings.ACTIVATE_COLLISIONS()){
       self.composition().forEach({pixel=>
-        game.onCollideDo(pixel, { foreign => 
-        						  foreign.collideWithHeroShip(self) 							    						  
+        game.onCollideDo(pixel, {foreign => 
+          foreign.collideWithHeroShip(self) 							    						  
         })
       })
     }
-//    game.onTick(50, "check_collisions", {
-//      self.composition().forEach({pixel=>
-//        collisioner.onCollideDo(pixel, {
-//          foreign => foreign.collideWithHeroShip(self)
-//        })      
-//      })      
-//    })
   }
 
   method getShot() {
     console.println("HeroShip: receiveHit")
-    gameManager.looseLife()  
-    self.coalition().play()
+    gameManager.looseLife()
+    self.showExplosion()
+    self.collision().play()
   }  
   method die() {
   	console.println("HeroShip: fatalHit")
   	gameManager.fatalHit()
-  	self.coalition().play() 
+  	self.collision().play() 
   }
   
   method switchCannon() {
   	cannon = not cannon
   }
+  override method explosionPosition(){
+    return self.position().translatedNew(0, 0)
+  }
+  
 }
 mixin WithCollideWithHeroShip {
   /**
@@ -96,7 +100,3 @@ mixin WithCollideWithHeroShip {
    */
   method collideWithHeroShip(heroship){}
 }
-
-//  method endGame() {
-//    game.schedule(2000, { game.stop()}) // podria ir a la pantalla de inicio
-//  }  

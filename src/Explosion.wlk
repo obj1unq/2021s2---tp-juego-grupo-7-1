@@ -44,3 +44,10 @@ object explosionFactory{
     explosion.add()
   }
 }
+
+mixin WithShowExplosion{
+  method showExplosion(){
+    explosionFactory.createAt(self.explosionPosition())
+  }
+  method explosionPosition()
+}
