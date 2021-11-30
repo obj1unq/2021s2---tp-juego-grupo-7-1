@@ -107,10 +107,18 @@ object gameManager {
   
   /** Private Methods ------------------------------------------------------- */
   method setBeginingStatus(){
-    score = 0
-    life = 3
     levelNumber = 1
+    self.setRetryStatus()
+  }
+  method setRetryStatus(){
+  	score = 0
+    life = 3
     self.refreshDisplays()
+  }
+  
+  method retryLevel() {
+  	self.setRetryStatus()
+  	self.beginCurrentLevel()
   }
   method beginCurrentLevel(){
     game.schedule(10, {self.switchTo(new LevelCover())})

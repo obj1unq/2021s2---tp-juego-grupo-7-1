@@ -51,6 +51,7 @@ class GamePlay inherits Moment(
 
   method loadLevel(levelNumber){
     levels.loadLevel(levelNumber, self)
+    level.bulletsPool().reset()
   }
  
   method setupDisplays() {

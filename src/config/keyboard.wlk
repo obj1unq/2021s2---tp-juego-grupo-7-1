@@ -46,6 +46,16 @@ object configGamePlay inherits MomentConfiguration{
     keyboard.n().onPressDo({  heroShip.turn(neutral) })
   }
 }
+
+object configGameOver inherits MomentConfiguration{
+  override method configMoment(moment){
+    self.configGlobal()
+    keyboard.enter().onPressDo({
+      gameManager.retryLevel()
+    })
+    keyboard.space().onPressDo({ gameManager.introduceGame() })
+  }
+}
 object configPDCObjetoCompuesto inherits MomentConfiguration{
   override method configMoment(moment){
     self.configHeroShip(moment.heroShip())
