@@ -1,7 +1,6 @@
 import wollok.game.game
 import gameManager.gameManager
 
-
 program spaceInvaders{ 	
   // GLOBAL CONFIG
   game.title("Space Invaders")
