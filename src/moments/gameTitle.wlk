@@ -10,7 +10,7 @@ object gameTitle inherits Moment(
   title=[" "],
   configuration=configGameTitle,
   visuals=#{new RawMessage(
-  	position=dynamicPositionFactory.create(24, 26),
+  	position=dynamicPositionFactory.create(24, 1),
   	text="Presione cualquier tecla para continuar"
   ),gameTitleImage} 
 ){
