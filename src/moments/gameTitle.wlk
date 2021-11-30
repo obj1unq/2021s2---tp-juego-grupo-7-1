@@ -9,10 +9,10 @@ import extras.RawMessage
 object gameTitle inherits Moment(
   title=[" "],
   configuration=configGameTitle,
-  visuals=#{gameTitleImage, new RawMessage(
+  visuals=#{new RawMessage(
   	position=dynamicPositionFactory.create(24, 26),
   	text="Presione cualquier tecla para continuar"
-  )}
+  ),gameTitleImage} 
 ){
   override method load(){
     super()
