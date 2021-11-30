@@ -13,14 +13,14 @@ object gameOver inherits Moment(
     super()
     soundPool.stop()
     self.playSound()
-//    game.addVisual(gameOverIm)   
+    game.addVisual(gameOverIm)   
   }
   method playSound(){
     soundPool.playGameOver()
   }
 }
-//object gameOverIm {
-//	const property position = game.at(10, 15)
-//	  method image()="gameOver.png"
-//    							  
-//}
+object gameOverIm {
+	const property position = game.at(10, 15)
+	  method image()="gameOver.png"
+    							  
+}
