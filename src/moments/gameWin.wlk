@@ -23,7 +23,7 @@ object gameWin inherits Moment(
   }
   method playSound(){
     soundPool.stop()
-    soundPool.playGameOver()
+    soundPool.playLevelWin()
   }
 }
 
