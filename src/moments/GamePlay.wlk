@@ -12,7 +12,7 @@ import Display.NumberDisplay
 
 
 class GamePlay inherits Moment(
-  title=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
+  title=[" ", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
 ){
   // State - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

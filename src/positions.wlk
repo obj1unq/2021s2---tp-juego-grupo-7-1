@@ -21,7 +21,7 @@ object dynamicPositionFactory{
     return new DynamicPosition(x=x, y=y)
   }
   method createAtCenter(){
-    return self.create(gameDimensions.hCenter()-1, gameDimensions.vCenter())
+    return self.create(gameDimensions.hCenter(), gameDimensions.vCenter())
   }
 }
 
@@ -47,7 +47,7 @@ object gameDimensions{
   const property globalLimit = new Limit()
   
   // Horizontal Center
-  method hCenter() = game.width().div(2)
+  method hCenter() = game.width().div(2)-1
   
   // Vertical Center
   method vCenter() = game.height().div(2)

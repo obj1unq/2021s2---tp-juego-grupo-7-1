@@ -1,5 +1,6 @@
 import wollok.game.*
 import positions.dynamicPositionFactory
+import positions.gameDimensions
 import moments.gameTitle.gameTitle
 import moments.gameOver.gameOver
 import moments.LevelCover.LevelCover
@@ -31,7 +32,7 @@ object gameManager {
   	label="LIFE: ",
   	position=dynamicPositionFactory.create(40,0)
   )
-  const property title = new RawMessage()  
+  const property title = new RawMessage(position=dynamicPositionFactory.create(gameDimensions.hCenter(),28))  
   
    
    

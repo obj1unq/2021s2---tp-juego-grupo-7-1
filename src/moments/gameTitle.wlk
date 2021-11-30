@@ -4,7 +4,7 @@ import config.keyboard.configGameTitle
 import SoundPool.soundPool
 
 object gameTitle inherits Moment(
-  title=["TITULO_JUEGO", "¡¡SPACE INVADERS!!", "", "Presione cualquier tecla para continuar"],
+  title=[" ", " ", "", "Presione cualquier tecla para continuar"],
   configuration=configGameTitle
 ){
   override method load(){

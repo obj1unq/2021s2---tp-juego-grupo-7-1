@@ -6,7 +6,7 @@ import extras.RawMessage
 import positions.dynamicPositionFactory
 
 object gameOver inherits Moment(
-  title=["FINAL_JUEGO", "A tu casa rey"],
+  title=[" ", "A tu casa rey"],
   configuration=configGameOver
 ){
 
