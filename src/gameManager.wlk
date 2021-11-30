@@ -10,6 +10,7 @@ import levels.levels.levels
 import extras.RawMessage
 import Display.*
 import SoundPool.*
+import enemies.Kamikaze.k
 
 
 object gameManager {
@@ -118,6 +119,7 @@ object gameManager {
   
   method retryLevel() {
   	self.setRetryStatus()
+  	k.resetBansayers()
   	self.beginCurrentLevel()
   }
   method beginCurrentLevel(){

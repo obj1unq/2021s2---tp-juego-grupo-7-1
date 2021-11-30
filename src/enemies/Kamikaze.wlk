@@ -97,7 +97,8 @@ object k inherits EnemyAlias{
   override method newInstance(rowIndex, itemIndex){
     const kamikazeShip = new Kamikaze(
       xOffset=itemIndex*xOffsetSize,
-      yOffset=-1*rowIndex*yOffsetSize
+      yOffset=-1*rowIndex*yOffsetSize,
+      flickIter=true
     )
     kamikazes.add(kamikazeShip)
     return kamikazeShip
@@ -109,4 +110,5 @@ object k inherits EnemyAlias{
     })
   }
   method removeInstance(instance){ kamikazes.remove(instance) }
+  method resetBansayers() { kamikazes.clear() }
 }
