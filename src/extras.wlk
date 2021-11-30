@@ -39,6 +39,7 @@ class RawMessage inherits WithGetHeroBullet {
   method setup(){
     game.addVisual(self)
   }
+  method add(){ self.setup() }
   
   method clear(){
   	game.removeVisual(self)
