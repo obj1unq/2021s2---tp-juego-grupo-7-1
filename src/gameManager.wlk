@@ -14,9 +14,9 @@ import enemies.Kamikaze.k
 
 object gameManager {
   /**
-  > Almacena el estado global: puntaje actual, nivel actual, cantidad de vidas, etc.
-  > Se encargar de switchear de entre los momentos/modos
-  > Carga los diferentes niveles.
+   > Stores global status: current score, current level, life number, etc.
+   > Switches between the moments/modes
+   > Load levels.
   */
 
   var property currentMoment
