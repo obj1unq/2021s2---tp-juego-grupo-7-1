@@ -110,5 +110,5 @@ object k inherits EnemyAlias{
     })
   }
   method removeInstance(instance){ kamikazes.remove(instance) }
-  method resetBansayers() { kamikazes.clear() }
+  method resetBanzayers() { kamikazes.clear() }
 }

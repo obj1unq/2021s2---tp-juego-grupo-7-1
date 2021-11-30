@@ -118,7 +118,6 @@ object gameManager {
   
   method retryLevel() {
   	self.setRetryStatus()
-  	k.resetBansayers()
   	self.beginCurrentLevel()
   }
   method beginCurrentLevel(){
