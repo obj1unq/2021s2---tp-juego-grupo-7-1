@@ -27,7 +27,7 @@ class HeroShip inherits
   var property cannon = false
   var direction = neutral
   
-  method collision() = game.sound("sounds/heroDestroy.mp3")
+  method collision() = heroSounds.collisionHero()
 
   override method add() {
     super()

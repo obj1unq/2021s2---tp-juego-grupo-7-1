@@ -8,6 +8,7 @@ import extras.calc
 import extras.ItemCount1
 import HeroShip.WithCollideWithHeroShip
 import Explosion.WithShowExplosion
+import SoundPool.*
 
 
 class Enemy inherits
@@ -26,7 +27,7 @@ class Enemy inherits
 
   method image()
 	
-method collision() = game.sound("sounds/heroDestroy.mp3")
+method collision() = enemySounds.collisionEnemy()
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
