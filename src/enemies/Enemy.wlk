@@ -7,7 +7,7 @@ import gameManager.gameManager
 import extras.calc
 import extras.ItemCount1
 import HeroShip.WithCollideWithHeroShip
-import Explosion.explosionFactory
+import Explosion.WithShowExplosion
 
 
 class Enemy inherits
@@ -15,6 +15,7 @@ class Enemy inherits
   and ItemCount1
   and WithCollideWithHeroShip
   and WithGetHeroBullet
+  and WithShowExplosion
   and Visual
 {
   var property award = null
@@ -25,7 +26,7 @@ class Enemy inherits
 
   method image()
 	
-method coalition() = game.sound("sounds/heroDestroy.mp3")
+method collision() = game.sound("sounds/heroDestroy.mp3")
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
@@ -43,7 +44,7 @@ method coalition() = game.sound("sounds/heroDestroy.mp3")
   	console.println( "puntaje: " + gameManager.score().toString())
   	
     self.lifeDecrease()
-    self.coalition().play()
+    self.collision().play()
     
     self.showExplosion()
   }
@@ -79,7 +80,7 @@ method coalition() = game.sound("sounds/heroDestroy.mp3")
   override method collideWithHeroShip(heroship){
   	console.println(heroship.toString())
   	gameManager.fatalHit()
-  	heroship.coalition().play()
+  	heroship.collision().play()
   }
   
   override method remove() {
@@ -94,7 +95,7 @@ method coalition() = game.sound("sounds/heroDestroy.mp3")
     // Shortcut method to level
     return gameManager.currentMoment().level()
   }
-  method showExplosion(){
-    explosionFactory.createAt(self.position().translatedNew(-1, -1))
+  override method explosionPosition(){
+    return self.position().translatedNew(-1, -1)
   }
 }
