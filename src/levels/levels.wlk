@@ -11,7 +11,7 @@ import enemies.VoidEnemy._
 import extras.Anchor
 //import extras.NumberValue
 
-object level0 inherits Level(
+class Level0 inherits Level(
   enemiesFormation=new Formation(
     rows=[
       new FormationRow(aliases=[_, _, _, p, p, _, _, _])
@@ -20,7 +20,11 @@ object level0 inherits Level(
   bulletsLimit=15,
   timeLimit=30
 ){}
-object level1 inherits Level(
+
+object lvl0 {
+	method newInstance() = new Level0()
+}
+class Level1 inherits Level(
   enemiesFormation=new Formation(
     rows=[
       new FormationRow(aliases=[_, p, k, _, _, k, p, _]),
@@ -30,8 +34,10 @@ object level1 inherits Level(
   bulletsLimit=30,
   timeLimit=60
 ){}
-
-object level2 inherits Level(
+object lvl1 {
+	method newInstance() = new Level1()
+}
+class Level2 inherits Level(
   enemiesFormation=new Formation(
     rows=[
       new FormationRow(aliases=[_, k, _, _, _, _, k, _]),
@@ -44,11 +50,13 @@ object level2 inherits Level(
   bulletsLimit=60,
   timeLimit=90
 ){}
-
+object lvl2 {
+	method newInstance() = new Level2()
+}
 object levels{
-  const list = [level0, level1, level2]
+  const list = [lvl0, lvl1, lvl2]
   method quantity() = list.size()
-  method level(levelNumber) = list.get(levelNumber-1)
+  method level(levelNumber) = list.get(levelNumber-1).newInstance()
   method loadLevel(levelNumber, gamePlay){
     const currentLevel = self.level(levelNumber)
     currentLevel.load(gamePlay)
