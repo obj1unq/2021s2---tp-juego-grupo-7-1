@@ -78,6 +78,11 @@ class HeroShip inherits WithBulletsPool and CompositeVisual(
     gameManager.looseLife()  
     self.coalition().play()
   }  
+  method die() {
+  	console.println("HeroShip: fatalHit")
+  	gameManager.fatalHit()
+  	self.coalition().play() 
+  }
   
   method switchCannon() {
   	cannon = not cannon
