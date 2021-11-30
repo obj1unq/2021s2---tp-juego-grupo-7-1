@@ -8,7 +8,7 @@ import levels.levels.levels
 import positions.dynamicPositionFactory
 
 class LevelCover inherits Moment(
-  title=["PRESENTACIÓN NIVEL", "Nivel " + gameManager.levelNumber().toString()]
+  title=["Objetivo", "Nivel " + gameManager.levelNumber().toString()]
 ){
   var countDown = settings.LEVEL_COVER_TIME()
   override method load(){

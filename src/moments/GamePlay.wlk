@@ -12,7 +12,7 @@ import Display.NumberDisplay
 
 
 class GamePlay inherits Moment(
-  title=["JUEGO", "Nivel " + gameManager.levelNumber().toString()],
+  title=[" ", "Nivel " + gameManager.levelNumber().toString()],
   configuration=configGamePlay
 ){
   // State - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -51,6 +51,7 @@ class GamePlay inherits Moment(
 
   method loadLevel(levelNumber){
     levels.loadLevel(levelNumber, self)
+    level.bulletsPool().reset()
   }
  
   method setupDisplays() {

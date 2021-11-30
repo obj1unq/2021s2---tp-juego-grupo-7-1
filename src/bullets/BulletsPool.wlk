@@ -16,6 +16,13 @@ class BulletsPool{
     self.preloadHeroBullets()
   }
   
+  method reset() {
+  	shootedEnemyBullets.clear()
+  	shootedHeroBullets.clear()
+  	enemyBullets.clear()
+  	heroBullets.clear()
+  	self.load()
+  }
   
   method remove(bullet){
     if(shootedEnemyBullets.contains(bullet)){

@@ -5,7 +5,7 @@ import SoundPool.soundPool
 
 object gameTitle inherits Moment(
   background="gameCoverOK.png",
-  title=["TITULO_JUEGO", "¡¡SPACE INVADERS!!", "", "Presione cualquier tecla para continuar"],
+  title=[" ", " ", "", "Presione cualquier tecla para continuar"],
   configuration=configGameTitle
 ){
   override method load(){
