@@ -2,8 +2,9 @@ import wollok.game.game
 import config.settings.settings
 import visuals.Visual.Visual
 import bullets.HeroBullet.WithGetHeroBullet
+import HeroShip.WithCollideWithHeroShip
 
-class Explosion inherits WithGetHeroBullet and Visual{
+class Explosion inherits WithCollideWithHeroShip and WithGetHeroBullet and Visual {
   var currentImage = 1
   const totalFrames = 6
   const imagePrefix = "explosion-"
