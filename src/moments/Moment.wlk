@@ -11,6 +11,7 @@ class Moment {
   const property visuals = #{}
   const configuration = configVoid
 
+
   
   method load(){
     self.setBackground()
@@ -19,6 +20,7 @@ class Moment {
     self.configure()
 
   }
+
   
   /** -----------------------------------------------------
    * Private Methods

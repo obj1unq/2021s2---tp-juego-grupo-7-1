@@ -1,3 +1,4 @@
+import wollok.game.*
 import moments.Moment.Moment
 import config.keyboard.configGameTitle
 import SoundPool.soundPool
@@ -7,11 +8,11 @@ object gameTitle inherits Moment(
   configuration=configGameTitle
 ){
   override method load(){
-   
+
     super()
     self.playSound()
   }
   method playSound(){
-    soundPool.playMenuMusic()
+    soundPool.playLevel()
   }
 }

@@ -1,3 +1,4 @@
+import wollok.game.*
 import moments.Moment.Moment
 import SoundPool.soundPool
 import config.keyboard.configGameOver

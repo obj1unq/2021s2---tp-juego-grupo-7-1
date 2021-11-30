@@ -8,4 +8,5 @@ object settings{
   const property ENEMY_BULLETS = 5
   const property HERO_BULLETS = 5
   const property LEVEL_COVER_TIME = 3
+  const property EXPLOSION_FRAME_DURATION = 50
 }

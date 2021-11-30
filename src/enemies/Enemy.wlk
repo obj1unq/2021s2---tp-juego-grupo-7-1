@@ -7,6 +7,8 @@ import gameManager.gameManager
 import extras.calc
 import extras.ItemCount1
 import HeroShip.WithCollideWithHeroShip
+import Explosion.explosionFactory
+
 
 class Enemy inherits
   WithBulletsPool
@@ -22,6 +24,8 @@ class Enemy inherits
   var property yOffset
 
   method image()
+	
+method coalition() = game.sound("sounds/heroDestroy.mp3")
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
@@ -37,7 +41,11 @@ class Enemy inherits
   override method getHeroBullet() {
   	gameManager.increaseScore(10)
   	console.println( "puntaje: " + gameManager.score().toString())
+  	
     self.lifeDecrease()
+    self.coalition().play()
+    
+    self.showExplosion()
   }
 
   method lifeDecrease() { if(life > 1) life-=1 else self.die() }
@@ -71,6 +79,7 @@ class Enemy inherits
   override method collideWithHeroShip(heroship){
   	console.println(heroship.toString())
   	gameManager.fatalHit()
+  	heroship.coalition().play()
   }
   
   override method remove() {
@@ -84,5 +93,8 @@ class Enemy inherits
   method level(){
     // Shortcut method to level
     return gameManager.currentMoment().level()
+  }
+  method showExplosion(){
+    explosionFactory.createAt(self.position().translatedNew(-1, -1))
   }
 }
