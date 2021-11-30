@@ -5,6 +5,7 @@ import bullets.BulletsPool.WithBulletsPool
 import bullets.HeroBullet.WithGetHeroBullet
 import gameManager.gameManager
 import extras.calc
+import extras.dev
 import extras.ItemCount1
 import HeroShip.WithCollideWithHeroShip
 import Explosion.WithShowExplosion
@@ -41,7 +42,7 @@ method collision() = game.sound("sounds/heroDestroy.mp3")
 
   override method getHeroBullet() {
   	gameManager.increaseScore(10)
-  	console.println( "puntaje: " + gameManager.score().toString())
+  	dev.cLog( "puntaje: " + gameManager.score().toString())
   	
     self.lifeDecrease()
     self.collision().play()
@@ -61,8 +62,8 @@ method collision() = game.sound("sounds/heroDestroy.mp3")
     self.remove()
     self.level().removeEnemy(self)
     gameManager.increaseScore(award)
-    console.println("enemies left: " + gameManager.currentMoment().enemiesLeft())
-    console.println("puntaje: " + gameManager.score().toString())
+    dev.cLog("enemies left: " + gameManager.currentMoment().enemiesLeft())
+    dev.cLog("puntaje: " + gameManager.score().toString())
   }
   
   method activateRecursiveAttack() {
@@ -78,7 +79,7 @@ method collision() = game.sound("sounds/heroDestroy.mp3")
   method attackType()
   
   override method collideWithHeroShip(heroship){
-  	console.println(heroship.toString())
+  	dev.cLog(heroship.toString())
   	gameManager.fatalHit()
   	heroship.collision().play()
   }

@@ -3,6 +3,7 @@ import gameManager.gameManager
 import visuals.Visual.Visual
 import bullets.BulletsPool.WithBulletsPool
 import SoundPool.*
+import extras.dev
 
 
 class Bullet inherits WithBulletsPool and Visual {
@@ -18,7 +19,7 @@ class Bullet inherits WithBulletsPool and Visual {
   method move() {
     direction.nextPosition(self)
   	if(not(self.isInsideLimit())){
-      console.println(self.toString() + ": debo morir")
+      dev.cLog(self.toString() + ": debo morir")
   	  self.remove()
   	}
   }

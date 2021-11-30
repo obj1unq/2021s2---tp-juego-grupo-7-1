@@ -4,6 +4,7 @@ import gameManager.gameManager
 import config.settings.settings
 import SoundPool.soundPool
 import extras.RawMessage
+import extras.dev
 import levels.levels.levels
 import positions.dynamicPositionFactory
 
@@ -49,7 +50,7 @@ class LevelCover inherits Moment(
     )
   }
   method refreshCountDownDisplay() {
-  	console.println("countDown: " + countDown)
+  	dev.cLog("countDown: " + countDown)
     countDown-=1
   }
   method playSound(){

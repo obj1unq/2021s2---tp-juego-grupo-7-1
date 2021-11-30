@@ -74,3 +74,9 @@ mixin ItemCount0 inherits ItemCount{
 mixin ItemCount1 inherits ItemCount{
   override method itemCount() = 1
 }
+
+object dev{
+  method cLog(text){
+    if(settings.VERBOSE_MODE()){ console.println(text)}
+  }
+}

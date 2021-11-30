@@ -3,6 +3,7 @@ import enemies.Enemy.Enemy
 import enemies.EnemyAlias.EnemyAlias
 import directions.down
 import extras.calc
+import extras.dev
 import kamikazeMover.kamikazeMover
 import HeroShip.WithCollideWithHeroShip
 import config.settings.settings
@@ -20,7 +21,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) 
   override method position() = if (onBanzai) banzaiPosition else super()
   
   method scheduleBanzai(){
-  	console.println("Cuidado que se tira" )
+  	dev.cLog("Cuidado que se tira" )
   	self.activateFlicker()
     game.schedule(5000, {
       self.banzai()
@@ -58,7 +59,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) 
   method move() {
     down.nextPosition(self)
     if(not(self.isInsideLimit())){
-      console.println(self.toString() + ": debo morir")
+      dev.cLog(self.toString() + ": debo morir")
       self.remove()
     }
   }
@@ -87,7 +88,7 @@ class Kamikaze inherits WithCollideWithHeroShip and Enemy(award = 40, life = 2) 
   
   method randomAttack() {
   	const chances = calc.randomInRange(1,settings.BANZAI_PROBABILITY()).roundUp()
-  	console.println("Probabilidad de Banzai: salió un " + chances.toString())
+  	dev.cLog("Probabilidad de Banzai: salió un " + chances.toString())
   	if (chances == settings.BANZAI_PROBABILITY()) self.scheduleBanzai() else self.shoot() 
   }
 }

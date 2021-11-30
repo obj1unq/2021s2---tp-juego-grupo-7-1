@@ -10,4 +10,5 @@ object settings{
   const property LEVEL_COVER_TIME = 3
   const property EXPLOSION_FRAME_DURATION = 50
   const property BANZAI_PROBABILITY = 4
+  const property VERBOSE_MODE = false
 }

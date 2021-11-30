@@ -3,6 +3,7 @@ import bullets.HeroBullet.HeroBullet
 import bullets.EnemyBullet.EnemyBullet
 import config.settings.settings
 import extras.listHandler
+import extras.dev
 
 class BulletsPool{
   const property enemyBullets = []
@@ -103,7 +104,7 @@ class BulletsPool{
     settings.HERO_BULLETS().times({i=> self.createHeroBullet() })
   }
 //  method printBulletsCount(){
-//    console.println(
+//    dev.cLog(
 //      "enmyB: "
 //      + enemyBullets.size()
 //      + " | hroB: "

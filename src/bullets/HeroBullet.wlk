@@ -4,6 +4,7 @@ import directions.up
 import config.settings.settings
 import gameManager.gameManager
 import HeroShip.WithCollideWithHeroShip
+import extras.dev
 
 class HeroBullet inherits WithGetHeroBullet and WithCollideWithHeroShip and Bullet(direction=up) {
 				 	
@@ -15,7 +16,7 @@ class HeroBullet inherits WithGetHeroBullet and WithCollideWithHeroShip and Bull
    	self.sound().play()
   }
   method decirNombre() {
-    console.println(self.identity().toString())
+    dev.cLog(self.identity().toString())
   }
   method setupCollisions() {
     if(settings.ACTIVATE_COLLISIONS()){

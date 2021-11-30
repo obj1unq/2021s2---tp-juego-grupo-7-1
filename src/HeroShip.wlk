@@ -3,6 +3,7 @@ import config.settings.*
 import visuals.CompositeVisual.CompositeVisual
 import extras.Anchor
 import extras.calc
+import extras.dev
 import directions.*
 import positions.*
 import gameManager.gameManager
@@ -73,13 +74,13 @@ class HeroShip inherits
   }
 
   method getShot() {
-    console.println("HeroShip: receiveHit")
+    dev.cLog("HeroShip: receiveHit")
     gameManager.looseLife()
     self.showExplosion()
     self.collision().play()
   }  
   method die() {
-  	console.println("HeroShip: fatalHit")
+  	dev.cLog("HeroShip: fatalHit")
   	gameManager.fatalHit()
   	self.collision().play() 
   }

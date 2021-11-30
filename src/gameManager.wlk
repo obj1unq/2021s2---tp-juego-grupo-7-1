@@ -8,10 +8,10 @@ import moments.LevelCover.LevelCover
 import moments.GamePlay.GamePlay
 import levels.levels.levels
 import extras.RawMessage
+import extras.dev
 import Display.*
 import SoundPool.*
 import enemies.Kamikaze.k
-
 
 object gameManager {
   /**
@@ -66,7 +66,7 @@ object gameManager {
   }
   
   method switchTo(moment){
-    console.println("switchTo: " + moment.toString())   
+    dev.cLog("switchTo: " + moment.toString())   
     self.clearPreviousMoment()   
     self.currentMoment(moment)
     title.setup()   

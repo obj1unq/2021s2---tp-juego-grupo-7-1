@@ -1,4 +1,5 @@
 import wollok.game.*
+import extras.dev
 
 class Limit{
   var property left = 0
@@ -30,7 +31,7 @@ class DynamicPosition{
   var property y = 0
   
   method initialize(){
-    console.println("Creo " + self.toString())
+    dev.cLog("Creo " + self.toString())
   }
 
   method moveUp(steps){     y = y+steps }
