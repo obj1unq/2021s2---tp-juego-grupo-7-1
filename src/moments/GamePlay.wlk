@@ -8,6 +8,7 @@ import directions.*
 import extras.RawMessage
 import positions.dynamicPositionFactory
 import Display.NumberDisplay
+import enemies.Kamikaze.k
 
 
 class GamePlay inherits Moment(
@@ -49,6 +50,7 @@ class GamePlay inherits Moment(
   method timeLimit() = self.level().timeLimit()
 
   method loadLevel(levelNumber){
+  	k.resetBanzayers()
     levels.loadLevel(levelNumber, self)
     level.bulletsPool().reset()
   }
