@@ -27,8 +27,6 @@ class HeroShip inherits
   var property energy = 100
   var property cannon = false
   var direction = neutral
-  
-  method collision() = heroSounds.collisionHero()
 
   override method add() {
     super()
@@ -75,14 +73,14 @@ class HeroShip inherits
 
   method getShot() {
     dev.cLog("HeroShip: receiveHit")
-    gameManager.looseLife()
     self.showExplosion()
-    self.collision().play()
+    self.playCollisionSound()
+    gameManager.looseLife()
   }  
   method die() {
   	dev.cLog("HeroShip: fatalHit")
+  	self.playCollisionSound() 
   	gameManager.fatalHit()
-  	self.collision().play() 
   }
   
   method switchCannon() {
@@ -91,7 +89,7 @@ class HeroShip inherits
   override method explosionPosition(){
     return self.position().translatedNew(0, 0)
   }
-  
+  method playCollisionSound(){ heroSounds.collisionHero().play() }
 }
 mixin WithCollideWithHeroShip {
   /**
