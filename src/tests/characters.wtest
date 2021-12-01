@@ -28,7 +28,6 @@ describe "Characters Test" {
   	yOffset=0
   )
   const enemyBullet = new EnemyBullet(position=dynamicPositionFactory.create(4, 26))
-  const heroBullet = new EnemyBullet(position=dynamicPositionFactory.create(3, 25))
   
   method initialize(){
     gameManager.load()
