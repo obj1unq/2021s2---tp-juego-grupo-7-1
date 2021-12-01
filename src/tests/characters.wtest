@@ -53,7 +53,7 @@ describe "Characters Test" {
   	assert.equals(0,gameManager.life())
   }
   
-  test "HeroShip looses al lifes when crashes with a Kamikaze" {
+  test "HeroShip looses all lives when crashes with a Kamikaze" {
   	kamikaze.add()
   	heroship.add()
   	assert.equals(3,gameManager.life())
