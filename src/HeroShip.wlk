@@ -75,7 +75,7 @@ class HeroShip inherits
     dev.cLog("HeroShip: receiveHit")
     self.showExplosion()
     heroSounds.playCollision()
-    gameManager.looseLife()
+    gameManager.loseLife()
   }  
   method die() {
   	dev.cLog("HeroShip: fatalHit")

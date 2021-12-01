@@ -11,4 +11,5 @@ object settings{
   const property EXPLOSION_FRAME_DURATION = 50
   const property BANZAI_PROBABILITY = 4
   const property VERBOSE_MODE = false
+  var   property PLAY_SOUNDS = true
 }

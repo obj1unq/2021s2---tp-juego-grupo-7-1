@@ -99,7 +99,7 @@ class GamePlay inherits Moment(
   method remainingBullets() = self.remainingItem(self.bulletsLimit(),bulletsShooted)
   method remainingEnemies() = self.remainingItem(self.enemiesTotal(),self.enemiesDown())
   
-  method limitReached(value) = value==0
+  method limitReached(value) = value<=0
   
   method triggerGameOver() { gameManager.switchToGameOver() }
   method timeUp() = self.limitReached(self.remainingTime())

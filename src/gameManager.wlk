@@ -91,7 +91,7 @@ object gameManager {
   method increaseLevel(){ levelNumber = (levelNumber+1).min(levels.quantity()) }
   method decreaseLevel(){ levelNumber = 1.max(levelNumber-1) }
   
-  method looseLife() { 
+  method loseLife() { 
   	lifeDisplay.heartLoss()
   	life -= 1
   	lifeDisplay.update(life)
@@ -102,14 +102,13 @@ object gameManager {
   
   method switchToGameOver() {
     self.switchTo(gameOver)
-//  	game.schedule(10, {})
   }
   method switchToGamePlay() {
   	self.switchTo(new GamePlay())
   }
   
   method fatalHit() {
-  	life.times( { i => self.looseLife() } )
+  	life.times( { i => self.loseLife() } )
   }
   
   method refreshDisplays(){

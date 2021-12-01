@@ -18,42 +18,34 @@ class BulletsPool{
   }
   
   method reset() {
-  	shootedEnemyBullets.clear()
-  	shootedHeroBullets.clear()
-  	enemyBullets.clear()
-  	heroBullets.clear()
+    self.clearLists()
   	self.load()
   }
   
   method remove(bullet){
-    if(shootedEnemyBullets.contains(bullet)){
+    if(self.shootedBulletIsEnemy(bullet)){
       shootedEnemyBullets.remove(bullet)
       enemyBullets.add(bullet)
     }else{
       shootedHeroBullets.remove(bullet)
       heroBullets.add(bullet)
-      self.shouldKeepShooting()
+      
+      self.manageRanOutOfShots()
     }
-  }
-  
-  method shouldKeepShooting() {
-  	if (self.heroWontShootAnymore()) {
-  	  gameManager.switchToGameOver()
-  	}
-  }
-  
-  method heroWontShootAnymore() {
-  	const gamePlay = gameManager.currentMoment()
-  	
-  	return gamePlay.noMoreBullets() and self.heroBullets().size()==5
+  }  
+  method manageRanOutOfShots() {
+    if (self.ranOutOfShots()) {
+      gameManager.switchToGameOver()
+    }
   }
   
   method shootEnemyBullet(enemy){
   	if(enemyBullets.size() > 0) {
   	  const toShootBullet = listHandler.pop(enemyBullets) 	  
   	  shootedEnemyBullets.add(toShootBullet)
-  	  shootedEnemyBullets.forEach({bullet => bullet.sound().play()})
   	  self.shooter(toShootBullet, enemy, 0, -1)
+  	  
+  	  toShootBullet.sound().play()
   	}
   }
   method shootHeroBullet(heroShip) {
@@ -78,9 +70,7 @@ class BulletsPool{
   	self.shooter(bullet,ship,offset,2)
   }
   
-  method heroLimitReached() {
-  	return shootedHeroBullets.size() == 5
-  }
+  
   /**
    * Private Methods -----------------------------------------------------------
    */
@@ -103,16 +93,24 @@ class BulletsPool{
   method preloadHeroBullets(){
     settings.HERO_BULLETS().times({i=> self.createHeroBullet() })
   }
-//  method printBulletsCount(){
-//    dev.cLog(
-//      "enmyB: "
-//      + enemyBullets.size()
-//      + " | hroB: "
-//      + heroBullets.size()
-//      + " | ttl: "
-//      + self.shootedBullets().size()
-//    )
-//  }
+  method clearLists() {
+  	shootedEnemyBullets.clear()
+    shootedHeroBullets.clear()
+    enemyBullets.clear()
+    heroBullets.clear()
+  }
+  method heroLimitReached() = shootedHeroBullets.size() == settings.ENEMY_BULLETS()
+  method shootedBulletIsEnemy(bullet) = shootedEnemyBullets.contains(bullet)
+  method noBulletsOnScreen() = self.heroBullets().size()==settings.ENEMY_BULLETS()
+  
+  method ranOutOfShots() {
+    const gamePlay = gameManager.currentMoment()
+    
+    return (
+      gamePlay.noMoreBullets()
+      and self.noBulletsOnScreen()
+    )
+  }
 }
 
 

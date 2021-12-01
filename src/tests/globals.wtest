@@ -2,12 +2,23 @@ import gameManager.gameManager
 import moments.GamePlay.GamePlay
 import moments.gameOver.gameOver
 import wollok.game.game
+import enemies.Private.Private
+import HeroShip.HeroShip
+import config.settings.settings
 
 describe "Global Tests"{
-  test "Restart game has desired effect on global state"{
-    
+  const gamePlay = new GamePlay()
+  
+  method initialize(){
     gameManager.load()
     gameManager.beginGame()
+    gameManager.switchTo(gamePlay)
+    settings.PLAY_SOUNDS(false)
+  }
+  
+  test "Restart game has desired effect on global state"{
+    
+    
     assert.equals(1, gameManager.levelNumber())
     assert.equals(0, gameManager.score())
     assert.equals(3, gameManager.life())
@@ -21,22 +32,34 @@ describe "Global Tests"{
     
   }
   test "Gameover on time up"{
-    gameManager.load()
-    gameManager.beginGame()
-    const gamePlay = new GamePlay()
-    gameManager.switchTo(gamePlay)
+    
     assert.equals(gamePlay, gameManager.currentMoment())
     
     // force timeUp
     gamePlay.timePassed(
       gamePlay.level().timeLimit()
     )
+    assert.notEquals(gameOver, gameManager.currentMoment())
     gamePlay.updateClock()
+    assert.equals(gameOver, gameManager.currentMoment())    
     
-    game.schedule(50, {
-      assert.equals(gameOver, gameManager.currentMoment())    
-    })
   }
-  test "Gameover on HeroShip collides with enemy"{}
-  test "Gameover you ran out of bullets  "{}
+  test "Gameover on HeroShip collides with enemy"{
+    const heroship = new HeroShip()
+    const private = new Private(xOffset=0, yOffset=0)
+    assert.notEquals(gameOver, gameManager.currentMoment())
+    private.collideWithHeroShip(heroship )
+    assert.equals(gameOver, gameManager.currentMoment())
+  }
+  test "Gameover on ran out of bullets"{
+    const heroship = new HeroShip()
+    
+    // force ran out of bullets
+    gamePlay.bulletsShooted(
+      gamePlay.level().bulletsLimit()
+    )
+    assert.notEquals(gameOver, gameManager.currentMoment())
+    heroship.bulletsPool().manageRanOutOfShots()
+    assert.equals(gameOver, gameManager.currentMoment())
+  }
 }

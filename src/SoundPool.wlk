@@ -1,7 +1,7 @@
 import wollok.game.*
+import config.settings.settings
 
 object soundPool {
-
   var property volume = 0.2
   var property music = game.sound("sounds/menu.mp3")
 
@@ -9,7 +9,7 @@ object soundPool {
   method playLevelWin() {
     const win = game.sound("sounds/levelComplete.mp3")
     music = win
-    self.play(win, 1000)
+    self.play(win, 1000)    
   }
 
   method playGameOver() {
@@ -60,13 +60,16 @@ object soundPool {
 
   // CONFIG
   method stop() {
-    music.stop()
+    if(settings.PLAY_SOUNDS()){
+      music.stop()    
+    }
   }
 
   method play(sound, time) {
-    sound.volume(volume)
-    sound.play()
-  // game.schedule(time,{sound.stop()})
+    if(settings.PLAY_SOUNDS()){
+      sound.volume(volume)
+      sound.play()
+    }
   }
 
   method playMenuMusic() {
@@ -100,11 +103,15 @@ class CharacterSound {
   
   method playCollision(){
     const s = game.sound(self.collisionFile())
-    s.play()
+    if(settings.PLAY_SOUNDS()){
+      s.play()      
+    }
   }
   method playShoot(){
     const s = game.sound(self.shootFile())
-    s.play()
+    if(settings.PLAY_SOUNDS()){
+      s.play()      
+    }
   }
 }
 
