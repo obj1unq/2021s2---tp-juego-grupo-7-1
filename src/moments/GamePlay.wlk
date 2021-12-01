@@ -69,8 +69,8 @@ class GamePlay inherits Moment(
   method updateClock() {
     timePassed += 1
     timeDisplay.update(self.remainingTime())
-  	if(self.timesUp()) {
-  	  self.gameOver()
+  	if(self.timeUp()) {
+  	  self.triggerGameOver()
   	}
   }
   
@@ -101,8 +101,8 @@ class GamePlay inherits Moment(
   
   method limitReached(value) = value==0
   
-  method gameOver() { gameManager.switchToGameOver() }
-  method timesUp() = self.limitReached(self.remainingTime())
+  method triggerGameOver() { gameManager.switchToGameOver() }
+  method timeUp() = self.limitReached(self.remainingTime())
   method noMoreBullets() = self.limitReached(self.remainingBullets())
   method noMoreEnemies() = self.limitReached(self.remainingEnemies())
 }

@@ -1,6 +1,41 @@
+import gameManager.gameManager
+import moments.GamePlay.GamePlay
+import moments.gameOver.gameOver
+import wollok.game.game
+
 describe "Global Tests"{
-  test "Restart game"{}
-  test "Gameover on time up"{}
+  test "Restart game has desired effect on global state"{
+    
+    gameManager.load()
+    gameManager.beginGame()
+    assert.equals(1, gameManager.levelNumber())
+    assert.equals(0, gameManager.score())
+    assert.equals(3, gameManager.life())
+    gameManager.score(1000)
+    gameManager.life(2)
+    gameManager.levelNumber(4)
+    gameManager.beginGame()
+    assert.equals(1, gameManager.levelNumber())
+    assert.equals(0, gameManager.score())
+    assert.equals(3, gameManager.life())
+    
+  }
+  test "Gameover on time up"{
+    gameManager.load()
+    gameManager.beginGame()
+    const gamePlay = new GamePlay()
+    gameManager.switchTo(gamePlay)
+    assert.equals(gamePlay, gameManager.currentMoment())
+    
+    // force timeUp
+    gamePlay.timePassed(
+      gamePlay.level().timeLimit()
+    )
+    gamePlay.updateClock()
+    game.schedule(50, {
+      assert.equals(gameOver, gameManager.currentMoment())    
+    })
+  }
   test "Gameover on HeroShip collides with enemy"{}
   test "Gameover you ran out of bullets  "{}
 }

@@ -6,7 +6,7 @@ program spaceInvaders{
   game.title("Objects Invaders")
   game.cellSize(20)
   game.width(50)
-  game.height(30),
+  game.height(30)
   
   // BOOTING TASKS
   gameManager.load()  

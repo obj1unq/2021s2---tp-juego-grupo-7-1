@@ -7,35 +7,24 @@ import SoundPool.*
 class MomentConfiguration{  
   method configMoment(moment){ self.configGlobal() }
   method configGlobal(){
-    /**
-     * TODO: Ver como pasar la clase por parámetro
-     * o abstraer la instanciación de los momentos en una Factory
-     */
-//    keyboard.num1().onPressDo({ gameManager.introduceGame() })
-//    keyboard.num2().onPressDo({ gameManager.beginGame() })
-//    keyboard.num6().onPressDo({gameManager.switchTo(new PDC_CompositeVisual())})
-//    
-//    keyboard.o().onPressDo({gameManager.decreaseLevel()}) 
-//    keyboard.p().onPressDo({gameManager.increaseLevel()})
-    
     keyboard.l().onPressDo({ soundPool.volumeUp()   })  
     keyboard.k().onPressDo({ soundPool.volumeDown() })
-    
   }
-  
 }
+object configVoid inherits MomentConfiguration{}
+
 object configGameTitle inherits MomentConfiguration{
   override method configMoment(moment){
+    super(moment)
     self.configGlobal()
     keyboard.any().onPressDo({ gameManager.beginGame() })
   }
 }
-object configVoid inherits MomentConfiguration{}
 object configGamePlay inherits MomentConfiguration{
   override method configMoment(moment){
+    super(moment)
     self.configHeroShip(moment.heroShip())
     keyboard.any().onPressDo({self.configGlobal()}) 
-//    super(moment)
   }
   method configHeroShip(heroShip){
     keyboard.left().onPressDo({  heroShip.turn(left) })
@@ -49,7 +38,7 @@ object configGamePlay inherits MomentConfiguration{
 
 object configGameOver inherits MomentConfiguration{
   override method configMoment(moment){
-    self.configGlobal()
+    super(moment)
     keyboard.enter().onPressDo({
       gameManager.retryLevel()
     })
