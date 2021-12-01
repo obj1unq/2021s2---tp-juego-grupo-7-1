@@ -23,20 +23,20 @@ Si la nave heroína consigue superar los tres niveles, se gana el juego y la gal
 La nave puede moverse hacia arriba, abajo, y lo laterales con las 4 flechas del teclado  ``↓`` ``→`` ``↑`` ``←`` 
 o bien detenerse en el lugar pulsando la tecla ``N``
 
-Al precionar la tecla ``Espacio`` dispara balas de plasma![Bala De Plasma](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/heroBullet.png?token=AVNGJX42M3NJFRLJQH3CZX3BU6ICA) alternando sus cañones en cada tiro.
+Al precionar la tecla ``Espacio`` dispara balas de plasma![Bala De Plasma](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/heroBullet.png?raw=true) alternando sus cañones en cada tiro.
 
 ## Enemigos
 
-Las flotas enemigas van disparando![Bala Enemiga](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/enemyBullet.png?token=AVNGJX5FY5V4RY6CAWQ7JRDBU6IGM) y descenciendo, a la vez que se desplazan lateralmente por la pantalla.
+Las flotas enemigas van disparando![Bala Enemiga](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/enemyBullet.png?raw=true)y descenciendo, a la vez que se desplazan lateralmente por la pantalla.
 Las mismas se componen de hasta dos tipos de naves:
 
-![Soldado Raso](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/private.png?token=AVNGJXZWIGA47GDB62H25C3BU6G44)  <b>Soldado Raso:</b> esta nave ataca disparando proyectiles esporadicamente. Se trata de una nave fragil, por lo que un disparo es suficiente para destruirla
+![Soldado Raso](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/private.png?raw=true)  <b>Soldado Raso:</b> esta nave ataca disparando proyectiles esporadicamente. Se trata de una nave fragil, por lo que un disparo es suficiente para destruirla
 
-![Kamikaze](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/kamikaze.png?token=AVNGJX5T7MOZ2PUNLYJ2SOLBU6HBI)  <b>Kamikaze:</b> no solo ataca con proyectiles, eventualmente se sacrifica avalanzandose sobre su oponente. Este enemigo cuenta con una nave mas robusta, pero mas inestable al mismo tiempo. Mientras acompaña la flota, se necesitan dos disparos para aniquilarla. Sin embargo, si la misma toma velocidad y rompe filas, un solo acierto sobre la mísma la hará volar por los aires 
+![Kamikaze](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/kamikaze.png?raw=true)  <b>Kamikaze:</b> no solo ataca con proyectiles, eventualmente se sacrifica avalanzandose sobre su oponente. Este enemigo cuenta con una nave mas robusta, pero mas inestable al mismo tiempo. Mientras acompaña la flota, se necesitan dos disparos para aniquilarla. Sin embargo, si la misma toma velocidad y rompe filas, un solo acierto sobre la mísma la hará volar por los aires 
 
 ## Vida 
 
-La nave heroína cuenta con 3 puntos de vida. ![Vida](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/life.png?token=AVNGJX634FMWTS2ALXMSEFLBU6HS6) ![Vida](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/life.png?token=AVNGJX634FMWTS2ALXMSEFLBU6HS6) ![Vida](https://raw.githubusercontent.com/obj1unq/2021s2---tp-juego-grupo-7-1/master/assets/life.png?token=AVNGJX634FMWTS2ALXMSEFLBU6HS6)  
+La nave heroína cuenta con 3 puntos de vida. ![Vida](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/life.png?raw=true) ![Vida](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/life.png?raw=true) ![Vida](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/life.png?raw=true)  
 Cada disparo recibido le quita 1 punto de vida.  
 Si la heroína se estrella con un enemigo, es destruida.  
 
