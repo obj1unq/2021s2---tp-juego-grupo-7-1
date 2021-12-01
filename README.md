@@ -32,7 +32,7 @@ Las mismas se componen de hasta dos tipos de naves:
 
 ![Soldado Raso](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/private.png?raw=true)  <b>Soldado Raso:</b> esta nave ataca disparando proyectiles esporadicamente. Se trata de una nave fragil, por lo que un disparo es suficiente para destruirla
 
-![Kamikaze](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/kamikaze.png?raw=true)  <b>Kamikaze:</b> no solo ataca con proyectiles, eventualmente se sacrifica avalanzandose sobre su oponente. Este enemigo cuenta con una nave mas robusta, pero mas inestable al mismo tiempo. Mientras acompaña la flota, se necesitan dos disparos para aniquilarla. Sin embargo, si la misma toma velocidad y rompe filas, un solo acierto sobre la mísma la hará volar por los aires 
+![Kamikaze](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/kamikaze.png?raw=true)  <b>Kamikaze:</b> no solo ataca con proyectiles, eventualmente se sacrifica avalanzandose sobre su oponente. Este enemigo cuenta con una nave mas robusta, pero mas inestable al mismo tiempo. Mientras acompaña la flota, se necesitan dos disparos para aniquilarla. Sin embargo, si la misma toma velocidad y rompe filas, un solo acierto sobre la mísma la hará volar en pedazos. 
 
 ## Vida 
 
