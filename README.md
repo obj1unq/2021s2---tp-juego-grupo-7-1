@@ -2,8 +2,8 @@
 
 ¡La galaxia se encuentra en peligro! Una serie de naves espaciales busca conquistar el espacio explorado conocido, y amenaza con aniquilar toda civilización que se interponga en su camino. Afortunadamente, existe una valerosa nave heroína diseñada para cumplir la dificil tarea de evitar que esto ocurra ¿Te animas a pilotearla? Acompañanos en esta aventura y salvá el cosmos!
 
-Videojuego inspirado en el clásico arcade "Space Invaders" diseñado por Toshihiro Nishikado y publicado en 1978.
-Desarrollado en Wollok (version 3.0.0) como trabajo grupal para la materia Programación con Objetos I de la Tecnicatura Universitaria en Programación Informática (UNQ) durante el 2° cuatrimestre de 2021
+<i>Videojuego inspirado en el clásico arcade "Space Invaders" diseñado por Toshihiro Nishikado y publicado en 1978.
+Desarrollado en Wollok (version 3.0.0) como trabajo grupal para la materia Programación con Objetos I de la Tecnicatura Universitaria en Programación Informática (UNQ) durante el 2° cuatrimestre de 2021</i>
 
 ### Equipo de desarrollo
 
