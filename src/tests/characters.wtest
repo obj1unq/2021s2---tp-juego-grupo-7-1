@@ -1,3 +1,108 @@
-describe "HeroShip"{}
-describe "Private"{}
-describe "Kamikaze"{}
+import gameManager.gameManager
+import moments.GamePlay.GamePlay
+import moments.gameOver.gameOver
+import wollok.game.game
+import enemies.Private.Private
+import enemies.Kamikaze.Kamikaze
+import HeroShip.HeroShip
+import config.settings.settings
+import bullets.EnemyBullet.EnemyBullet
+import bullets.HeroBullet.HeroBullet
+import positions.*
+import directions.*
+import extras.Anchor
+
+describe "Characters Test" {
+	
+  const gamePlay = new GamePlay()
+  const anchor = new Anchor()
+  const heroship = new HeroShip(position=dynamicPositionFactory.create(2, 25))
+  const private = new Private(anchor=anchor,
+  	position=dynamicPositionFactory.create(5, 25),
+  	xOffset=0, 
+  	yOffset=0
+  )
+  const kamikaze = new Kamikaze(anchor=anchor,
+	position=dynamicPositionFactory.create(5, 25),
+  	xOffset=0, 
+  	yOffset=0
+  )
+  const enemyBullet = new EnemyBullet(position=dynamicPositionFactory.create(4, 26))
+  const heroBullet = new EnemyBullet(position=dynamicPositionFactory.create(3, 25))
+  
+  method initialize(){
+    gameManager.load()
+    gameManager.beginGame()
+    gameManager.switchTo(gamePlay)
+    settings.PLAY_SOUNDS(false)
+    
+  }
+  
+  test "HeroShip looses a life when gets hit by an EnemyBullet" {
+  	enemyBullet.add()
+  	heroship.add()
+  	assert.equals(3,gameManager.life())
+  	enemyBullet.collideWithHeroShip(heroship)
+  	assert.equals(2,gameManager.life())
+  }
+  
+  test "HeroShip looses all lives when crashes with a Private" {
+  	private.add()
+  	heroship.add()
+  	assert.equals(3,gameManager.life())
+  	private.collideWithHeroShip(heroship)
+  	assert.equals(0,gameManager.life())
+  }
+  
+  test "HeroShip looses al lifes when crashes with a Kamikaze" {
+  	kamikaze.add()
+  	heroship.add()
+  	assert.equals(3,gameManager.life())
+  	kamikaze.collideWithHeroShip(heroship)
+  	assert.equals(0,gameManager.life())
+  }
+  
+  test "Private looses all lives when gets hit by a heroBullet, and gives 30 points " {
+  	private.add()
+  	assert.that(game.hasVisual(private))
+  	assert.equals(1,private.life())
+	private.getHeroBullet()
+  	assert.notThat(game.hasVisual(private))
+  	assert.equals(30,gameManager.score())
+  }
+  
+  test "Kamikaze looses a life when gets hit by a heroBullet, and gives 60 points " {
+  	kamikaze.add()
+  	assert.equals(2,kamikaze.life())
+  	kamikaze.getHeroBullet()
+  	assert.equals(1,kamikaze.life())
+  	assert.equals(10,gameManager.score())
+  	kamikaze.getHeroBullet()
+  	assert.notThat(game.hasVisual(kamikaze))
+  	assert.equals(60,gameManager.score())
+  }
+  
+  test "Kamikaze looses all lives when gets hit 
+		by a heroBullet while is on Banzai, and gives 100 points " {
+  	kamikaze.add()
+  	assert.that(game.hasVisual(kamikaze))
+  	assert.equals(2,kamikaze.life())
+  	kamikaze.banzai()
+  	kamikaze.getHeroBullet()
+  	assert.notThat(game.hasVisual(kamikaze))
+  	assert.equals(100,gameManager.score())
+  }
+  
+  test "Kamikaze and gives 110 points if gets hit and then again when is on banzai" {
+  	kamikaze.add()
+  	assert.equals(2,kamikaze.life())
+  	kamikaze.getHeroBullet()
+  	assert.equals(10,gameManager.score())
+  	kamikaze.banzai()
+  	kamikaze.getHeroBullet()
+  	assert.equals(110,gameManager.score())
+  }
+  
+  
+  
+}
