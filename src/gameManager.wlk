@@ -12,6 +12,7 @@ import extras.dev
 import Display.*
 import SoundPool.*
 import enemies.Kamikaze.k
+import config.settings.settings
 
 object gameManager {
   /**
@@ -58,7 +59,7 @@ object gameManager {
     }
   }
   method winGame(){
-    game.schedule(10, {self.switchTo(gameWin)})
+    self.switchToMomentWithDelay(gameWin)
   }
   method goToNextLevel(){
     levelNumber += 1
@@ -100,11 +101,19 @@ object gameManager {
   	}
   }
   
+  method switchToMomentWithDelay(moment) {
+  	if (settings.TEST_MODE()) {
+  	  self.switchTo(moment)
+  	} else {
+  	  game.schedule(10, {self.switchTo(moment)} )
+  	}
+  }
+  
   method switchToGameOver() {
-    game.schedule(10, {self.switchTo(gameOver)})
+    self.switchToMomentWithDelay(gameOver)
   }
   method switchToGamePlay() {
-  	game.schedule(10, {self.switchTo(new GamePlay())})
+  	self.switchToMomentWithDelay(new GamePlay())
   }
   
   method fatalHit() {
@@ -132,6 +141,6 @@ object gameManager {
   	self.beginCurrentLevel()
   }
   method beginCurrentLevel(){
-    game.schedule(10, {self.switchTo(new LevelCover())})
+    self.switchToMomentWithDelay(new LevelCover())
   }
 }

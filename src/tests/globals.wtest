@@ -14,6 +14,7 @@ describe "Global Tests"{
     gameManager.beginGame()
     gameManager.switchTo(gamePlay)
     settings.PLAY_SOUNDS(false)
+    settings.TEST_MODE(true)
   }
   
   test "Restart game has desired effect on global state"{
@@ -26,7 +27,6 @@ describe "Global Tests"{
     gameManager.life(2)
     gameManager.levelNumber(4)
     gameManager.beginGame()
-    
     assert.equals(1, gameManager.levelNumber())
     assert.equals(0, gameManager.score())
     assert.equals(3, gameManager.life())
@@ -42,7 +42,7 @@ describe "Global Tests"{
     )
     assert.notEquals(gameOver, gameManager.currentMoment())
     gamePlay.updateClock()
-    game.schedule(10, {assert.equals(gameOver, gameManager.currentMoment())} )    
+    assert.equals(gameOver, gameManager.currentMoment())    
     
   }
   test "Gameover on HeroShip collides with enemy"{
@@ -50,7 +50,7 @@ describe "Global Tests"{
     const private = new Private(xOffset=0, yOffset=0)
     assert.notEquals(gameOver, gameManager.currentMoment())
     private.collideWithHeroShip(heroship )
-    game.schedule(10, {assert.equals(gameOver, gameManager.currentMoment())} )
+    assert.equals(gameOver, gameManager.currentMoment())
   }
   test "Gameover on ran out of bullets"{
     const heroship = new HeroShip()
@@ -61,6 +61,6 @@ describe "Global Tests"{
     )
     assert.notEquals(gameOver, gameManager.currentMoment())
     heroship.bulletsPool().manageRanOutOfShots()
-    game.schedule(10, {assert.equals(gameOver, gameManager.currentMoment())} )
+    assert.equals(gameOver, gameManager.currentMoment())
   }
 }

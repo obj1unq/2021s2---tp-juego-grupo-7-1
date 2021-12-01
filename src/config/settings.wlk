@@ -12,4 +12,5 @@ object settings{
   const property BANZAI_PROBABILITY = 4
   const property VERBOSE_MODE = false
   var   property PLAY_SOUNDS = true
+  var	property TEST_MODE = false
 }
