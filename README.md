@@ -20,7 +20,7 @@ Si la nave heroína consigue superar los tres niveles, se gana el juego y la gal
 
 ## Controles
 
-La nave puede moverse hacia arriba, abajo, y lo laterales con las 4 flechas del teclado  ``↓`` ``→`` ``↑`` ``←`` 
+La nave puede moverse hacia arriba, abajo, y los laterales con las 4 flechas del teclado  ``↑`` ``↓`` ``→`` ``←`` 
 o bien detenerse en el lugar pulsando la tecla ``N``
 
 Al precionar la tecla ``Espacio`` dispara balas de plasma![Bala De Plasma](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/heroBullet.png?raw=true) alternando sus cañones en cada tiro.
@@ -42,7 +42,8 @@ Si la heroína se estrella con un enemigo, es destruida.
 
 ## Puntaje
 
-Cada enemigo que destruye la nave heroína le otorga un puntaje especifico. La destrucción del Soldado Raso entrega 20 puntos, mientras que la destruccion de un Kamikaze varía segun su estado. Si el mismo se encuentra dentro de la flota, equivale a 40 puntos. Mientras que si se lo destruye cuando toma velocidad, la recompenza son 90 puntos.
+Cada acierto de disparo en una nave enemiga da 10 puntos
+Cada enemigo que destruye la nave heroína le otorga un puntaje adicional. La destrucción del Soldado Raso entrega 20 puntos adicionales, mientras que la destruccion de un Kamikaze varía segun su estado. Si el mismo se encuentra dentro de la flota, equivale a 40 puntos adicionales. Mientras que si se lo destruye cuando toma velocidad, la recompenza son 90 puntos adicionales.
 
 El puntaje se conserva siempre que la vida de la nave heroína no llege a agotarse. Si se pierde un nivel, es posible reintentarlo pero el puntaje vuelve a cero.
 
