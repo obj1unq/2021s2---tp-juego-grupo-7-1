@@ -58,7 +58,7 @@ object gameManager {
     }
   }
   method winGame(){
-    self.switchTo(gameWin)
+    game.schedule(10, {self.switchTo(gameWin)})
   }
   method goToNextLevel(){
     levelNumber += 1
@@ -101,10 +101,10 @@ object gameManager {
   }
   
   method switchToGameOver() {
-    self.switchTo(gameOver)
+    game.schedule(10, {self.switchTo(gameOver)})
   }
   method switchToGamePlay() {
-  	self.switchTo(new GamePlay())
+  	game.schedule(10, {self.switchTo(new GamePlay())})
   }
   
   method fatalHit() {
