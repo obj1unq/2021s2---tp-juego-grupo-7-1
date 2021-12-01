@@ -13,7 +13,7 @@ Desarrollado en Wollok (version 3.0.0) como trabajo grupal para la materia Progr
 
 ## Reglas de Juego 
 
-El juego consta de tres niveles, donde la nave heroína se enfrenta con diversas flotas de naves enemigas.  
+El juego consta de cinco niveles, donde la nave heroína se enfrenta con diversas flotas de naves enemigas.  
 El objetivo de cada nivel es destruir todas las naves enemigas antes de que se acabe el tiempo, las balas, o la vida de la nave heroína.  
 Si cualquiera de estos indicadores llega a 0 antes de destruir la flota enemiga, se pierde el juego.   
 Si la nave heroína consigue superar los tres niveles, se gana el juego y la galaxia estará a salvo.  
@@ -48,18 +48,12 @@ El puntaje se conserva siempre que la vida de la nave heroína no llege a agotar
 
 ## Capturas
 
-#### Pantalla de Inicio
-![Pantalla de Inicio]()
+![Pantalla de Inicio](https://user-images.githubusercontent.com/89810143/144264765-80e98912-cfd8-4dcf-a368-e500ee6d3f90.png)
 
-#### Consigna de Nivel
-![Consigna de Nivel]()
+![Consigna de Nivel](https://user-images.githubusercontent.com/89810143/144264865-fa1f4f28-ee02-4d24-8855-0cb8c9613ca2.png)
 
-#### Gameplay
-![Gameplay]()
+![Gameplay 1](https://user-images.githubusercontent.com/89810143/144264920-21232249-5d74-4273-9dc7-35cf9c88ddd2.png)
 
-#### Game Over
-![GameOver]()
+![Gameplay 2](https://user-images.githubusercontent.com/89810143/144264969-ea394073-008b-4e51-90e4-2a745d67057a.png)
 
-## Otros
-
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+![GameOver](https://user-images.githubusercontent.com/89810143/144264989-232455aa-91a6-45c2-970b-63614b7c70b7.png)
