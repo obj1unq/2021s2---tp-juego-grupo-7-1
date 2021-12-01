@@ -20,7 +20,7 @@ Si la nave heroína consigue superar los tres niveles, se gana el juego y la gal
 
 ## Controles
 
-La nave puede moverse hacia arriba, abajo, y lo laterales con las 4 flechas del teclado  ``↓`` ``→`` ``↑`` ``←`` 
+La nave puede moverse hacia arriba, abajo, y los laterales con las 4 flechas del teclado  ``↑`` ``↓`` ``→`` ``←`` 
 o bien detenerse en el lugar pulsando la tecla ``N``
 
 Al precionar la tecla ``Espacio`` dispara balas de plasma![Bala De Plasma](https://github.com/obj1unq/2021s2---tp-juego-grupo-7-1/blob/master/assets/heroBullet.png?raw=true) alternando sus cañones en cada tiro.
