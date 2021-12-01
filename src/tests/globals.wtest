@@ -1,0 +1,6 @@
+describe "Global Tests"{
+  test "Restart game"{}
+  test "Gameover on time up"{}
+  test "Gameover on HeroShip collides with enemy"{}
+  test "Gameover you ran out of bullets  "{}
+}
