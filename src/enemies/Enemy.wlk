@@ -28,7 +28,7 @@ class Enemy inherits
 
   method image()
 	
-method collision() = enemySounds.collisionEnemy()
+  
 
   override method position(){
     position.x(anchor.position().x()+xOffset)
@@ -46,7 +46,7 @@ method collision() = enemySounds.collisionEnemy()
   	dev.cLog( "puntaje: " + gameManager.score().toString())
   	
     self.lifeDecrease()
-    self.collision().play()
+    enemySounds.playCollision()
     
     self.showExplosion()
   }
@@ -82,11 +82,11 @@ method collision() = enemySounds.collisionEnemy()
   override method collideWithHeroShip(heroship){
   	dev.cLog(heroship.toString())
   	gameManager.fatalHit()
-  	heroship.collision().play()
+  	heroSounds.playCollision()
   }
   
   override method remove() {
-  	gameManager.currentMoment().enemieDown()
+  	gameManager.currentMoment().enemyDown()
   	super()
   }
   

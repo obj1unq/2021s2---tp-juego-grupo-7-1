@@ -95,39 +95,25 @@ object soundPool {
 }
 
 class CharacterSound {
-
-  method shoot()
-
-  method collision()
-
+  const property collisionFile
+  const property shootFile
+  
+  method playCollision(){
+    const s = game.sound(self.collisionFile())
+    s.play()
+  }
+  method playShoot(){
+    const s = game.sound(self.shootFile())
+    s.play()
+  }
 }
 
-object enemySounds inherits CharacterSound {
+object enemySounds inherits CharacterSound(
+  shootFile="sounds/enemyShoot.mp3",
+  collisionFile="sounds/enemyDestroy.mp3"
+){}
 
-  const property enemyShoot = game.sound("sounds/enemyShoot.mp3")
-  const property collisionEnemy = game.sound("sounds/enemyDestroy.mp3")
-
-  override method shoot() {
-    soundPool.play(enemyShoot, 1000)
-  }
-
-  override method collision() {
-    soundPool.play(collisionEnemy, 1000)
-  }
-
-}
-
-object heroSounds inherits CharacterSound {
-
-  const property heroShoot = game.sound("sounds/heroShoot.mp3")
-  const property collisionHero = game.sound("sounds/heroDestroy.mp3")
-
-  override method shoot() {
-    soundPool.play(heroShoot, 1000)
-  }
-
-  override method collision() {
-    soundPool.play(collisionHero, 1000)
-  }
-
-}
+object heroSounds inherits CharacterSound(
+  shootFile = "sounds/heroShoot.mp3",
+  collisionFile = "sounds/heroDestroy.mp3"
+){}

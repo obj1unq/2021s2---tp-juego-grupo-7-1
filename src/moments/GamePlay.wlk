@@ -79,7 +79,7 @@ class GamePlay inherits Moment(
   	bulletsDisplay.update(self.remainingBullets())
   }
   
-  method enemieDown() {
+  method enemyDown() {
   	enemiesDown +=1
   	if (self.noMoreEnemies()) {
   	  self.stageClear()

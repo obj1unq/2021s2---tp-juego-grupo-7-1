@@ -101,7 +101,8 @@ object gameManager {
   }
   
   method switchToGameOver() {
-  	game.schedule(10, {self.switchTo(gameOver)})
+    self.switchTo(gameOver)
+//  	game.schedule(10, {})
   }
   method switchToGamePlay() {
   	self.switchTo(new GamePlay())

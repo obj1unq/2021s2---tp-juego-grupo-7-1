@@ -25,7 +25,7 @@ class Pixel inherits WithGetHeroBullet and Visual{
   }
 }
 
-class RawMessage inherits WithGetHeroBullet {
+class RawMessage inherits WithGetHeroBullet and WithCollideWithHeroShip {
   var property position = dynamicPositionFactory.create(25,28)
   var property text = "HOLA"
   var property textColor = "FFFFFFFF"

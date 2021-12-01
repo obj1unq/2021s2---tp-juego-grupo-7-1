@@ -74,12 +74,12 @@ class HeroShip inherits
   method getShot() {
     dev.cLog("HeroShip: receiveHit")
     self.showExplosion()
-    self.playCollisionSound()
+    heroSounds.playCollision()
     gameManager.looseLife()
   }  
   method die() {
   	dev.cLog("HeroShip: fatalHit")
-  	self.playCollisionSound() 
+  	heroSounds.playCollision()
   	gameManager.fatalHit()
   }
   
@@ -89,7 +89,6 @@ class HeroShip inherits
   override method explosionPosition(){
     return self.position().translatedNew(0, 0)
   }
-  method playCollisionSound(){ heroSounds.collisionHero().play() }
 }
 mixin WithCollideWithHeroShip {
   /**

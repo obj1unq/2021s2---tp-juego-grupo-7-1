@@ -32,6 +32,7 @@ describe "Global Tests"{
       gamePlay.level().timeLimit()
     )
     gamePlay.updateClock()
+    
     game.schedule(50, {
       assert.equals(gameOver, gameManager.currentMoment())    
     })
